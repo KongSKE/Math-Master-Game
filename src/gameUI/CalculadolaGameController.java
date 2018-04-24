@@ -29,9 +29,11 @@ public class CalculadolaGameController {
 
 	private Calculadola calculadora;
 	private int questionNumber = 0;
-	
+
 	public void initialize() {
 		answerText.setOnAction(this::onAnswerEnter);
+		answerText.setEditable(false);
+
 		calculadora = new Calculadola();
 		changeQuestion();
 	}
@@ -41,7 +43,7 @@ public class CalculadolaGameController {
 			@Override
 			protected Void call() throws Exception {
 				try {
-					Thread.sleep(3000);
+					Thread.sleep(1500);
 				} catch (InterruptedException e) {
 				}
 				return null;
@@ -86,10 +88,10 @@ public class CalculadolaGameController {
 	}
 
 	public void backToHome() {
-		
-		GameUISceneChange.CHOOSEMINIGAME.changeScene((Stage)questionLabel.getScene().getWindow());
+
+		GameUISceneChange.CHOOSEMINIGAME.changeScene((Stage) questionLabel.getScene().getWindow());
 	}
-	
+
 	public void gameEnd() {
 		Alert alert = new Alert(AlertType.CONFIRMATION);
 		alert.setTitle("Confirmation Dialog with Custom Actions");

@@ -20,6 +20,7 @@ public class ChooseMiniGameController {
 	@FXML
 	public void initialize() {
 		calculadolaGameButton.setOnAction(this::onCalculadolaGameButtonClicked);
+		questionIsGameButton.setOnAction(this::onQuestionIsGameButtonClicked);
 	}
 
 	public void onCalculadolaGameButtonClicked(ActionEvent event) {
@@ -29,18 +30,8 @@ public class ChooseMiniGameController {
 	}
 	
 	public void onQuestionIsGameButtonClicked(ActionEvent event) {
-		try {
-			Stage stage = new Stage();
-			Parent myPane = null;
-			myPane = FXMLLoader.load(getClass().getResource("--.fxml"));
-			Scene scene = new Scene(myPane);
-			stage.setScene(scene);
-
-//			thisScene.close();
-			stage.show();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+	
+		GameUISceneChange.QUESTIONIS.changeScene((Stage)questionIsGameButton.getScene().getWindow());
 	}
 	
 	public void onmakeIt24GameButtonClicked(ActionEvent event) {

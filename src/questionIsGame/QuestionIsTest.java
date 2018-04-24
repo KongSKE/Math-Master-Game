@@ -24,7 +24,7 @@ public class QuestionIsTest {
 			if(qi.checkAnswer(first, second, third))
 				System.out.println("Correct!!");
 			else 
-				System.out.println("Wrong!!" + qi.questionIsSolution());
+				System.out.println("Wrong!!" + qi.getQuestionIsSolution());
 			
 			System.out.println("Play again?(y/n): ");
 			again = sc.nextLine();

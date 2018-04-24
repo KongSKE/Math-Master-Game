@@ -6,7 +6,8 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 public enum GameUISceneChange {
-	CHOOSEMINIGAME("ChooseMiniGameUI.fxml"), CALCULADOLA("CalculadolaGameUI.fxml"), QUESTIONIS(""), MAKEIT24("");
+	CHOOSEMINIGAME("ChooseMiniGameUI.fxml"), CALCULADOLA("CalculadolaGameUI.fxml"), QUESTIONIS(
+			"QuestionIsGameUI.fxml"), MAKEIT24("");
 
 	private String fxmlName;
 
@@ -23,7 +24,7 @@ public enum GameUISceneChange {
 			chooseGameScene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 
 			stage.setScene(chooseGameScene);
-	
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
