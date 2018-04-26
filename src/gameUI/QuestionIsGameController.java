@@ -42,8 +42,10 @@ public class QuestionIsGameController {
 		number1Text.setOnAction(this::onAnyTextFieldPressEnter);
 		number2Text.setOnAction(this::onAnyTextFieldPressEnter);
 		number3Text.setOnAction(this::onAnyTextFieldPressEnter);
+		resultLabel.setText("");
 
 		question = new QuestionIs();
+		questionNumber = 0;
 		setNewQuestion();
 	}
 
@@ -53,6 +55,7 @@ public class QuestionIsGameController {
 			operation1Label.setText(question.getFirstOperation());
 			operation2Label.setText(question.getSecondOperation());
 			answerLabel.setText(question.getAnswer() + "");
+			number1Text.requestFocus();
 			randomShowNumber();
 			questionNumber++;
 		} else
@@ -142,7 +145,7 @@ public class QuestionIsGameController {
 
 		Optional<ButtonType> result = alert.showAndWait();
 		if (result.get() == buttonTypeOne) {
-			// ... user chose "One"
+			initialize();
 		} else if (result.get() == buttonTypeTwo) {
 			backToHome();
 		}

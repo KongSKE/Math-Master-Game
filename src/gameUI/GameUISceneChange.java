@@ -7,7 +7,7 @@ import javafx.stage.Stage;
 
 public enum GameUISceneChange {
 	CHOOSEMINIGAME("ChooseMiniGameUI.fxml"), CALCULADOLA("CalculadolaGameUI.fxml"), QUESTIONIS(
-			"QuestionIsGameUI.fxml"), MAKEIT24("");
+			"QuestionIsGameUI.fxml"), MAKEIT24("MakeIt24GameUI.fxml");
 
 	private String fxmlName;
 
