@@ -24,7 +24,6 @@ public class ChooseMiniGameController {
 	public void onCalculadolaGameButtonClicked(ActionEvent event) {
 		
 		GameUISceneChange.CALCULADOLA.changeScene((Stage)calculadolaGameButton.getScene().getWindow());
-		
 	}
 	
 	public void onQuestionIsGameButtonClicked(ActionEvent event) {
