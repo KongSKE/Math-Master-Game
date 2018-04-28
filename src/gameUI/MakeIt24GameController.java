@@ -49,6 +49,9 @@ public class MakeIt24GameController {
 	private int bracket;
 	private int question;
 	private ExprEvaluator e;
+	private String oldInput;
+	private String newInput;
+	private String output;
 
 	public void initialize() {
 		number1Button.setOnAction(this::onNumberButtonClicked);
@@ -87,17 +90,17 @@ public class MakeIt24GameController {
 			number2Button.setVisible(true);
 			number3Button.setVisible(true);
 			number4Button.setVisible(true);
-			
+
 			question++;
-		}else 
+		} else
 			gameEnd();
 	}
 
 	public void onOperationButtonClick(ActionEvent event) {
 		Button b = (Button) event.getSource();
-		String oldInput = resultLabel.getText();
-		String newInput = b.getText();
-		String output = oldInput + newInput;
+		oldInput = resultLabel.getText();
+		newInput = b.getText();
+		output = oldInput + newInput;
 		if (newInput.equals("("))
 			bracket++;
 		else if (newInput.equals(")")) {
@@ -114,9 +117,9 @@ public class MakeIt24GameController {
 	public void onNumberButtonClicked(ActionEvent event) {
 		Button b = (Button) event.getSource();
 		b.setVisible(false);
-		String oldInput = resultLabel.getText();
-		String newInput = b.getText();
-		String output = oldInput + newInput;
+		oldInput = resultLabel.getText();
+		newInput = b.getText();
+		output = oldInput + newInput;
 		if (!number1Button.isVisible() && !number2Button.isVisible() && !number3Button.isVisible()
 				&& !number4Button.isVisible()) {
 			if (bracket > 0) {
@@ -137,10 +140,31 @@ public class MakeIt24GameController {
 
 	public void onClearButtonClicked(ActionEvent event) {
 		correctLabel.setText(make24.getSolution());
+		bracket = 0;
+		number1Button.setVisible(true);
+		number2Button.setVisible(true);
+		number3Button.setVisible(true);
+		number4Button.setVisible(true);
+		
 	}
 
 	public void onDeleteButtonClicked(ActionEvent event) {
-		getAllNumber();
+		output = resultLabel.getText();
+		char lastIndex = output.charAt(output.length() - 1);
+		output = output.substring(0, output.length() - 1);
+		if (lastIndex == '(')
+			bracket--;
+		else if (lastIndex == ')')
+			bracket++;
+		else if (lastIndex == number1Button.getText().charAt(0))
+			number1Button.setVisible(true);
+		else if (lastIndex == number2Button.getText().charAt(0))
+			number2Button.setVisible(true);
+		else if (lastIndex == number3Button.getText().charAt(0))
+			number3Button.setVisible(true);
+		else if (lastIndex == number4Button.getText().charAt(0))
+			number4Button.setVisible(true);
+		resultLabel.setText(output);
 	}
 
 	public void backToHome() {
