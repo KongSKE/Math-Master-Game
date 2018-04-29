@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ProgressBar?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
@@ -12,47 +12,51 @@
    <center>
       <VBox prefHeight="400.0" prefWidth="700.0" BorderPane.alignment="CENTER">
          <children>
-            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+            <AnchorPane prefHeight="431.0" prefWidth="700.0">
                <children>
-                  <Label text="Calculadola">
+                  <Label layoutX="208.0" layoutY="27.0" text="Calculadola">
                      <font>
                         <Font name="3270-Medium" size="48.0" />
                      </font>
                   </Label>
-               </children>
-            </HBox>
-            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
-               <children>
-                  <Label fx:id="questionLabel" text="Question Here!!">
+                  <Label fx:id="questionLabel" alignment="CENTER" layoutX="131.0" layoutY="140.0" prefHeight="42.0" prefWidth="439.0" text="Question Here!!">
                      <font>
                         <Font name="3270 Narrow" size="39.0" />
                      </font>
                   </Label>
-               </children>
-            </HBox>
-            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
-               <children>
-                  <TextField fx:id="answerText" alignment="CENTER" prefHeight="26.0" prefWidth="207.0">
+                  <TextField fx:id="answerText" alignment="CENTER" layoutX="247.0" layoutY="214.0" prefHeight="26.0" prefWidth="207.0">
                      <font>
                         <Font size="27.0" />
                      </font>
                   </TextField>
-               </children>
-            </HBox>
-            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
-               <children>
-                  <Label fx:id="timeCountdown" text="Time">
-                     <HBox.margin>
-                        <Insets right="20.0" />
-                     </HBox.margin>
-                  </Label>
-                  <Label fx:id="resultLabel" text="Result!">
+                  <Label fx:id="resultLabel" alignment="CENTER" layoutX="131.0" layoutY="320.0" prefHeight="27.0" prefWidth="439.0" text="Result!">
                      <font>
                         <Font name="3270 Narrow" size="26.0" />
                      </font>
                   </Label>
+                  <Label fx:id="player1NameLabel" layoutX="8.0" layoutY="19.0" prefHeight="19.0" prefWidth="117.0" text="Player 1">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="player1Scorelabel" layoutX="8.0" layoutY="45.0" prefHeight="19.0" prefWidth="122.0" text="Score: ">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="player2NameLabel" layoutX="582.0" layoutY="16.0" prefHeight="19.0" prefWidth="104.0" text="Player 2">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="player2ScoreLabel" layoutX="583.0" layoutY="42.0" prefHeight="19.0" prefWidth="95.0" text="Score: ">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+                  <ProgressBar fx:id="timeCountdownProgress" layoutX="167.0" layoutY="85.0" prefHeight="20.0" prefWidth="367.0" progress="0.0" />
                </children>
-            </HBox>
+            </AnchorPane>
          </children>
       </VBox>
    </center>

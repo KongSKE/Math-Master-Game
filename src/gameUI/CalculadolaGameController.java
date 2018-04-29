@@ -6,12 +6,12 @@ import calculadolaGame.Calculadola;
 import javafx.concurrent.Task;
 import javafx.concurrent.WorkerStateEvent;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
+import javafx.scene.control.ProgressBar;
 import javafx.scene.control.TextField;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
@@ -25,10 +25,21 @@ public class CalculadolaGameController {
 	@FXML
 	Label resultLabel;
 	@FXML
-	Label timeCountdown;
+	Label player1NameLabel;
+	@FXML
+	Label player1Scorelabel;
+	@FXML
+	Label player2NameLabel;
+	@FXML
+	Label player2ScoreLabel;
+	@FXML
+	ProgressBar timeCountdownProgress;
 
 	private Calculadola calculadora;
-	private int questionNumber = 0;
+	private int questionNumber;
+	private TimeCounter timeCount;
+	private int playerScore;
+	private Task<Void> sleeper;
 
 	public void initialize() {
 		answerText.setOnAction(this::onAnswerEnter);
@@ -36,33 +47,39 @@ public class CalculadolaGameController {
 
 		calculadora = new Calculadola();
 		changeQuestion();
+		playerScore = 0;
+		questionNumber = 0;
+		player1Scorelabel.setText("Score: " + playerScore);
 	}
 
 	public void changeQuestion() {
-		Task<Void> sleeper = new Task<Void>() {
-			@Override
-			protected Void call() throws Exception {
-				try {
-					Thread.sleep(1500);
-				} catch (InterruptedException e) {
-				}
-				return null;
-			}
-		};
-		sleeper.setOnSucceeded(new EventHandler<WorkerStateEvent>() {
-			@Override
-			public void handle(WorkerStateEvent event) {
-				if (questionNumber < 2) {
-					answerText.setEditable(true);
-					questionLabel.setText(calculadora.getQuestion());
-					questionNumber++;
-					timeCountdown.setText(questionNumber + ": ");
-				} else
-					gameEnd();
-			}
-		});
+		sleeper = new TimeDelay();
+		sleeper.setOnSucceeded(this::changeAllOutput);
 		new Thread(sleeper).start();
+	}
 
+	public void changeAllOutput(WorkerStateEvent event) {
+		if (questionNumber < 2) {
+			resultLabel.setText("");
+			timeCount = new TimeCounter(10);
+			timeCount.setOnSucceeded(this::timeUpDisplay);
+			answerText.setEditable(true);
+			questionLabel.setText(calculadora.getQuestion());
+			questionNumber++;
+			
+			timeCountdownProgress.progressProperty().bind(timeCount.progressProperty());
+			new Thread(timeCount).start();
+		} else
+			gameEnd();
+	}
+	
+	public void timeUpDisplay(WorkerStateEvent event) {
+		if(timeCount.getTime() == 0) {
+			resultLabel.setText("Time Up!!");
+			resultLabel.setTextFill(Color.RED);
+			changeQuestion();
+		}
+		
 	}
 
 	public void onAnswerEnter(ActionEvent event) {
@@ -70,11 +87,14 @@ public class CalculadolaGameController {
 		if (answerFromText.isEmpty()) {
 			return;
 		}
+		timeCount.cancel();
 		try {
 			Double answer = Double.parseDouble(answerFromText);
 			if (calculadora.checkAnswer(answer)) {
 				resultLabel.setText("Correct!!");
 				resultLabel.setTextFill(Color.GREEN);
+				playerScore += timeCount.getTime();
+				player1Scorelabel.setText("Score: " + playerScore);
 			} else {
 				resultLabel.setText(String.format("Wrong!! Answer: %.2f", calculadora.getAnswer()));
 				resultLabel.setTextFill(Color.RED);
@@ -88,7 +108,6 @@ public class CalculadolaGameController {
 	}
 
 	public void backToHome() {
-
 		GameUISceneChange.CHOOSEMINIGAME.changeScene((Stage) questionLabel.getScene().getWindow());
 	}
 
@@ -105,7 +124,7 @@ public class CalculadolaGameController {
 
 		Optional<ButtonType> result = alert.showAndWait();
 		if (result.get() == buttonTypeOne) {
-			// ... user chose "One"
+			initialize();
 		} else if (result.get() == buttonTypeTwo) {
 			backToHome();
 		}

@@ -17,6 +17,7 @@ public class ChooseMiniGameUI extends Application{
 			Scene chooseGameScene = new Scene(chooseGameRoot);
 			chooseGameScene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 			
+			primaryStage.setResizable(false);
 			primaryStage.setScene(chooseGameScene);
 			primaryStage.show();
 		} catch(Exception e) {

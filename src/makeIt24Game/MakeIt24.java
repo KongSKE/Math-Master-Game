@@ -20,8 +20,6 @@ public class MakeIt24 {
 	private String thirdOperation;
 	private String solution;
 
-	// private List<Double> number = new ArrayList<Double>();
-
 	public MakeIt24() {
 		
 		e = new ExprEvaluator();
@@ -30,13 +28,6 @@ public class MakeIt24 {
 
 	public void getQuestion() {
 
-		// do {
-		// number1 = random.nextInt(8) + 1;
-		// number2 = random.nextInt(8) + 1;
-		// number3 = random.nextInt(8) + 1;
-		// number4 = random.nextInt(8) + 1;
-		// do24(number1, number2, number3, number4);
-		// } while (solution.isEmpty());
 		solution = "";
 		while(true) {
 			number1 = random.nextInt(8) + 1;
@@ -48,47 +39,6 @@ public class MakeIt24 {
 				break;
 		}
 	}
-
-	// public boolean isPosibleTo24(List<Double> num) {
-	//
-	// if (num.size() == 0)
-	// return false;
-	// if (num.size() == 1)
-	// return num.get(0) == 24;
-	//
-	// for (int i = 0; i < num.size(); i++) {
-	// for (int j = 0; j < num.size(); j++) {
-	// if (i != j) {
-	// List<Double> newNumber = new ArrayList<Double>();
-	// for (int k = 0; k < num.size(); k++) {
-	// if (k != i && k != j)
-	// newNumber.add(num.get(k));
-	// }
-	//
-	// for (int k = 0; k < 4; k++) {
-	// if (k % 2 == 1 && j > i)
-	// continue;
-	// if (k == 0)
-	// newNumber.add(num.get(i) + num.get(j));
-	// else if (k == 1)
-	// newNumber.add(num.get(i) - num.get(j));
-	// else if (k == 2)
-	// newNumber.add(num.get(i) * num.get(j));
-	// else if (k == 3)
-	// if (num.get(j) > 0)
-	// newNumber.add(num.get(i) / num.get(j));
-	// else
-	// continue;
-	// if (isPosibleTo24(newNumber))
-	// return true;
-	// newNumber.remove(newNumber.size() - 1);
-	// }
-	// }
-	// }
-	// }
-	//
-	// return false;
-	// }
 
 	public void do24(int number12, int number22, int number32, int number42) {
 

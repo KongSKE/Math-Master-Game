@@ -140,6 +140,7 @@ public class MakeIt24GameController {
 
 	public void onClearButtonClicked(ActionEvent event) {
 		correctLabel.setText(make24.getSolution());
+		resultLabel.setText("");
 		bracket = 0;
 		number1Button.setVisible(true);
 		number2Button.setVisible(true);
