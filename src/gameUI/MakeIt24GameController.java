@@ -4,12 +4,14 @@ import java.util.Optional;
 
 import org.matheclipse.core.eval.ExprEvaluator;
 
+import javafx.concurrent.WorkerStateEvent;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
+import javafx.scene.control.ProgressBar;
 import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Stage;
 import makeIt24Game.MakeIt24;
@@ -45,6 +47,17 @@ public class MakeIt24GameController {
 	@FXML
 	Button clearButton;
 
+	@FXML
+	Label player1NameLabel;
+	@FXML
+	Label player1ScoreLabel;
+	@FXML
+	Label player2NameLabel;
+	@FXML
+	Label player2ScoreLabel;
+	@FXML
+	ProgressBar timeCountdownProgress;
+
 	private MakeIt24 make24;
 	private int bracket;
 	private int question;
@@ -52,6 +65,9 @@ public class MakeIt24GameController {
 	private String oldInput;
 	private String newInput;
 	private String output;
+	private int playerScore;
+	private TimeCounter timeCounter;
+	private TimeDelay delay;
 
 	public void initialize() {
 		number1Button.setOnAction(this::onNumberButtonClicked);
@@ -73,12 +89,24 @@ public class MakeIt24GameController {
 		make24 = new MakeIt24();
 		e = new ExprEvaluator();
 		question = 0;
+		playerScore = 0;
+		player1ScoreLabel.setText("Score: " + playerScore);
 		getAllNumber();
 	}
 
 	public void getAllNumber() {
+
+		delay = new TimeDelay();
+		delay.setOnSucceeded(this::setAllNumber);
+		new Thread(delay).start();
+
+	}
+
+	public void setAllNumber(WorkerStateEvent event) {
 		bracket = 1;
 		if (question < 2) {
+			timeCounter = new TimeCounter(20);
+			timeCounter.setOnSucceeded(this::timeUpDisplay);
 			resultLabel.setText("(");
 			make24.getQuestion();
 			number1Button.setText(make24.getNumber1() + "");
@@ -92,8 +120,18 @@ public class MakeIt24GameController {
 			number4Button.setVisible(true);
 
 			question++;
+
+			timeCountdownProgress.progressProperty().bind(timeCounter.progressProperty());
+			new Thread(timeCounter).start();
 		} else
 			gameEnd();
+	}
+
+	public void timeUpDisplay(WorkerStateEvent event) {
+		if (timeCounter.getTime() == 0) {
+			resultLabel.setText("Time Up!!");
+			getAllNumber();
+		}
 	}
 
 	public void onOperationButtonClick(ActionEvent event) {
@@ -128,9 +166,11 @@ public class MakeIt24GameController {
 				}
 			}
 			resultLabel.setText(output = e.evaluate(output) + "");
-			if (output.equals("24"))
+			if (output.equals("24")) {
 				correctLabel.setText("Corect!!");
-			else
+				playerScore += timeCounter.getTime();
+				player1ScoreLabel.setText("Score: " + playerScore);
+			} else
 				correctLabel.setText("Wrong!!");
 			getAllNumber();
 		} else {
@@ -146,7 +186,7 @@ public class MakeIt24GameController {
 		number2Button.setVisible(true);
 		number3Button.setVisible(true);
 		number4Button.setVisible(true);
-		
+
 	}
 
 	public void onDeleteButtonClicked(ActionEvent event) {
