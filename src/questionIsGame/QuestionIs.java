@@ -28,11 +28,9 @@ public class QuestionIs {
 	}
 
 	public int getAnswer() {
-
-		answer = findAnswer(findAnswer(firstNumber, secondNumber, firstOperation), thirdNumber, secondOperation);
-
-		return answer;
-
+		if (secondOperation.equals("*") || secondOperation.equalsIgnoreCase("/"))
+			return answer = findAnswer(firstNumber, findAnswer(secondNumber, thirdNumber, secondOperation), firstOperation);
+		return answer = findAnswer(findAnswer(firstNumber, secondNumber, firstOperation), thirdNumber, secondOperation);
 	}
 
 	public int findAnswer(int first, int second, String operation) {
@@ -73,7 +71,7 @@ public class QuestionIs {
 
 	public boolean checkAnswer(int first, int second, int third) {
 		if (secondOperation.equals("*") || secondOperation.equalsIgnoreCase("/"))
-			return answer == findAnswer(findAnswer(second, third, secondOperation), first, firstOperation);
+			return answer == findAnswer(first, findAnswer(second, third, secondOperation), firstOperation);
 		return answer == findAnswer(findAnswer(first, second, firstOperation), third, secondOperation);
 	}
 

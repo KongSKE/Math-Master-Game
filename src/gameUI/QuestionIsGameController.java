@@ -3,11 +3,13 @@ package gameUI;
 import java.util.Optional;
 import java.util.Random;
 
+import javafx.concurrent.WorkerStateEvent;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
+import javafx.scene.control.ProgressBar;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.paint.Color;
@@ -30,6 +32,16 @@ public class QuestionIsGameController {
 	Label answerLabel;
 	@FXML
 	Label resultLabel;
+	@FXML
+	Label player1NameLabel;
+	@FXML
+	Label player1ScoreLabel;
+	@FXML
+	Label player2NameLabel;
+	@FXML
+	Label player2ScoreLabel;
+	@FXML
+	ProgressBar timeCountdownProgress;
 
 	private QuestionIs question;
 	private int questionNumber;
@@ -37,6 +49,9 @@ public class QuestionIsGameController {
 	private String num2Text;
 	private String num3Text;
 	private Random random = new Random();
+	private int playerScore;
+	private TimeCounter timeCounter;
+	private TimeDelay delay;
 
 	public void initialize() {
 		number1Text.setOnAction(this::onAnyTextFieldPressEnter);
@@ -46,11 +61,21 @@ public class QuestionIsGameController {
 
 		question = new QuestionIs();
 		questionNumber = 0;
-		setNewQuestion();
+		playerScore = 0;
+		player1ScoreLabel.setText("Score: " + playerScore);
+		getNewQuestion();
 	}
 
-	public void setNewQuestion() {
+	public void getNewQuestion() {
+		delay = new TimeDelay();
+		delay.setOnSucceeded(this::setNewQuestion);
+		new Thread(delay).start();
+	}
+
+	public void setNewQuestion(WorkerStateEvent event) {
 		if (questionNumber < 2) {
+			timeCounter = new TimeCounter(10);
+			timeCounter.setOnSucceeded(this::timeUpDisPlay);
 			question.setQuestion();
 			operation1Label.setText(question.getFirstOperation());
 			operation2Label.setText(question.getSecondOperation());
@@ -58,8 +83,18 @@ public class QuestionIsGameController {
 			number1Text.requestFocus();
 			randomShowNumber();
 			questionNumber++;
+
+			timeCountdownProgress.progressProperty().bind(timeCounter.progressProperty());
+			new Thread(timeCounter).start();
 		} else
 			gameEnd();
+	}
+
+	public void timeUpDisPlay(WorkerStateEvent event) {
+		if (timeCounter.getTime() == 0) {
+			resultLabel.setText("Time Up!!");
+			getNewQuestion();
+		}
 	}
 
 	public void randomShowNumber() {
@@ -113,15 +148,19 @@ public class QuestionIsGameController {
 				int num2 = Integer.parseInt(num2Text);
 				int num3 = Integer.parseInt(num3Text);
 
+				timeCounter.cancel();
+				
 				if (question.checkAnswer(num1, num2, num3)) {
 					resultLabel.setText("Correct!!");
 					resultLabel.setTextFill(Color.GREEN);
+					playerScore += timeCounter.getTime();
+					player1ScoreLabel.setText("Score: " + playerScore);
 				} else {
 					resultLabel.setText("Wrong!: " + question.getQuestionIsSolution());
 					resultLabel.setTextFill(Color.RED);
 				}
 				resetTextField();
-				setNewQuestion();
+				getNewQuestion();
 			} catch (NumberFormatException e) {
 
 			}
