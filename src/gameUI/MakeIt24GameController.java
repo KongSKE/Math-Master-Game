@@ -164,6 +164,7 @@ public class MakeIt24GameController {
 				}
 			}
 			resultLabel.setText(output = e.evaluate(output) + "");
+			timeCounter.cancel();
 			if (output.equals("24")) {
 				correctLabel.setText("Corect!!");
 				playerScore += timeCounter.getTime();
