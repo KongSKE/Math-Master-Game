@@ -34,6 +34,9 @@
             </Label>
             <PasswordField fx:id="password" layoutX="189.0" layoutY="169.0" prefHeight="25.0" prefWidth="360.0" />
             <PasswordField fx:id="repassword" layoutX="189.0" layoutY="231.0" prefHeight="25.0" prefWidth="360.0" />
+            <Label fx:id="checkusername" layoutX="562.0" layoutY="105.0" prefHeight="25.0" prefWidth="122.0" />
+            <Label fx:id="checkpass" layoutX="562.0" layoutY="169.0" prefHeight="25.0" prefWidth="122.0" />
+            <Label fx:id="checkrepass" layoutX="562.0" layoutY="231.0" prefHeight="25.0" prefWidth="122.0" />
          </children>
       </AnchorPane>
       <Button fx:id="cancel" layoutX="412.0" layoutY="328.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="69.0" text="Cancel" />

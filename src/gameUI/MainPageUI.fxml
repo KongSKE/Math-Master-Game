@@ -8,7 +8,6 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8.0.102" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gameUI.LoginController">
    <children>
       <Label layoutX="167.0" layoutY="14.0" text="Welcome to Math Master Game">
@@ -26,11 +25,12 @@
             <Font size="26.0" />
          </font>
       </Label>
-      <CheckBox layoutX="32.0" layoutY="200.0" mnemonicParsing="false" text="Show Password" />
-      <TextField layoutX="139.0" layoutY="110.0" prefHeight="25.0" prefWidth="411.0" />
-      <Button layoutX="221.0" layoutY="316.0" mnemonicParsing="false" prefHeight="49.0" prefWidth="92.0" text="Register" />
-      <Button layoutX="377.0" layoutY="316.0" mnemonicParsing="false" prefHeight="49.0" prefWidth="116.0" text="Forget Password?" />
-      <PasswordField layoutX="139.0" layoutY="161.0" prefHeight="25.0" prefWidth="411.0" />
+      <CheckBox fx:id="showpass" layoutX="32.0" layoutY="200.0" mnemonicParsing="false" text="Show Password" />
+      <TextField fx:id="username" layoutX="139.0" layoutY="110.0" prefHeight="25.0" prefWidth="411.0" />
+      <Button fx:id="register" layoutX="221.0" layoutY="316.0" mnemonicParsing="false" prefHeight="49.0" prefWidth="92.0" text="Register" />
+      <Button fx:id="forget" layoutX="377.0" layoutY="316.0" mnemonicParsing="false" prefHeight="49.0" prefWidth="116.0" text="Forget Password?" />
+      <PasswordField fx:id="password" layoutX="139.0" layoutY="161.0" prefHeight="25.0" prefWidth="411.0" />
       <Button fx:id="login" layoutX="290.0" layoutY="225.0" mnemonicParsing="false" prefHeight="66.0" prefWidth="109.0" text="Login" />
+      <TextField fx:id="passtext" layoutX="139.0" layoutY="161.0" prefHeight="25.0" prefWidth="411.0" />
    </children>
 </AnchorPane>
