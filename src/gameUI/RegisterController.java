@@ -6,6 +6,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 public class RegisterController {
@@ -34,6 +35,8 @@ public class RegisterController {
 	@FXML
 	Label checkrepass;
 
+	Color red = Color.RED;
+	
 	@FXML
 	public void initialize() {
 		next.setOnAction(this::onNextButton);
@@ -41,9 +44,9 @@ public class RegisterController {
 		username.setPromptText("Insert username");
 		password.setPromptText("Insert password");
 		repassword.setPromptText("Insert repassword");
-		checkusername.setStyle("-fx-text-inner-color: red;");
-		checkpass.setStyle("-fx-text-inner-color: red;");
-		checkrepass.setStyle("-fx-text-inner-color: red;");
+		checkusername.setTextFill(red);
+		checkpass.setTextFill(red);
+		checkrepass.setTextFill(red);
 		checkusername.setVisible(true);
 		checkpass.setVisible(true);
 		checkrepass.setVisible(true);
@@ -59,28 +62,28 @@ public class RegisterController {
 			}
 		} else {
 			if (name.isEmpty() || name.length() < 8) {
-				if(name.length() < 8) {
+				if (name.length() < 8) {
 					checkusername.setText("username must contain at least 8 characters");
 					System.out.println("1");
+				} else {
+					checkusername.setText("");
 				}
-				checkusername.setText("");
-				System.out.println("username");
 			}
 			if (pass.isEmpty() || pass.length() < 8) {
-				if(pass.length() < 8) {
+				if (pass.length() < 8) {
 					checkpass.setText("password must contain at least 8 characters");
 					System.out.println("2");
+				} else {
+					checkpass.setText("");
 				}
-				checkpass.setText("");
-				System.out.println("password");
 			}
 			if (repass.isEmpty() || repass.length() < 8) {
-				if(!repass.equals(pass)){
+				if (!repass.equals(pass)) {
 					checkrepass.setText("repassword is not a same as password.");
 					System.out.println("3");
+				} else {
+					checkrepass.setText("");
 				}
-				checkrepass.setText("");
-				System.out.println("repass");
 			}
 		}
 	}
