@@ -21,7 +21,11 @@
       <TextField fx:id="ans2" layoutX="110.0" layoutY="242.0" prefHeight="25.0" prefWidth="520.0" />
       <TextField fx:id="q2" layoutX="110.0" layoutY="188.0" prefHeight="25.0" prefWidth="520.0" />
       <TextField fx:id="q1" layoutX="110.0" layoutY="77.0" prefHeight="25.0" prefWidth="520.0" />
-      <Button fx:id="next" layoutX="229.0" layoutY="318.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="69.0" text="Next" />
+      <Button fx:id="finish" layoutX="229.0" layoutY="318.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="69.0" text="Finish" />
       <Button fx:id="cancel" layoutX="402.0" layoutY="318.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="69.0" text="Cancel" />
+      <Label fx:id="checkQ1" layoutX="110.0" layoutY="102.0" prefHeight="17.0" prefWidth="520.0" />
+      <Label fx:id="checkAns1" layoutX="110.0" layoutY="157.0" prefHeight="17.0" prefWidth="520.0" />
+      <Label fx:id="checkQ2" layoutX="110.0" layoutY="213.0" prefHeight="17.0" prefWidth="520.0" />
+      <Label fx:id="checkAns2" layoutX="110.0" layoutY="267.0" prefHeight="17.0" prefWidth="520.0" />
    </children>
 </AnchorPane>

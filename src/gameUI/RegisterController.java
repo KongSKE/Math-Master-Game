@@ -36,7 +36,7 @@ public class RegisterController {
 	Label checkrepass;
 
 	Color red = Color.RED;
-	
+
 	@FXML
 	public void initialize() {
 		next.setOnAction(this::onNextButton);
@@ -57,8 +57,26 @@ public class RegisterController {
 		String pass = password.getText().trim();
 		String repass = repassword.getText().trim();
 		if (!name.isEmpty() && !pass.isEmpty() && !repass.isEmpty()) {
-			if (pass.equals(repass) && pass.length() >= 6) {
-				GameUISceneChange.REGISTER2.changeScene((Stage) next.getScene().getWindow());
+			if (pass.equals(repass) && pass.length() >= 8) {
+				GameUISceneChange.REGISTER2.changeScene((Stage)next.getScene().getWindow());
+			}else {
+				if(name.length() < 8) {
+					checkusername.setText("username must contain at least 8 characters");
+				} else {
+					checkusername.setText("");
+				}
+				
+				if(pass.length() < 8) {
+					checkpass.setText("password must contain at least 8 characters");
+				} else {
+					checkpass.setText("");
+				}
+				
+				if(!repass.equals(pass)) {
+					checkrepass.setText("repassword is not a same as password.");
+				} else {
+					checkrepass.setText("");
+				}
 			}
 		} else {
 			if (name.isEmpty() || name.length() < 8) {
