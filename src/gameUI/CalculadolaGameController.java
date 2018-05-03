@@ -1,8 +1,10 @@
 package gameUI;
 
+import java.util.Map;
 import java.util.Optional;
 
 import calculadolaGame.Calculadola;
+import javafx.application.Platform;
 import javafx.concurrent.Task;
 import javafx.concurrent.WorkerStateEvent;
 import javafx.event.ActionEvent;
@@ -15,6 +17,7 @@ import javafx.scene.control.ProgressBar;
 import javafx.scene.control.TextField;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import onlineMode.GameClient;
 
 public class CalculadolaGameController {
 
@@ -41,6 +44,23 @@ public class CalculadolaGameController {
 	private int playerScore;
 	private Task<Void> sleeper;
 
+//	Task<Void> task = new Task<Void>() {
+//
+//		@Override
+//		protected Void call() throws Exception {
+//			while (true) {
+//				Platform.runLater(new Runnable() {
+//
+//					@Override
+//					public void run() {
+//						setScore(GameClient.getPlayer());
+//					}
+//				});
+//			}
+//		}
+//	};
+//	Thread thread = new Thread(task);
+//	
 	public void initialize() {
 		answerText.setOnAction(this::onAnswerEnter);
 		answerText.setEditable(false);
@@ -50,6 +70,13 @@ public class CalculadolaGameController {
 		playerScore = 0;
 		questionNumber = 0;
 		player1Scorelabel.setText("Score: " + playerScore);
+		
+//		thread.setDaemon(true);
+//        thread.start();
+	}
+
+	public void connectServer() {
+
 	}
 
 	public void changeQuestion() {
@@ -66,20 +93,20 @@ public class CalculadolaGameController {
 			answerText.setEditable(true);
 			questionLabel.setText(calculadora.getQuestion());
 			questionNumber++;
-			
+
 			timeCountdownProgress.progressProperty().bind(timeCount.progressProperty());
 			new Thread(timeCount).start();
 		} else
 			gameEnd();
 	}
-	
+
 	public void timeUpDisplay(WorkerStateEvent event) {
-		if(timeCount.getTime() == 0) {
+		if (timeCount.getTime() == 0) {
 			resultLabel.setText("Time Up!!");
 			resultLabel.setTextFill(Color.RED);
 			changeQuestion();
 		}
-		
+
 	}
 
 	public void onAnswerEnter(ActionEvent event) {
@@ -94,17 +121,31 @@ public class CalculadolaGameController {
 				resultLabel.setText("Correct!!");
 				resultLabel.setTextFill(Color.GREEN);
 				playerScore += timeCount.getTime();
-				player1Scorelabel.setText("Score: " + playerScore);
+				// player1Scorelabel.setText("Score: " + playerScore);
+				setScore(GameClient.getPlayer());
 			} else {
 				resultLabel.setText(String.format("Wrong!! Answer: %.2f", calculadora.getAnswer()));
 				resultLabel.setTextFill(Color.RED);
 			}
+			sendScore();
 			answerText.setEditable(false);
 			answerText.clear();
 			changeQuestion();
 		} catch (NumberFormatException e) {
 
 		}
+	}
+
+	public void setScore(Map<String, Integer> player) {
+		if (player.keySet().toString().equals("Player1")) {
+			player1Scorelabel.setText(player.get("Player1") + "");
+		} else if (player.keySet().toString().equals("Player2")) {
+			player2ScoreLabel.setText(player.get("Player2") + "");
+		}
+	}
+
+	private void sendScore() {
+		GameClient.sendScore("Player1", playerScore);
 	}
 
 	public void backToHome() {
