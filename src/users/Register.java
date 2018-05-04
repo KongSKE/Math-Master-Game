@@ -53,9 +53,10 @@ public class Register {
 		return false;
 	}
 
-	public void createID() {
+	public void createID(String question, String answer) {
 		try {
-			String sql = "INSERT INTO `users` (`password`, `username`) VALUES ('" + password + "','" + username + "')";
+			String sql = "INSERT INTO `users` (`password`, `username`, `question`, `answer`) VALUES ('" + password
+					+ "','" + username + "', '"+ question + "', '" + answer + "')";
 			prepare = con.prepareStatement(sql);
 
 			// prepare = con.prepareStatement("INSERT INTO users (username,
@@ -64,7 +65,7 @@ public class Register {
 			System.out.println(11111111);
 			Statement statement = con.createStatement();
 			statement.executeUpdate(sql);
-//			result = prepare.executeQuery();
+			// result = prepare.executeQuery();
 
 			System.out.println("Create ID success");
 		} catch (Exception e) {
@@ -73,9 +74,9 @@ public class Register {
 	}
 
 	public static void main(String[] args) {
-		Register kong = new Register("oker555555", "okerza12345");
+		Register kong = new Register("okerza123", "paulza123");
 		// System.out.println(kong.checkID());
-		kong.createID();
+		kong.createID("question" , "answer");
 		// System.out.println("INSERT INTO `users` (`password`, `username`)
 		// VALUES ('" + password + "', '" + username + "')");
 	}

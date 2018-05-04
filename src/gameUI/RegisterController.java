@@ -8,6 +8,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import users.Account;
 import users.Register;
 
 public class RegisterController {
@@ -58,7 +59,8 @@ public class RegisterController {
 		String pass = password.getText().trim();
 		String repass = repassword.getText().trim();
 
-		Register account = new Register(name, pass);
+		Account account = Account.getInstance();
+		Register register = new Register(name, pass);
 
 		if (name.isEmpty()) {
 			checkusername.setText("Insert your username please");
@@ -74,8 +76,9 @@ public class RegisterController {
 
 		if (!name.isEmpty() && !pass.isEmpty() && !repass.isEmpty()) {
 			if (pass.equals(repass) && pass.length() >= 8) {
-				if (!account.checkID()) {
-					account.createID();
+				if (!register.checkID()) {
+					account.setUsername(name);
+					account.setpassword(pass);
 					GameUISceneChange.REGISTER2.changeScene((Stage) next.getScene().getWindow());
 				} else {
 					checkusername.setText("Your user already exist");
