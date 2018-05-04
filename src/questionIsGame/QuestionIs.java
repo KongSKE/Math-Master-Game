@@ -2,7 +2,11 @@ package questionIsGame;
 
 import java.util.Random;
 
-public class QuestionIs {
+import org.matheclipse.core.eval.ExprEvaluator;
+
+import player.Game;
+
+public class QuestionIs implements Game {
 
 	private Random random = new Random();
 	private String firstOperation;
@@ -13,23 +17,31 @@ public class QuestionIs {
 	private int thirdNumber;
 	private int answer;
 
+	private ExprEvaluator e;
+
 	public QuestionIs() {
-		setQuestion();
+		getQuestion();
+		e = new ExprEvaluator();
 	}
 
-	public void setQuestion() {
-
+	@Override
+	public void getQuestion() {
 		firstOperation = setOperation(random.nextInt(3));
 		secondOperation = setOperation(random.nextInt(3));
 		firstNumber = random.nextInt(9);
 		secondNumber = random.nextInt(9);
 		thirdNumber = random.nextInt(9);
-
 	}
 
+	@Override
+	public boolean checkAnswer(String ans) {
+		return e.evaluate(ans).toString().equals(answer + "");
+	}
+	
 	public int getAnswer() {
 		if (secondOperation.equals("*") || secondOperation.equalsIgnoreCase("/"))
-			return answer = findAnswer(firstNumber, findAnswer(secondNumber, thirdNumber, secondOperation), firstOperation);
+			return answer = findAnswer(firstNumber, findAnswer(secondNumber, thirdNumber, secondOperation),
+					firstOperation);
 		return answer = findAnswer(findAnswer(firstNumber, secondNumber, firstOperation), thirdNumber, secondOperation);
 	}
 
@@ -68,12 +80,12 @@ public class QuestionIs {
 		}
 		return operation;
 	}
-
-	public boolean checkAnswer(int first, int second, int third) {
-		if (secondOperation.equals("*") || secondOperation.equalsIgnoreCase("/"))
-			return answer == findAnswer(first, findAnswer(second, third, secondOperation), firstOperation);
-		return answer == findAnswer(findAnswer(first, second, firstOperation), third, secondOperation);
-	}
+//
+//	public boolean checkAnswer(int first, int second, int third) {
+//		if (secondOperation.equals("*") || secondOperation.equalsIgnoreCase("/"))
+//			return answer == findAnswer(first, findAnswer(second, third, secondOperation), firstOperation);
+//		return answer == findAnswer(findAnswer(first, second, firstOperation), third, secondOperation);
+//	}
 
 	public String getQuestionIsSolution() {
 		return String.format("%d %s %d %s %d = %d", firstNumber, firstOperation, secondNumber, secondOperation,

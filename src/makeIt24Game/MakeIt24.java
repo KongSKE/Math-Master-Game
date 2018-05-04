@@ -5,7 +5,9 @@ import java.util.Random;
 import org.matheclipse.core.eval.ExprEvaluator;
 import org.matheclipse.core.interfaces.IExpr;
 
-public class MakeIt24 {
+import player.Game;
+
+public class MakeIt24 implements Game{
 
 	private Random random = new Random();
 	private ExprEvaluator e;
@@ -26,6 +28,7 @@ public class MakeIt24 {
 		getQuestion();
 	}
 
+	@Override
 	public void getQuestion() {
 
 		solution = "";
@@ -38,6 +41,11 @@ public class MakeIt24 {
 			if (!solution.isEmpty())
 				break;
 		}
+	}
+	
+	@Override
+	public boolean checkAnswer(String ans) {
+		return e.evaluate(ans).toString().equals("24");
 	}
 
 	public void do24(int number12, int number22, int number32, int number42) {

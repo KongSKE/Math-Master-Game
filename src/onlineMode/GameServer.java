@@ -24,6 +24,7 @@ public class GameServer {
 		server.addListener(new GameServerListener());
 		server.start();
 		server.bind(54333);
+		System.out.println("Server Start");
 	}
 
 	class GameServerListener extends Listener {
@@ -31,11 +32,13 @@ public class GameServer {
 		@Override
 		public void connected(Connection connection) {
 			super.connected(connection);
+			System.out.println("New Client connect");
 		}
 
 		@Override
 		public void disconnected(Connection connection) {
 			super.disconnected(connection);
+			System.out.println("Player disconnect");
 		}
 
 		@Override

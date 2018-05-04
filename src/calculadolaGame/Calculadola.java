@@ -2,14 +2,18 @@ package calculadolaGame;
 
 import java.util.Random;
 
-public class Calculadola {
+import player.Game;
+
+public class Calculadola implements Game {
 	
 	private Random random = new Random();
 	private MathStyle math;
 	private int first;
 	private int second;
+	private String question;
 	
-	public String getQuestion() {
+	@Override
+	public void getQuestion() {
 		this.first = random.nextInt(100) + 1;
 		this.second = random.nextInt(100) + 1;
 		int style = random.nextInt(4) + 1;
@@ -28,17 +32,23 @@ public class Calculadola {
 		default:
 			break;
 		}
-		return math.toString();
+		question = math.toString();
 	}
 	
-	public boolean checkAnswer(double answer) {
-		if(answer == math.getAnswer())
+	@Override
+	public boolean checkAnswer(String answer) {
+		if(Double.parseDouble(answer) == math.getAnswer())
 			return true;
 		else {
-			return String.valueOf(answer).equals(String.format("%.2f", getAnswer()));
+			return answer.equals(String.format("%.2f", getAnswer()));
 		}
 	}
 
+	public String getGameQuestion() {
+		getQuestion();
+		return question;
+	}
+	
 	public double getAnswer() {
 		return math.getAnswer();
 	}

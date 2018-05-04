@@ -143,8 +143,8 @@ public class MakeIt24GameController {
 			bracket++;
 		else if (newInput.equals(")")) {
 			if (bracket > 0) {
-				String calculate = oldInput.substring(oldInput.lastIndexOf("(") + 1);
-				output = oldInput.substring(0, oldInput.lastIndexOf("(")) + e.evaluate(calculate);
+				// String calculate = oldInput.substring(oldInput.lastIndexOf("(") + 1);
+				// output = oldInput.substring(0, oldInput.lastIndexOf("(")) + e.evaluate(calculate);
 				bracket--;
 			} else
 				newInput = "";
@@ -167,7 +167,7 @@ public class MakeIt24GameController {
 			}
 			resultLabel.setText(output = e.evaluate(output) + "");
 			timeCounter.cancel();
-			if (output.equals("24")) {
+			if (make24.checkAnswer(output)) {
 				correctLabel.setText("Corect!!");
 				playerScore += timeCounter.getTime();
 				player1ScoreLabel.setText("Score: " + playerScore);

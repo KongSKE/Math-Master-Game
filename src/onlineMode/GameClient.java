@@ -22,14 +22,11 @@ public class GameClient extends Application{
 	private static Client client;
 	private static Map<String, Integer> player;
 
-	public GameClient() {
+	public GameClient() throws IOException {
 
 		client = new Client();
 		player = new HashMap<String, Integer>();
 
-	}
-
-	public static void connect(String name, String ipAddress) throws IOException {
 		client.getKryo().register(Calculadola.class);
 		client.getKryo().register(QuestionIs.class);
 		client.getKryo().register(MakeIt24.class);
@@ -39,7 +36,20 @@ public class GameClient extends Application{
 
 		client.addListener(new Listener());
 		client.start();
-		client.connect(5000, " 1270.0.0.1", 54333);
+		client.connect(5000, "127.0.0.1", 54333);
+	}
+
+	public static void connect(String name, String ipAddress) throws IOException {
+//		client.getKryo().register(Calculadola.class);
+//		client.getKryo().register(QuestionIs.class);
+//		client.getKryo().register(MakeIt24.class);
+//
+//		client.getKryo().register(Packet.ScoreData.class);
+//		client.getKryo().register(Packet.Connect.class);
+//
+//		client.addListener(new Listener());
+//		client.start();
+//		client.connect(5000, " 1270.0.0.1", 54333);
 
 	}
 
@@ -49,9 +59,11 @@ public class GameClient extends Application{
 		public void connected(Connection connection) {
 			super.connected(connection);
 			if(connection.getID()==0) {
-				player.put("Player1", 0);				
+				player.put("Player1", 0);
+				System.out.println("Player 1 ");
 			}else {
 				player.put("Player2", 0);
+				System.out.println("Player 2 ");
 			}
 		}
 
@@ -61,6 +73,7 @@ public class GameClient extends Application{
 			if (o instanceof Packet.ScoreData) {
 				System.out.println(o);
 				player.put(((Packet.ScoreData) o).name, ((Packet.ScoreData) o).score);
+				System.out.println("send data");
 			}
 		}
 	}
@@ -93,7 +106,11 @@ public class GameClient extends Application{
 	}
 
 	public static void main(String[] args) {
-		new GameClient();
+		try {
+			new GameClient();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		launch(args);
 	}
 }
