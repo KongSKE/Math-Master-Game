@@ -9,10 +9,10 @@ public class CalculadolaTest {
 	public static void start(Calculadola c) {
 		
 		while (true) {
-			System.out.println(c.getQuestion());
+			System.out.println(c.getGameQuestion());
 			System.out.println("Enter you answer : ");
 			double ans = Double.parseDouble(sc.nextLine());
-			if (c.checkAnswer(ans)) {
+			if (c.checkAnswer(ans+"")) {
 				System.out.println("Correct!!");
 			} else {
 				System.out.printf("Wrong!!  Answer is %.2f\n", c.getAnswer());

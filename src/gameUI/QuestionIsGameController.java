@@ -76,7 +76,7 @@ public class QuestionIsGameController {
 		if (questionNumber < 2) {
 			timeCounter = new TimeCounter(10);
 			timeCounter.setOnSucceeded(this::timeUpDisPlay);
-			question.setQuestion();
+			question.getQuestion();
 			operation1Label.setText(question.getFirstOperation());
 			operation2Label.setText(question.getSecondOperation());
 			answerLabel.setText(question.getAnswer() + "");
@@ -149,8 +149,11 @@ public class QuestionIsGameController {
 				int num3 = Integer.parseInt(num3Text);
 
 				timeCounter.cancel();
-				
-				if (question.checkAnswer(num1, num2, num3)) {
+
+				String ans = num1 + question.getFirstOperation() + num2 + question.getSecondOperation() + num3;
+				System.out.println(ans);
+
+				if (question.checkAnswer(ans)) {
 					resultLabel.setText("Correct!!");
 					resultLabel.setTextFill(Color.GREEN);
 					playerScore += timeCounter.getTime();

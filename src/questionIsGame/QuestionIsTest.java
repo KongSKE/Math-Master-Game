@@ -21,16 +21,16 @@ public class QuestionIsTest {
 			first = Integer.parseInt(ans[0]);
 			second = Integer.parseInt(ans[1]);
 			third = Integer.parseInt(ans[2]);
-			if(qi.checkAnswer(first, second, third))
+			if (qi.checkAnswer(first + qi.getFirstNumber() + second + qi.getSecondNumber() + third + ""))
 				System.out.println("Correct!!");
-			else 
+			else
 				System.out.println("Wrong!!" + qi.getQuestionIsSolution());
-			
+
 			System.out.println("Play again?(y/n): ");
 			again = sc.nextLine();
-			
-			qi.setQuestion();
-			
+
+			qi.getQuestion();
+
 		}
 	}
 
