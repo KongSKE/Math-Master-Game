@@ -8,17 +8,20 @@ import com.esotericsoftware.kryonet.Connection;
 import com.esotericsoftware.kryonet.Listener;
 import com.esotericsoftware.kryonet.Server;
 
+import calculadolaGame.Calculadola;
+
 public class GameServer {
 
 	private Server server;
-//	private Map<Integer, String> user;
+	// private Map<Integer, String> user;
 
 	public GameServer() throws IOException {
 
-//		user = new HashMap<Integer, String>();
+		// user = new HashMap<Integer, String>();
 		server = new Server();
 
-		server.getKryo().register(Packet.Connect.class);
+		server.getKryo().register(Calculadola.class);
+		// server.getKryo().register(Packet.Connect.class);
 		server.getKryo().register(Packet.ScoreData.class);
 
 		server.addListener(new GameServerListener());
@@ -49,6 +52,7 @@ public class GameServer {
 			// user.put(connection.getID(), ((Packet.Connect) o).name);
 			// } else
 			if (o instanceof Packet.ScoreData) {
+				System.out.println("Receive data");
 				server.sendToAllTCP(o);
 				// connection.sendTCP(((Packet.ScoreData)o).score);
 			}

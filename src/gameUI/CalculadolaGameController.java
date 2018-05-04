@@ -1,6 +1,6 @@
 package gameUI;
 
-import java.util.Map;
+import java.io.IOException;
 import java.util.Optional;
 
 import calculadolaGame.Calculadola;
@@ -16,6 +16,7 @@ import javafx.scene.control.ProgressBar;
 import javafx.scene.control.TextField;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import onlineMode.Client;
 
 public class CalculadolaGameController {
 
@@ -42,23 +43,8 @@ public class CalculadolaGameController {
 	private int playerScore;
 	private Task<Void> sleeper;
 
-	// Task<Void> task = new Task<Void>() {
-	//
-	// @Override
-	// protected Void call() throws Exception {
-	// while (true) {
-	// Platform.runLater(new Runnable() {
-	//
-	// @Override
-	// public void run() {
-	// setScore(GameClient.getPlayer());
-	// }
-	// });
-	// }
-	// }
-	// };
-	// Thread thread = new Thread(task);
-	//
+	private Client client;
+
 	public void initialize() {
 		answerText.setOnAction(this::onAnswerEnter);
 		answerText.setEditable(false);
@@ -69,8 +55,6 @@ public class CalculadolaGameController {
 		questionNumber = 0;
 		player1Scorelabel.setText("Score: " + playerScore);
 
-		// thread.setDaemon(true);
-		// thread.start();
 	}
 
 	public void connectServer() {
@@ -119,7 +103,9 @@ public class CalculadolaGameController {
 				resultLabel.setText("Correct!!");
 				resultLabel.setTextFill(Color.GREEN);
 				playerScore += timeCount.getTime();
-				player1Scorelabel.setText("Score: " + playerScore);
+
+				client.sendToServer(playerScore + "");
+//				player1Scorelabel.setText("Score: " + playerScore);
 				// setScore(GameClient.getPlayer());
 			} else {
 				resultLabel.setText(String.format("Wrong!! Answer: %.2f", calculadora.getAnswer()));
@@ -131,17 +117,30 @@ public class CalculadolaGameController {
 			changeQuestion();
 		} catch (NumberFormatException e) {
 
+		} catch (IOException e) {
+
 		}
 	}
 
-	public void setScore(Map<String, Integer> player) {
-		if (player.keySet().toString().equals("Player1")) {
-			player1Scorelabel.setText(player.get("Player1") + "");
-		} else if (player.keySet().toString().equals("Player2")) {
-			player2ScoreLabel.setText(player.get("Player2") + "");
+	public void displayScore(Object currentScore) {
+		String[] message = ((String) currentScore).split(" ");
+		String playerName = message[0];
+		String score = message[1];
+		if (playerName.equals("Player1")) {
+			player1Scorelabel.setText(score);
+		} else {
+			player2ScoreLabel.setText(score);
 		}
 	}
 
+	// public void setScore(Map<String, Integer> player) {
+	// if (player.keySet().toString().equals("Player1")) {
+	// player1Scorelabel.setText(player.get("Player1") + "");
+	// } else if (player.keySet().toString().equals("Player2")) {
+	// player2ScoreLabel.setText(player.get("Player2") + "");
+	// }
+	// }
+	//
 	// private void sendScore() {
 	// GameClient.sendScore("Player1", playerScore);
 	// }

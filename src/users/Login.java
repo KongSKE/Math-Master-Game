@@ -2,8 +2,6 @@ package users;
 
 import java.sql.*;
 
-import com.j256.ormlite.jdbc.JdbcConnectionSource;
-
 public class Login {
 
 	private String username;
