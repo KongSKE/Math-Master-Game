@@ -1,6 +1,5 @@
 package gameUI;
 
-import java.io.IOException;
 import java.util.Optional;
 
 import calculadolaGame.Calculadola;
@@ -16,7 +15,7 @@ import javafx.scene.control.ProgressBar;
 import javafx.scene.control.TextField;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
-import onlineMode.Client;
+import onlineMode.GameClient;
 
 public class CalculadolaGameController {
 
@@ -43,7 +42,7 @@ public class CalculadolaGameController {
 	private int playerScore;
 	private Task<Void> sleeper;
 
-	private Client client;
+	private GameClient client;
 
 	public void initialize() {
 		answerText.setOnAction(this::onAnswerEnter);
@@ -57,8 +56,8 @@ public class CalculadolaGameController {
 
 	}
 
-	public void connectServer() {
-
+	public void setGameClient(GameClient client) {
+		this.client = client;
 	}
 
 	public void changeQuestion() {
@@ -103,21 +102,15 @@ public class CalculadolaGameController {
 				resultLabel.setText("Correct!!");
 				resultLabel.setTextFill(Color.GREEN);
 				playerScore += timeCount.getTime();
-
-				client.sendToServer(playerScore + "");
-//				player1Scorelabel.setText("Score: " + playerScore);
-				// setScore(GameClient.getPlayer());
 			} else {
 				resultLabel.setText(String.format("Wrong!! Answer: %.2f", calculadora.getAnswer()));
 				resultLabel.setTextFill(Color.RED);
 			}
-			// sendScore();
+			client.sendScore(playerScore);
 			answerText.setEditable(false);
 			answerText.clear();
 			changeQuestion();
 		} catch (NumberFormatException e) {
-
-		} catch (IOException e) {
 
 		}
 	}
