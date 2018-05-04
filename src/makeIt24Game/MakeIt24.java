@@ -21,7 +21,7 @@ public class MakeIt24 {
 	private String solution;
 
 	public MakeIt24() {
-		
+
 		e = new ExprEvaluator();
 		getQuestion();
 	}
@@ -29,13 +29,13 @@ public class MakeIt24 {
 	public void getQuestion() {
 
 		solution = "";
-		while(true) {
+		while (true) {
 			number1 = random.nextInt(8) + 1;
 			number2 = random.nextInt(8) + 1;
 			number3 = random.nextInt(8) + 1;
 			number4 = random.nextInt(8) + 1;
 			do24(number1, number2, number3, number4);
-			if(!solution.isEmpty())
+			if (!solution.isEmpty())
 				break;
 		}
 	}
@@ -44,7 +44,6 @@ public class MakeIt24 {
 
 		int[] num = { number12, number22, number32, number42 };
 		String[] ops = { "+", "-", "*", "/" };
-		
 
 		for (int i = 0; i < num.length; i++) {
 			for (int j = 0; j < num.length; j++) {
