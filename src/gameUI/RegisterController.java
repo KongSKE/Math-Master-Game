@@ -8,6 +8,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import users.Register;
 
 public class RegisterController {
 
@@ -56,21 +57,29 @@ public class RegisterController {
 		String name = username.getText().trim();
 		String pass = password.getText().trim();
 		String repass = repassword.getText().trim();
-		if(name.isEmpty()) {
+
+		Register account = new Register(name, pass);
+
+		if (name.isEmpty()) {
 			checkusername.setText("Insert your username please");
 		}
-		
-		if(pass.isEmpty()) {
+
+		if (pass.isEmpty()) {
 			checkpass.setText("Insert your password please");
 		}
-		
-		if(repass.isEmpty()) {
+
+		if (repass.isEmpty()) {
 			checkrepass.setText("Insert yout repassword please");
 		}
-		
+
 		if (!name.isEmpty() && !pass.isEmpty() && !repass.isEmpty()) {
 			if (pass.equals(repass) && pass.length() >= 8) {
-				GameUISceneChange.REGISTER2.changeScene((Stage) next.getScene().getWindow());
+				if (!account.checkID()) {
+					account.createID();
+					GameUISceneChange.REGISTER2.changeScene((Stage) next.getScene().getWindow());
+				} else {
+					checkusername.setText("Your user already exist");
+				}
 			} else {
 				if (name.length() < 8) {
 					checkusername.setText("username must contain at least 8 characters");
@@ -92,13 +101,13 @@ public class RegisterController {
 			}
 		} else {
 			if (!name.isEmpty()) {
-				if(name.length() < 8) {
+				if (name.length() < 8) {
 					checkusername.setText("username must contain at least 8 characters");
 					System.out.println("1");
-				}else {
+				} else {
 					checkusername.setText("");
 				}
-				
+
 			}
 			if (!pass.isEmpty()) {
 				if (pass.length() < 8) {
