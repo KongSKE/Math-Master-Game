@@ -56,38 +56,51 @@ public class RegisterController {
 		String name = username.getText().trim();
 		String pass = password.getText().trim();
 		String repass = repassword.getText().trim();
+		if(name.isEmpty()) {
+			checkusername.setText("Insert your username please");
+		}
+		
+		if(pass.isEmpty()) {
+			checkpass.setText("Insert your password please");
+		}
+		
+		if(repass.isEmpty()) {
+			checkrepass.setText("Insert yout repassword please");
+		}
+		
 		if (!name.isEmpty() && !pass.isEmpty() && !repass.isEmpty()) {
 			if (pass.equals(repass) && pass.length() >= 8) {
-				GameUISceneChange.REGISTER2.changeScene((Stage)next.getScene().getWindow());
-			}else {
-				if(name.length() < 8) {
+				GameUISceneChange.REGISTER2.changeScene((Stage) next.getScene().getWindow());
+			} else {
+				if (name.length() < 8) {
 					checkusername.setText("username must contain at least 8 characters");
 				} else {
 					checkusername.setText("");
 				}
-				
-				if(pass.length() < 8) {
+
+				if (pass.length() < 8) {
 					checkpass.setText("password must contain at least 8 characters");
 				} else {
 					checkpass.setText("");
 				}
-				
-				if(!repass.equals(pass)) {
+
+				if (!repass.equals(pass)) {
 					checkrepass.setText("repassword is not a same as password.");
 				} else {
 					checkrepass.setText("");
 				}
 			}
 		} else {
-			if (name.isEmpty() || name.length() < 8) {
-				if (name.length() < 8) {
+			if (!name.isEmpty()) {
+				if(name.length() < 8) {
 					checkusername.setText("username must contain at least 8 characters");
 					System.out.println("1");
-				} else {
+				}else {
 					checkusername.setText("");
 				}
+				
 			}
-			if (pass.isEmpty() || pass.length() < 8) {
+			if (!pass.isEmpty()) {
 				if (pass.length() < 8) {
 					checkpass.setText("password must contain at least 8 characters");
 					System.out.println("2");
@@ -95,15 +108,19 @@ public class RegisterController {
 					checkpass.setText("");
 				}
 			}
-			if (repass.isEmpty() || repass.length() < 8) {
+			if (!repass.isEmpty()) {
 				if (!repass.equals(pass)) {
 					checkrepass.setText("repassword is not a same as password.");
 					System.out.println("3");
+					if (!pass.isEmpty()) {
+						checkpass.setText("");
+					}
 				} else {
 					checkrepass.setText("");
 				}
 			}
 		}
+
 	}
 
 	public void onCancelButton(ActionEvent event) {

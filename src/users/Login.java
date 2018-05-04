@@ -13,7 +13,7 @@ public class Login {
 	public Login(String username, String password) {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
-			con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/login", "root", "");
+			con = DriverManager.getConnection("jdbc:mysql://35.200.180.73:3306/login", "varit", "varit");
 			System.out.println("1111");
 		} catch (Exception e) {
 			// TODO: handle exception
