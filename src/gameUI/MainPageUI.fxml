@@ -25,12 +25,13 @@
             <Font size="26.0" />
          </font>
       </Label>
-      <CheckBox fx:id="showpass" layoutX="32.0" layoutY="200.0" mnemonicParsing="false" text="Show Password" />
+      <CheckBox fx:id="showpass" layoutX="17.0" layoutY="200.0" mnemonicParsing="false" text="Show Password" />
       <TextField fx:id="username" layoutX="139.0" layoutY="110.0" prefHeight="25.0" prefWidth="411.0" />
       <Button fx:id="register" layoutX="221.0" layoutY="316.0" mnemonicParsing="false" prefHeight="49.0" prefWidth="92.0" text="Register" />
       <Button fx:id="forget" layoutX="377.0" layoutY="316.0" mnemonicParsing="false" prefHeight="49.0" prefWidth="116.0" text="Forget Password?" />
       <PasswordField fx:id="password" layoutX="139.0" layoutY="161.0" prefHeight="25.0" prefWidth="411.0" />
-      <Button fx:id="login" layoutX="290.0" layoutY="225.0" mnemonicParsing="false" prefHeight="66.0" prefWidth="109.0" text="Login" />
+      <Button fx:id="login" layoutX="290.0" layoutY="227.0" mnemonicParsing="false" prefHeight="66.0" prefWidth="109.0" text="Login" />
       <TextField fx:id="passtext" layoutX="139.0" layoutY="161.0" prefHeight="25.0" prefWidth="411.0" />
+      <Label fx:id="status" alignment="CENTER" layoutX="224.0" layoutY="196.0" prefHeight="25.0" prefWidth="242.0" />
    </children>
 </AnchorPane>

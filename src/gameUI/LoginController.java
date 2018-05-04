@@ -4,9 +4,13 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import users.Login;
 
 public class LoginController {
 	 
@@ -32,6 +36,11 @@ public class LoginController {
 	CheckBox showpass;
 	
 	@FXML
+	Label status;
+	
+	private Color red = Color.RED;
+	
+	@FXML
 	public void initialize() {
 		login.setOnAction(this::onLoginClicked);
 		register.setOnAction(this::onRegisterClicked);
@@ -43,7 +52,15 @@ public class LoginController {
 	}
 	
 	public void onLoginClicked(ActionEvent event) {
-		GameUISceneChange.CHOOSEMINIGAME.changeScene((Stage)login.getScene().getWindow());
+		Login account = new Login(username.getText(),password.getText());
+		if(account.match()) {
+			GameUISceneChange.CHOOSEMINIGAME.changeScene((Stage)login.getScene().getWindow());
+		}else {
+			status.setTextFill(red);
+			status.setText("Username or password is incorrect.");
+			username.setText("");
+			password.setText("");
+		}
 	}
 	
 	public void onCheckBoxClicked(ActionEvent event) {
