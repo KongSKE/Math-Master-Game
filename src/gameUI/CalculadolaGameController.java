@@ -2,7 +2,6 @@ package gameUI;
 
 import java.util.Optional;
 
-import calculadolaGame.Calculadola;
 import javafx.application.Platform;
 import javafx.concurrent.Task;
 import javafx.concurrent.WorkerStateEvent;
@@ -37,8 +36,8 @@ public class CalculadolaGameController {
 	@FXML
 	ProgressBar timeCountdownProgress;
 
-//	private Calculadola calculadora;
-	private int questionNumber;
+	// private Calculadola calculadora;
+	// private int questionNumber;
 	private TimeCounter timeCount;
 	private int playerScore;
 	private Task<Void> sleeper;
@@ -54,7 +53,7 @@ public class CalculadolaGameController {
 		// calculadora = new Calculadola(new Player("Player"));
 		// changeQuestion();
 		playerScore = 0;
-		questionNumber = 0;
+		// questionNumber = 0;
 		player1Scorelabel.setText("Score: " + playerScore);
 
 	}
@@ -77,11 +76,12 @@ public class CalculadolaGameController {
 
 			@Override
 			public void run() {
-				if (player1NameLabel.getText().equals(name)) {
-					player1Scorelabel.setText("Score: " + score);
-				} else {
-					player2ScoreLabel.setText("Score: " + score);
-				}
+				// if (player1NameLabel.getText().equals(name)) {
+				// player1Scorelabel.setText("Score: " + score);
+				// } else {
+				player2NameLabel.setText(name);
+				player2ScoreLabel.setText("Score: " + score);
+				// }
 			}
 		});
 	}
@@ -97,18 +97,18 @@ public class CalculadolaGameController {
 	}
 
 	public void changeAllOutput(WorkerStateEvent event) {
-		if (questionNumber < 2) {
-			resultLabel.setText("");
-			timeCount = new TimeCounter(10);
-			timeCount.setOnSucceeded(this::timeUpDisplay);
-			answerText.setEditable(true);
-			questionLabel.setText(question);
-			questionNumber++;
+		// if (questionNumber < 2) {
+		resultLabel.setText("");
+		timeCount = new TimeCounter(10);
+		timeCount.setOnSucceeded(this::timeUpDisplay);
+		answerText.setEditable(true);
+		questionLabel.setText(question);
+		// questionNumber++;
 
-			timeCountdownProgress.progressProperty().bind(timeCount.progressProperty());
-			new Thread(timeCount).start();
-		} else
-			gameEnd();
+		timeCountdownProgress.progressProperty().bind(timeCount.progressProperty());
+		new Thread(timeCount).start();
+		// } else
+		// gameEnd();
 	}
 
 	public void timeUpDisplay(WorkerStateEvent event) {
@@ -144,8 +144,8 @@ public class CalculadolaGameController {
 
 		}
 	}
-	
-	public boolean checkAnswer(double gameAnswer,double playerAnswer) {
+
+	public boolean checkAnswer(double gameAnswer, double playerAnswer) {
 		return Math.abs(playerAnswer - gameAnswer) < 1e-2;
 	}
 

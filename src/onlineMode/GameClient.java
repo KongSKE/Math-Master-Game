@@ -8,18 +8,23 @@ import com.esotericsoftware.kryonet.Listener;
 
 import calculadolaGame.Calculadola;
 import javafx.application.Application;
+import player.Player;
 
 public class GameClient {
 
 	private static Client client;
 	private CalculadolaOnlineGameUI gameUI;
+	private Player player;
+	
 	private String name;
 	private int score;
 	private String question;
 	private double answer;
 	
-	public GameClient() throws IOException {
+	public GameClient(String name) throws IOException {
 		client = new Client();
+		player = new Player(name);
+		this.name = name;
 
 		client.getKryo().register(Calculadola.class);
 
@@ -38,7 +43,10 @@ public class GameClient {
 
 		client.start();
 		client.connect(5000, "127.0.0.1", 54333);
-		System.out.println("Sad");
+	}
+	
+	public Player getPlayer() {
+		return player;
 	}
 
 	public void sendScore(int score) {
@@ -50,6 +58,7 @@ public class GameClient {
 		@Override
 		public void connected(Connection connection) {
 			super.connected(connection);
+			client.sendTCP(name);
 			System.out.println("Connect!!");
 		}
 
@@ -74,7 +83,7 @@ public class GameClient {
 
 	public static void main(String[] args) {
 		try {
-			new GameClient();
+			new GameClient("Jacks");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
