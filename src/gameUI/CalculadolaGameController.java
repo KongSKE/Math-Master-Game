@@ -3,6 +3,7 @@ package gameUI;
 import java.util.Optional;
 
 import calculadolaGame.Calculadola;
+import javafx.application.Platform;
 import javafx.concurrent.Task;
 import javafx.concurrent.WorkerStateEvent;
 import javafx.event.ActionEvent;
@@ -16,6 +17,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import onlineMode.GameClient;
+import player.Player;
 
 public class CalculadolaGameController {
 
@@ -43,17 +45,43 @@ public class CalculadolaGameController {
 	private Task<Void> sleeper;
 
 	private GameClient client;
+	private String question;
 
 	public void initialize() {
 		answerText.setOnAction(this::onAnswerEnter);
 		answerText.setEditable(false);
 
-		calculadora = new Calculadola();
+		calculadora = new Calculadola(new Player("Player"));
 		changeQuestion();
 		playerScore = 0;
 		questionNumber = 0;
 		player1Scorelabel.setText("Score: " + playerScore);
 
+	}
+
+	public void receiveQuestion(String question) {
+		this.question = question;
+		Platform.runLater(new Runnable() {
+
+			@Override
+			public void run() {
+				changeQuestion();
+			}
+		});
+	}
+
+	public void sentPlayerScore(String name, int score) {
+		Platform.runLater(new Runnable() {
+
+			@Override
+			public void run() {
+				if (player1NameLabel.getText().equals(name)) {
+					player1Scorelabel.setText("Score: " + score);
+				} else {
+					player2ScoreLabel.setText("Score: " + score);
+				}
+			}
+		});
 	}
 
 	public void setGameClient(GameClient client) {
@@ -72,7 +100,7 @@ public class CalculadolaGameController {
 			timeCount = new TimeCounter(10);
 			timeCount.setOnSucceeded(this::timeUpDisplay);
 			answerText.setEditable(true);
-			questionLabel.setText(calculadora.getGameQuestion());
+			questionLabel.setText(question);
 			questionNumber++;
 
 			timeCountdownProgress.progressProperty().bind(timeCount.progressProperty());
@@ -114,29 +142,6 @@ public class CalculadolaGameController {
 
 		}
 	}
-
-	public void displayScore(Object currentScore) {
-		String[] message = ((String) currentScore).split(" ");
-		String playerName = message[0];
-		String score = message[1];
-		if (playerName.equals("Player1")) {
-			player1Scorelabel.setText(score);
-		} else {
-			player2ScoreLabel.setText(score);
-		}
-	}
-
-	// public void setScore(Map<String, Integer> player) {
-	// if (player.keySet().toString().equals("Player1")) {
-	// player1Scorelabel.setText(player.get("Player1") + "");
-	// } else if (player.keySet().toString().equals("Player2")) {
-	// player2ScoreLabel.setText(player.get("Player2") + "");
-	// }
-	// }
-	//
-	// private void sendScore() {
-	// GameClient.sendScore("Player1", playerScore);
-	// }
 
 	public void backToHome() {
 		GameUISceneChange.CHOOSEMINIGAME.changeScene((Stage) questionLabel.getScene().getWindow());

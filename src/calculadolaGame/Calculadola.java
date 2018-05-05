@@ -3,15 +3,22 @@ package calculadolaGame;
 import java.util.Random;
 
 import player.Game;
+import player.Player;
 
 public class Calculadola implements Game {
-	
+
+	private Player player;
+
 	private Random random = new Random();
 	private MathStyle math;
 	private int first;
 	private int second;
 	private String question;
-	
+
+	public Calculadola(Player player) {
+		this.player = player;
+	}
+
 	@Override
 	public void getQuestion() {
 		this.first = random.nextInt(100) + 1;
@@ -34,10 +41,10 @@ public class Calculadola implements Game {
 		}
 		question = math.toString();
 	}
-	
+
 	@Override
 	public boolean checkAnswer(String answer) {
-		if(Double.parseDouble(answer) == math.getAnswer())
+		if (Double.parseDouble(answer) == math.getAnswer())
 			return true;
 		else {
 			return answer.equals(String.format("%.2f", getAnswer()));
@@ -48,9 +55,13 @@ public class Calculadola implements Game {
 		getQuestion();
 		return question;
 	}
-	
+
 	public double getAnswer() {
 		return math.getAnswer();
+	}
+	
+	public String getPlayerName() {
+		return player.getName();
 	}
 
 }

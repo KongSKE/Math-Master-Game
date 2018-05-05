@@ -8,21 +8,20 @@ import com.esotericsoftware.kryonet.Listener;
 
 import calculadolaGame.Calculadola;
 import javafx.application.Application;
-import makeIt24Game.MakeIt24;
-import questionIsGame.QuestionIs;
 
 public class GameClient {
 
 	private static Client client;
 	private CalculadolaOnlineGameUI gameUI;
+	private String name;
+	private int score;
+	private String question;
 
 	public GameClient() throws IOException {
 
 		client = new Client();
 
 		client.getKryo().register(Calculadola.class);
-		client.getKryo().register(QuestionIs.class);
-		client.getKryo().register(MakeIt24.class);
 
 		client.getKryo().register(Packet.ScoreData.class);
 
@@ -43,7 +42,7 @@ public class GameClient {
 	public void sendScore(int score) {
 		client.sendTCP(score);
 	}
-	
+
 	class GameClientListener extends Listener {
 
 		@Override
@@ -57,8 +56,14 @@ public class GameClient {
 			super.received(connection, o);
 			System.out.println("Recieve");
 			if (o instanceof Packet.ScoreData) {
-				System.out.println(o);
-				System.out.println("send data");
+				Packet.ScoreData scoreData = (Packet.ScoreData) o;
+				score = scoreData.score;
+				name = scoreData.name;
+				gameUI.setPlayerScore(name, score);
+			} else if (o instanceof Packet.QuestionData) {
+				Packet.QuestionData questionData = (Packet.QuestionData) o;
+				question = questionData.queston;
+				gameUI.setQuestion(question);
 			}
 		}
 	}
