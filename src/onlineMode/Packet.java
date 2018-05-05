@@ -9,6 +9,7 @@ public class Packet {
 	
 	public static class QuestionData extends Packet{
 		public String queston;
+		public double answer;
 	}
 
 }

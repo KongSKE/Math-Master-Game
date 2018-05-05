@@ -27,6 +27,8 @@ public class GameServer {
 		user = new HashMap<Connection, String>();
 
 		server.getKryo().register(Calculadola.class);
+		
+		server.getKryo().register(Packet.QuestionData.class);
 		server.getKryo().register(Packet.ScoreData.class);
 
 		server.addListener(new GameServerListener());
@@ -39,6 +41,7 @@ public class GameServer {
 		String question = calculadola.getGameQuestion();
 		Packet.QuestionData questionData = new Packet.QuestionData();
 		questionData.queston = question;
+		questionData.answer = calculadola.getAnswer();
 		for(Connection c : user.keySet()) {
 			c.sendTCP(questionData);
 		}
@@ -74,6 +77,7 @@ public class GameServer {
 			
 			if(user.size() == numberPlayer) {
 				startGame();
+				System.out.println("Game start");
 			}
 		}
 

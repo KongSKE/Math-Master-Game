@@ -17,7 +17,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import onlineMode.GameClient;
-import player.Player;
 
 public class CalculadolaGameController {
 
@@ -38,7 +37,7 @@ public class CalculadolaGameController {
 	@FXML
 	ProgressBar timeCountdownProgress;
 
-	private Calculadola calculadora;
+//	private Calculadola calculadora;
 	private int questionNumber;
 	private TimeCounter timeCount;
 	private int playerScore;
@@ -46,21 +45,24 @@ public class CalculadolaGameController {
 
 	private GameClient client;
 	private String question;
+	private double answer;
 
 	public void initialize() {
 		answerText.setOnAction(this::onAnswerEnter);
 		answerText.setEditable(false);
 
-		calculadora = new Calculadola(new Player("Player"));
-		changeQuestion();
+		// calculadora = new Calculadola(new Player("Player"));
+		// changeQuestion();
 		playerScore = 0;
 		questionNumber = 0;
 		player1Scorelabel.setText("Score: " + playerScore);
 
 	}
 
-	public void receiveQuestion(String question) {
+	public void receiveQuestion(String question, double answer) {
 		this.question = question;
+		this.answer = answer;
+		System.out.println("Controller get Question " + question);
 		Platform.runLater(new Runnable() {
 
 			@Override
@@ -125,13 +127,13 @@ public class CalculadolaGameController {
 		}
 		timeCount.cancel();
 		try {
-			Double answer = Double.parseDouble(answerFromText);
-			if (calculadora.checkAnswer(answer + "")) {
+			Double playerAnswer = Double.parseDouble(answerFromText);
+			if (checkAnswer(answer, playerAnswer)) {
 				resultLabel.setText("Correct!!");
 				resultLabel.setTextFill(Color.GREEN);
 				playerScore += timeCount.getTime();
 			} else {
-				resultLabel.setText(String.format("Wrong!! Answer: %.2f", calculadora.getAnswer()));
+				resultLabel.setText(String.format("Wrong!! Answer: %.2f", answer));
 				resultLabel.setTextFill(Color.RED);
 			}
 			client.sendScore(playerScore);
@@ -141,6 +143,10 @@ public class CalculadolaGameController {
 		} catch (NumberFormatException e) {
 
 		}
+	}
+	
+	public boolean checkAnswer(double gameAnswer,double playerAnswer) {
+		return Math.abs(playerAnswer - gameAnswer) < 1e-2;
 	}
 
 	public void backToHome() {

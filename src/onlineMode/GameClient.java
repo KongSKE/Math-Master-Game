@@ -16,16 +16,17 @@ public class GameClient {
 	private String name;
 	private int score;
 	private String question;
-
+	private double answer;
+	
 	public GameClient() throws IOException {
-
 		client = new Client();
 
 		client.getKryo().register(Calculadola.class);
 
+		client.getKryo().register(Packet.QuestionData.class);
 		client.getKryo().register(Packet.ScoreData.class);
 
-		client.addListener(new Listener());
+		client.addListener(new GameClientListener());
 
 		new Thread() {
 			public void run() {
@@ -37,6 +38,7 @@ public class GameClient {
 
 		client.start();
 		client.connect(5000, "127.0.0.1", 54333);
+		System.out.println("Sad");
 	}
 
 	public void sendScore(int score) {
@@ -63,7 +65,9 @@ public class GameClient {
 			} else if (o instanceof Packet.QuestionData) {
 				Packet.QuestionData questionData = (Packet.QuestionData) o;
 				question = questionData.queston;
-				gameUI.setQuestion(question);
+				answer = questionData.answer;
+				System.out.println(question);
+				gameUI.setQuestion(question, answer);
 			}
 		}
 	}

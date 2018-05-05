@@ -3,6 +3,7 @@ package onlineMode;
 import java.io.IOException;
 import java.util.concurrent.CountDownLatch;
 
+import calculadolaGame.Calculadola;
 import gameUI.CalculadolaGameController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -59,8 +60,8 @@ public class CalculadolaOnlineGameUI extends Application {
 		controller.sentPlayerScore(name, score);
 	}
 
-	public void setQuestion(String question) {
-		controller.receiveQuestion(question);
+	public void setQuestion(String question, double answer) {
+		controller.receiveQuestion(question, answer);
 	}
 
 	@Override
