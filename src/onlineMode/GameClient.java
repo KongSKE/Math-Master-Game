@@ -85,7 +85,7 @@ public class GameClient {
 
 	public static void main(String[] args) {
 		try {
-			new GameClient("Ja");
+			new GameClient("asb");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

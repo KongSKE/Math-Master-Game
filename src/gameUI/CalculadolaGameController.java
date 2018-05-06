@@ -58,29 +58,30 @@ public class CalculadolaGameController {
 	}
 
 	public void receiveQuestion(String question, double answer) {
+
 		this.question = question;
 		this.answer = answer;
-		System.out.println("Controller get Question " + question);
-		Platform.runLater(new Runnable() {
 
+		Platform.runLater(new Runnable() {
 			@Override
 			public void run() {
-				changeQuestion();
+				System.out.println("Controller get Question " + question);
+				if (question.equals("End") && answer == 0) {
+					gameEnd();
+				} else {
+					changeQuestion();
+				}
 			}
 		});
 	}
 
 	public void sentPlayerScore(String name, int score) {
-		Platform.runLater(new Runnable() {
 
+		Platform.runLater(new Runnable() {
 			@Override
 			public void run() {
-				// if (player1NameLabel.getText().equals(name)) {
-				// player1Scorelabel.setText("Score: " + score);
-				// } else {
 				player2NameLabel.setText(name);
 				player2ScoreLabel.setText("Score: " + score);
-				// }
 			}
 		});
 	}
@@ -96,25 +97,21 @@ public class CalculadolaGameController {
 	}
 
 	public void changeAllOutput(WorkerStateEvent event) {
-		// if (questionNumber < 2) {
 		resultLabel.setText("");
 		timeCount = new TimeCounter(10);
 		timeCount.setOnSucceeded(this::timeUpDisplay);
 		answerText.setEditable(true);
 		questionLabel.setText(question);
-		// questionNumber++;
 
 		timeCountdownProgress.progressProperty().bind(timeCount.progressProperty());
 		new Thread(timeCount).start();
-		// } else
-		// gameEnd();
 	}
 
 	public void timeUpDisplay(WorkerStateEvent event) {
 		if (timeCount.getTime() == 0) {
 			resultLabel.setText("Time Up!!");
 			resultLabel.setTextFill(Color.RED);
-			changeQuestion();
+			client.sendScore(playerScore);
 		}
 
 	}
@@ -139,7 +136,6 @@ public class CalculadolaGameController {
 			client.sendScore(playerScore);
 			answerText.setEditable(false);
 			answerText.clear();
-			changeQuestion();
 		} catch (NumberFormatException e) {
 
 		}

@@ -18,6 +18,7 @@ public class GameServer {
 	private int numberPlayer = 2;
 	private Map<Connection, String> user;
 	private int questionNumber = 0;
+	private int numberOfPlayerAnswer = 0;
 
 	public GameServer() throws IOException {
 
@@ -98,9 +99,19 @@ public class GameServer {
 				System.out.println("Receive data");
 				Integer score = (Integer) o;
 				sendPlayerScore(connection, score);
-				if (questionNumber < 3) {
+				numberOfPlayerAnswer++;
+				if (questionNumber < 3 && numberOfPlayerAnswer == 2) {
+					numberOfPlayerAnswer = 0;
 					changeGameQuestion();
 					questionNumber++;
+				}else if(questionNumber == 3 && numberOfPlayerAnswer == 2) {
+					questionNumber = 0;
+					Packet.QuestionData questionData = new Packet.QuestionData();
+					questionData.queston = "End";
+					questionData.answer = 0;
+					for (Connection c : user.keySet()) {
+						c.sendTCP(questionData);
+					}
 				}
 				System.out.println("====> " + questionNumber);
 			} else if (o instanceof String) {
