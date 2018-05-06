@@ -1,10 +1,8 @@
 package onlineMode;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-//import java.util.HashMap;
-//import java.util.Map;
+import java.util.HashMap;
+import java.util.Map;
 
 import com.esotericsoftware.kryonet.Connection;
 import com.esotericsoftware.kryonet.Listener;
@@ -18,17 +16,14 @@ public class GameServer {
 	private Server server;
 	private Calculadola calculadola;
 	private int numberPlayer = 2;
-	// private Map<Connection, Player> user;
-	private List<Connection> connections;
-	private Connection thisConnection;
+	private Map<Connection, String> user;
 	private int questionNumber = 0;
 
 	public GameServer() throws IOException {
 
 		server = new Server();
 		calculadola = new Calculadola(new Player("Player 1"));
-		// user = new HashMap<Connection, Player>();
-		connections = new ArrayList<Connection>();
+		user = new HashMap<Connection, String>();
 
 		server.getKryo().register(Calculadola.class);
 
@@ -46,19 +41,37 @@ public class GameServer {
 		Packet.QuestionData questionData = new Packet.QuestionData();
 		questionData.queston = question;
 		questionData.answer = calculadola.getAnswer();
-		for (Connection c : connections) {
+		for (Connection c : user.keySet()) {
 			c.sendTCP(questionData);
 		}
 	}
 
-	public void sentPlayerScore(int score) {
+	public void sendPlayerScore(Connection connection, int score) {
 		Packet.ScoreData scoreData = new Packet.ScoreData();
-		String playerName = calculadola.getPlayerName();
+		String playerName = user.get(user.keySet().toArray()[user.size() - 2]);
 		scoreData.name = playerName;
 		scoreData.score = score;
 
-		for (Connection c : connections) {
-			c.sendTCP(scoreData);
+		for (Connection c : user.keySet()) {
+			if (!c.equals(connection))
+				c.sendTCP(scoreData);
+		}
+	}
+
+	public void sendPlayerName(Connection connection) {
+		Packet.ScoreData scoreData1 = new Packet.ScoreData();
+		scoreData1.name = user.get(connection);
+		scoreData1.score = 0;
+		Packet.ScoreData scoreData2 = new Packet.ScoreData();
+		scoreData2.name = user.get(user.keySet().toArray()[user.size() - 2]);
+		System.out.println(scoreData2.name);
+		scoreData2.score = 0;
+		for (Connection c : user.keySet()) {
+			if (c.equals(connection)) {
+				c.sendTCP(scoreData2);
+			} else {
+				c.sendTCP(scoreData1);
+			}
 		}
 	}
 
@@ -68,29 +81,23 @@ public class GameServer {
 		public void connected(Connection connection) {
 			super.connected(connection);
 			System.out.println("New Client connect");
-			connections.add(connection);
 
-			if (connections.size() == numberPlayer) {
-				changeGameQuestion();
-				System.out.println("Game start");
-			}
 		}
 
 		@Override
 		public void disconnected(Connection connection) {
 			super.disconnected(connection);
-			connections.remove(connection);
+			user.remove(connection);
 			System.out.println("Player disconnect");
 		}
 
 		@Override
 		public void received(Connection connection, Object o) {
 			super.received(connection, o);
-			thisConnection = connection;
 			if (o instanceof Integer) {
 				System.out.println("Receive data");
 				Integer score = (Integer) o;
-				sentPlayerScore(score);
+				sendPlayerScore(connection, score);
 				if (questionNumber < 3) {
 					changeGameQuestion();
 					questionNumber++;
@@ -98,12 +105,13 @@ public class GameServer {
 				System.out.println("====> " + questionNumber);
 			} else if (o instanceof String) {
 				String name = (String) o;
-				Packet.ScoreData scoreData = new Packet.ScoreData();
-				scoreData.name = name;
-				scoreData.score = 0;
-				for (Connection c : connections) {
-					if (!c.equals(thisConnection))
-						c.sendTCP(scoreData);
+				user.put(connection, name);
+
+				System.out.println(user.size());
+				if (user.size() == numberPlayer) {
+					System.out.println("Game start");
+					sendPlayerName(connection);
+					changeGameQuestion();
 				}
 			}
 		}

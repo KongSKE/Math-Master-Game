@@ -12,7 +12,7 @@
    <center>
       <VBox prefHeight="400.0" prefWidth="700.0" BorderPane.alignment="CENTER">
          <children>
-            <AnchorPane prefHeight="431.0" prefWidth="700.0">
+            <AnchorPane prefHeight="400.0" prefWidth="700.0">
                <children>
                   <Label layoutX="208.0" layoutY="27.0" text="Calculadola">
                      <font>
@@ -39,17 +39,17 @@
                         <Font size="15.0" />
                      </font>
                   </Label>
-                  <Label fx:id="player1Scorelabel" layoutX="8.0" layoutY="45.0" prefHeight="19.0" prefWidth="122.0" text="Score: ">
+                  <Label fx:id="player1Scorelabel" layoutX="8.0" layoutY="45.0" prefHeight="19.0" prefWidth="146.0" text="Score: ">
                      <font>
                         <Font size="15.0" />
                      </font>
                   </Label>
-                  <Label fx:id="player2NameLabel" layoutX="582.0" layoutY="16.0" prefHeight="19.0" prefWidth="104.0" text="Player 2">
+                  <Label fx:id="player2NameLabel" layoutX="574.0" layoutY="16.0" prefHeight="19.0" prefWidth="112.0" text="Player 2">
                      <font>
                         <Font size="15.0" />
                      </font>
                   </Label>
-                  <Label fx:id="player2ScoreLabel" layoutX="583.0" layoutY="42.0" prefHeight="19.0" prefWidth="95.0" text="Score: ">
+                  <Label fx:id="player2ScoreLabel" layoutX="575.0" layoutY="42.0" prefHeight="19.0" prefWidth="128.0" text="Score: ">
                      <font>
                         <Font size="15.0" />
                      </font>

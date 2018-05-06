@@ -24,6 +24,7 @@ public class GameClient {
 	public GameClient(String name) throws IOException {
 		client = new Client();
 		player = new Player(name);
+		
 		this.name = name;
 
 		client.getKryo().register(Calculadola.class);
@@ -40,6 +41,7 @@ public class GameClient {
 		}.start();
 		gameUI = CalculadolaOnlineGameUI.waitForLunch();
 		gameUI.setClient(this);
+		gameUI.setPlayerName(name);
 
 		client.start();
 		client.connect(5000, "127.0.0.1", 54333);
@@ -83,7 +85,7 @@ public class GameClient {
 
 	public static void main(String[] args) {
 		try {
-			new GameClient("Jacks");
+			new GameClient("Ja");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

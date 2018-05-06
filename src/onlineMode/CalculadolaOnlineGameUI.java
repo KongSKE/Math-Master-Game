@@ -63,6 +63,10 @@ public class CalculadolaOnlineGameUI extends Application {
 	public void setQuestion(String question, double answer) {
 		controller.receiveQuestion(question, answer);
 	}
+	
+	public void setPlayerName(String name) {
+		controller.setPlayerName(name);
+	}
 
 	@Override
 	public void start(Stage stage) throws Exception {

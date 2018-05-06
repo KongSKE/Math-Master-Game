@@ -36,8 +36,6 @@ public class CalculadolaGameController {
 	@FXML
 	ProgressBar timeCountdownProgress;
 
-	// private Calculadola calculadora;
-	// private int questionNumber;
 	private TimeCounter timeCount;
 	private int playerScore;
 	private Task<Void> sleeper;
@@ -50,12 +48,13 @@ public class CalculadolaGameController {
 		answerText.setOnAction(this::onAnswerEnter);
 		answerText.setEditable(false);
 
-		// calculadora = new Calculadola(new Player("Player"));
-		// changeQuestion();
 		playerScore = 0;
-		// questionNumber = 0;
 		player1Scorelabel.setText("Score: " + playerScore);
 
+	}
+
+	public void setPlayerName(String name) {
+		player1NameLabel.setText(name);
 	}
 
 	public void receiveQuestion(String question, double answer) {
@@ -136,6 +135,7 @@ public class CalculadolaGameController {
 				resultLabel.setText(String.format("Wrong!! Answer: %.2f", answer));
 				resultLabel.setTextFill(Color.RED);
 			}
+			player1Scorelabel.setText(playerScore + "");
 			client.sendScore(playerScore);
 			answerText.setEditable(false);
 			answerText.clear();
