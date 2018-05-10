@@ -83,7 +83,7 @@ public class QuestionIsGameController extends Contoller{
 
 	public void setNewQuestion(WorkerStateEvent event) {
 		if (questionNumber < 2) {
-			timeCounter = new TimeCounter(10);
+			timeCounter = new TimeCounter(10, timeCountdownProgress);
 			timeCounter.setOnSucceeded(this::timeUpDisPlay);
 			question.getQuestion();
 			operation1Label.setText(question.getFirstOperation());

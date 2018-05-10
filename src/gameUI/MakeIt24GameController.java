@@ -114,7 +114,7 @@ public class MakeIt24GameController extends Contoller{
 	public void setAllNumber(WorkerStateEvent event) {
 		bracket = 1;
 		if (question < 2) {
-			timeCounter = new TimeCounter(20);
+			timeCounter = new TimeCounter(20, timeCountdownProgress);
 			timeCounter.setOnSucceeded(this::timeUpDisplay);
 			resultLabel.setText("(");
 			make24.getQuestion();

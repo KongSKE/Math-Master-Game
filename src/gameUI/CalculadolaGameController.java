@@ -98,7 +98,7 @@ public class CalculadolaGameController {
 
 	public void changeAllOutput(WorkerStateEvent event) {
 		resultLabel.setText("");
-		timeCount = new TimeCounter(10);
+		timeCount = new TimeCounter(10, timeCountdownProgress);
 		timeCount.setOnSucceeded(this::timeUpDisplay);
 		answerText.setEditable(true);
 		questionLabel.setText(question);
