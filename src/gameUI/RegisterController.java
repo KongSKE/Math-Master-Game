@@ -11,7 +11,7 @@ import javafx.stage.Stage;
 import users.Account;
 import users.Register;
 
-public class RegisterController {
+public class RegisterController extends Contoller {
 
 	@FXML
 	Button next;

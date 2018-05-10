@@ -12,27 +12,39 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="900.0" style="-fx-background-image: url(&quot;res/Background.gif&quot;); -fx-background-size: 900 700;" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gameUI.LoginController">
    <children>
-      <Label layoutX="123.0" layoutY="266.0" text="Username" textAlignment="CENTER">
+      <CheckBox fx:id="showpass" layoutX="623.0" layoutY="370.0" mnemonicParsing="false" text="Show Password" />
+      <TextField fx:id="username" layoutX="337.0" layoutY="266.0" prefHeight="25.0" prefWidth="411.0">
          <font>
-            <Font size="26.0" />
-         </font>
-      </Label>
-      <Label layoutX="127.0" layoutY="327.0" text="Password" textAlignment="CENTER">
-         <font>
-            <Font size="26.0" />
-         </font>
-      </Label>
-      <CheckBox fx:id="showpass" layoutX="712.0" layoutY="334.0" mnemonicParsing="false" text="Show Password" />
-      <TextField fx:id="username" layoutX="277.0" layoutY="269.0" prefHeight="25.0" prefWidth="411.0" />
+            <Font size="18.0" />
+         </font></TextField>
       <Button fx:id="register" layoutX="252.0" layoutY="541.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="170.0" text="Register" />
       <Button fx:id="forget" layoutX="482.0" layoutY="541.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="170.0" text="Forget Password?" />
-      <PasswordField fx:id="password" layoutX="277.0" layoutY="330.0" prefHeight="25.0" prefWidth="411.0" />
+      <PasswordField fx:id="password" layoutX="337.0" layoutY="327.0" prefHeight="25.0" prefWidth="411.0">
+         <font>
+            <Font size="18.0" />
+         </font></PasswordField>
       <Button fx:id="login" layoutX="350.0" layoutY="440.0" mnemonicParsing="false" prefHeight="70.0" prefWidth="200.0" text="Login" />
-      <TextField fx:id="passtext" layoutX="277.0" layoutY="330.0" prefHeight="25.0" prefWidth="411.0" />
-      <Label fx:id="status" alignment="CENTER" layoutX="329.0" layoutY="366.0" prefHeight="25.0" prefWidth="242.0" />
-      <ImageView fitHeight="200.0" fitWidth="500.0" layoutX="189.0" layoutY="31.0" pickOnBounds="true" preserveRatio="true">
+      <TextField fx:id="passtext" layoutX="337.0" layoutY="327.0" prefHeight="25.0" prefWidth="411.0">
+         <font>
+            <Font size="18.0" />
+         </font></TextField>
+      <Label fx:id="status" alignment="CENTER" layoutX="337.0" layoutY="376.0" prefHeight="25.0" prefWidth="272.0" wrapText="true">
+         <font>
+            <Font size="15.0" />
+         </font></Label>
+      <ImageView fitHeight="200.0" fitWidth="600.0" layoutX="150.0" layoutY="28.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../res/welcome.gif" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="128.0" layoutY="258.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../res/username.gif" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="128.0" layoutY="318.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../res/password.gif" />
          </image>
       </ImageView>
    </children>

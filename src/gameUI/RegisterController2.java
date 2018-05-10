@@ -9,7 +9,7 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import users.Account;
 
-public class RegisterController2 {
+public class RegisterController2 extends Contoller {
 
 	@FXML
 	TextField question;
