@@ -4,6 +4,7 @@ import java.util.Optional;
 
 import org.matheclipse.core.eval.ExprEvaluator;
 
+import javafx.application.Platform;
 import javafx.concurrent.WorkerStateEvent;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -16,7 +17,7 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Stage;
 import makeIt24Game.MakeIt24;
 
-public class MakeIt24GameController {
+public class MakeIt24GameController extends Contoller{
 
 	@FXML
 	Label resultLabel;
@@ -86,6 +87,14 @@ public class MakeIt24GameController {
 		deleteButton.setOnAction(this::onDeleteButtonClicked);
 		clearButton.setOnAction(this::onClearButtonClicked);
 
+		Platform.runLater(new Runnable() {
+			
+			@Override
+			public void run() {
+				player1NameLabel.setText(getName());
+			}
+		});
+		
 		make24 = new MakeIt24();
 		e = new ExprEvaluator();
 		question = 0;
@@ -210,7 +219,7 @@ public class MakeIt24GameController {
 	}
 
 	public void backToHome() {
-		GameUISceneChange.CHOOSEMINIGAME.changeScene((Stage) number1Button.getScene().getWindow());
+		GameUISceneChange.CHOOSEMINIGAME.changeScene((Stage) number1Button.getScene().getWindow(), player1NameLabel.getText());
 	}
 
 	public void gameEnd() {

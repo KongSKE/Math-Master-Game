@@ -50,7 +50,7 @@ public class CalculadolaGameController {
 
 		playerScore = 0;
 		player1Scorelabel.setText("Score: " + playerScore);
-
+		
 	}
 
 	public void setPlayerName(String name) {
@@ -146,7 +146,7 @@ public class CalculadolaGameController {
 	}
 
 	public void backToHome() {
-		GameUISceneChange.CHOOSEMINIGAME.changeScene((Stage) questionLabel.getScene().getWindow());
+		GameUISceneChange.CHOOSEMINIGAME.changeScene((Stage) questionLabel.getScene().getWindow(), player1NameLabel.getText());
 	}
 
 	public void gameEnd() {

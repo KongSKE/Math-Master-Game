@@ -16,14 +16,18 @@ public enum GameUISceneChange {
 		this.fxmlName = fxmlName;
 	}
 
-	public void changeScene(Stage stage) {
+	public void changeScene(Stage stage, String name) {
 		try {
 
 			FXMLLoader chooseGameLoader = new FXMLLoader(getClass().getResource(fxmlName));
 			Parent chooseGameRoot = chooseGameLoader.load();
 			Scene chooseGameScene = new Scene(chooseGameRoot);
 			chooseGameScene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
-
+			
+			Contoller controller = chooseGameLoader.getController();
+			System.out.println("Name: " + name);
+			controller.setName(name);
+			
 			stage.setScene(chooseGameScene);
 
 		} catch (Exception e) {

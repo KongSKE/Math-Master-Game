@@ -3,6 +3,7 @@ package gameUI;
 import java.util.Optional;
 import java.util.Random;
 
+import javafx.application.Platform;
 import javafx.concurrent.WorkerStateEvent;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -16,7 +17,7 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import questionIsGame.QuestionIs;
 
-public class QuestionIsGameController {
+public class QuestionIsGameController extends Contoller{
 
 	@FXML
 	TextField number1Text;
@@ -59,6 +60,14 @@ public class QuestionIsGameController {
 		number3Text.setOnAction(this::onAnyTextFieldPressEnter);
 		resultLabel.setText("");
 
+		Platform.runLater(new Runnable() {
+			
+			@Override
+			public void run() {
+				player1NameLabel.setText(getName());
+			}
+		});
+		
 		question = new QuestionIs();
 		questionNumber = 0;
 		playerScore = 0;
@@ -171,7 +180,7 @@ public class QuestionIsGameController {
 	}
 
 	public void backToHome() {
-		GameUISceneChange.CHOOSEMINIGAME.changeScene((Stage) answerLabel.getScene().getWindow());
+		GameUISceneChange.CHOOSEMINIGAME.changeScene((Stage) answerLabel.getScene().getWindow(), player1NameLabel.getText());
 	}
 
 	public void gameEnd() {
