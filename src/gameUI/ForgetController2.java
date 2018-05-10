@@ -8,7 +8,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
-public class ForgetController2 {
+public class ForgetController2 extends Contoller{
 
 	@FXML
 	TextField password;

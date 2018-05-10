@@ -7,7 +7,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
-public class ForgetController1 {
+public class ForgetController1 extends Contoller{
 
 	@FXML
 	Label checkUsername;

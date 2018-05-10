@@ -17,7 +17,7 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import onlineMode.GameClient;
 
-public class CalculadolaGameController {
+public class CalculadolaGameController extends Contoller{
 
 	@FXML
 	Label questionLabel;
