@@ -4,127 +4,139 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gameUI.MakeIt24GameController">
+<BorderPane prefHeight="700.0" prefWidth="900.0" style="-fx-background-image: url(&quot;res/24GameBackground.png&quot;); -fx-background-size: 900 700;" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gameUI.MakeIt24GameController">
    <center>
       <VBox prefHeight="400.0" prefWidth="700.0" BorderPane.alignment="CENTER">
          <children>
-            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+            <AnchorPane prefHeight="702.0" prefWidth="900.0">
                <children>
-                  <AnchorPane prefHeight="100.0" prefWidth="745.0">
+                  <AnchorPane prefHeight="203.0" prefWidth="900.0">
                      <children>
-                        <Label layoutX="228.0" layoutY="21.0" text="Make it 24">
+                        <Label fx:id="player1NameLabel" alignment="CENTER_RIGHT" layoutX="547.0" layoutY="21.0" prefHeight="25.0" prefWidth="225.0" text="Player 1">
                            <font>
-                              <Font name="3270 Narrow" size="50.0" />
+                              <Font name="Monospaced Bold" size="20.0" />
                            </font>
                         </Label>
-                        <Label fx:id="player1NameLabel" layoutY="16.0" prefHeight="19.0" prefWidth="107.0" text="Player 1">
+                        <Label fx:id="player1ScoreLabel" layoutX="128.0" layoutY="15.0" prefHeight="36.0" prefWidth="260.0" text="Score: ">
                            <font>
-                              <Font size="15.0" />
+                              <Font name="Monospaced Bold" size="30.0" />
                            </font>
                         </Label>
-                        <Label fx:id="player1ScoreLabel" layoutY="42.0" prefHeight="19.0" prefWidth="115.0" text="Score: ">
-                           <font>
-                              <Font size="15.0" />
-                           </font>
-                        </Label>
-                        <Label fx:id="player2NameLabel" layoutX="585.0" layoutY="17.0" prefHeight="19.0" prefWidth="107.0" text="Player 2">
-                           <font>
-                              <Font size="15.0" />
-                           </font>
-                        </Label>
-                        <Label fx:id="player2ScoreLabel" layoutX="585.0" layoutY="43.0" prefHeight="19.0" prefWidth="115.0" text="Score: ">
-                           <font>
-                              <Font size="15.0" />
-                           </font>
-                        </Label>
-                        <ProgressBar fx:id="timeCountdownProgress" layoutX="196.0" layoutY="76.0" prefHeight="20.0" prefWidth="309.0" progress="0.0" />
+                        <ProgressBar fx:id="timeCountdownProgress" layoutX="128.0" layoutY="162.0" prefHeight="20.0" prefWidth="644.0" progress="0.0" />
+                        <ImageView fitHeight="113.0" fitWidth="342.0" layoutX="279.0" layoutY="61.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../res/24Game.gif" />
+                           </image>
+                        </ImageView>
                      </children>
                   </AnchorPane>
-               </children>
-            </HBox>
-            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
-               <children>
-                  <AnchorPane prefHeight="100.0" prefWidth="700.0">
+                  <Label fx:id="resultLabel" alignment="CENTER" layoutX="172.0" layoutY="217.0" prefHeight="54.0" prefWidth="556.0" text="24" textAlignment="CENTER">
+                     <font>
+                        <Font name="3270 Narrow" size="51.0" />
+                     </font>
+                  </Label>
+                  <HBox alignment="CENTER" layoutX="160.0" layoutY="319.0" prefHeight="100.0" prefWidth="580.0">
                      <children>
-                        <Label fx:id="resultLabel" alignment="CENTER" layoutX="131.0" layoutY="27.0" prefHeight="47.0" prefWidth="439.0" text="24" textAlignment="CENTER">
+                        <Button fx:id="openBracketButton" mnemonicParsing="false" prefHeight="70.0" prefWidth="70.0" style="-fx-background-color: transparent;" text="(">
+                           <HBox.margin>
+                              <Insets right="20.0" />
+                           </HBox.margin>
                            <font>
-                              <Font name="3270 Narrow" size="45.0" />
+                              <Font name="Meslo LG S DZ Bold for Powerline" size="36.0" />
                            </font>
-                        </Label>
-                        <Label fx:id="correctLabel" alignment="CENTER_RIGHT" layoutX="571.0" layoutY="42.0" prefHeight="16.0" prefWidth="127.0" text="result!!" />
+                        </Button>
+                        <Button fx:id="number1Button" mnemonicParsing="false" prefHeight="70.0" prefWidth="70.0" style="-fx-background-color: transparent;" text="0" textFill="#0d0d0d">
+                           <HBox.margin>
+                              <Insets right="20.0" />
+                           </HBox.margin>
+                           <font>
+                              <Font name="Meslo LG S DZ Bold for Powerline" size="36.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="number2Button" mnemonicParsing="false" prefHeight="70.0" prefWidth="70.0" style="-fx-background-color: transparent;" text="0">
+                           <HBox.margin>
+                              <Insets right="20.0" />
+                           </HBox.margin>
+                           <font>
+                              <Font name="Meslo LG S DZ Bold for Powerline" size="36.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="number3Button" mnemonicParsing="false" prefHeight="70.0" prefWidth="70.0" style="-fx-background-color: transparent;" text="0">
+                           <HBox.margin>
+                              <Insets right="20.0" />
+                           </HBox.margin>
+                           <font>
+                              <Font name="Meslo LG S DZ Bold for Powerline" size="36.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="number4Button" mnemonicParsing="false" prefHeight="70.0" prefWidth="70.0" style="-fx-background-color: transparent;" text="0">
+                           <HBox.margin>
+                              <Insets right="20.0" />
+                           </HBox.margin>
+                           <font>
+                              <Font name="Meslo LG S DZ Bold for Powerline" size="36.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="closingBracketButton" mnemonicParsing="false" prefHeight="70.0" prefWidth="70.0" style="-fx-background-color: transparent;" text=")">
+                           <font>
+                              <Font name="Meslo LG S DZ Bold for Powerline" size="36.0" />
+                           </font>
+                        </Button>
                      </children>
-                  </AnchorPane>
+                  </HBox>
+                  <HBox alignment="CENTER" layoutX="191.0" layoutY="451.0" prefHeight="100.0" prefWidth="518.0">
+                     <children>
+                        <Button fx:id="addOperationButton" mnemonicParsing="false" prefHeight="70.0" prefWidth="70.0" style="-fx-background-color: transparent;" text="+">
+                           <HBox.margin>
+                              <Insets right="20.0" />
+                           </HBox.margin>
+                           <font>
+                              <Font name="Meslo LG S DZ Bold for Powerline" size="36.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="minusOperationButton" mnemonicParsing="false" prefHeight="70.0" prefWidth="70.0" style="-fx-background-color: transparent;" text="-">
+                           <HBox.margin>
+                              <Insets right="20.0" />
+                           </HBox.margin>
+                           <font>
+                              <Font name="Meslo LG S DZ Bold for Powerline" size="36.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="multiplyOperationButton" mnemonicParsing="false" prefHeight="70.0" prefWidth="70.0" style="-fx-background-color: transparent;" text="*">
+                           <HBox.margin>
+                              <Insets right="20.0" />
+                           </HBox.margin>
+                           <font>
+                              <Font name="Meslo LG S DZ Bold for Powerline" size="36.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="divideOperationButton" mnemonicParsing="false" prefHeight="70.0" prefWidth="70.0" style="-fx-background-color: transparent;" text="/">
+                           <HBox.margin>
+                              <Insets right="20.0" />
+                           </HBox.margin>
+                           <font>
+                              <Font name="Meslo LG S DZ Bold for Powerline" size="36.0" />
+                           </font>
+                        </Button>
+                     </children>
+                  </HBox>
+                  <Label fx:id="correctLabel" alignment="CENTER" layoutX="278.0" layoutY="589.0" prefHeight="41.0" prefWidth="344.0" text="result!!">
+                     <font>
+                        <Font name="padmaa-Bold.1.1" size="28.0" />
+                     </font>
+                  </Label>
+                  <Button fx:id="clearButton" layoutX="702.0" layoutY="488.0" mnemonicParsing="false" text="Clear" />
+                  <Button fx:id="deleteButton" layoutX="710.0" layoutY="356.0" mnemonicParsing="false" text="Delete" />
                </children>
-            </HBox>
-            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
-               <children>
-                  <Button fx:id="openBracketButton" mnemonicParsing="false" prefHeight="60.0" prefWidth="60.0" text="(">
-                     <HBox.margin>
-                        <Insets right="10.0" />
-                     </HBox.margin>
-                  </Button>
-                  <Button fx:id="number1Button" mnemonicParsing="false" prefHeight="60.0" prefWidth="60.0" text="0">
-                     <HBox.margin>
-                        <Insets right="10.0" />
-                     </HBox.margin>
-                  </Button>
-                  <Button fx:id="number2Button" mnemonicParsing="false" prefHeight="60.0" prefWidth="60.0" text="0">
-                     <HBox.margin>
-                        <Insets right="10.0" />
-                     </HBox.margin>
-                  </Button>
-                  <Button fx:id="number3Button" mnemonicParsing="false" prefHeight="60.0" prefWidth="60.0" text="0">
-                     <HBox.margin>
-                        <Insets right="10.0" />
-                     </HBox.margin>
-                  </Button>
-                  <Button fx:id="number4Button" mnemonicParsing="false" prefHeight="60.0" prefWidth="60.0" text="0">
-                     <HBox.margin>
-                        <Insets right="10.0" />
-                     </HBox.margin></Button>
-                  <Button fx:id="closingBracketButton" mnemonicParsing="false" prefHeight="60.0" prefWidth="60.0" text=")" />
-               </children>
-            </HBox>
-            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
-               <children>
-                  <Button fx:id="addOperationButton" mnemonicParsing="false" prefHeight="60.0" prefWidth="60.0" text="+">
-                     <HBox.margin>
-                        <Insets right="10.0" />
-                     </HBox.margin>
-                  </Button>
-                  <Button fx:id="minusOperationButton" mnemonicParsing="false" prefHeight="60.0" prefWidth="60.0" text="-">
-                     <HBox.margin>
-                        <Insets right="10.0" />
-                     </HBox.margin>
-                  </Button>
-                  <Button fx:id="multiplyOperationButton" mnemonicParsing="false" prefHeight="60.0" prefWidth="60.0" text="*">
-                     <HBox.margin>
-                        <Insets right="10.0" />
-                     </HBox.margin>
-                  </Button>
-                  <Button fx:id="divideOperationButton" mnemonicParsing="false" prefHeight="60.0" prefWidth="60.0" text="/">
-                     <HBox.margin>
-                        <Insets right="10.0" />
-                     </HBox.margin>
-                  </Button>
-                  <Button fx:id="deleteButton" mnemonicParsing="false" text="Delete">
-                     <HBox.margin>
-                        <Insets right="10.0" />
-                     </HBox.margin>
-                  </Button>
-                  <Button fx:id="clearButton" mnemonicParsing="false" text="Clear">
-                     <HBox.margin>
-                        <Insets />
-                     </HBox.margin>
-                  </Button>
-               </children>
-            </HBox>
+            </AnchorPane>
          </children>
       </VBox>
    </center>
