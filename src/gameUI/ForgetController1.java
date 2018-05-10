@@ -50,10 +50,10 @@ public class ForgetController1 {
 	}
 	
 	public void OnNextAction(ActionEvent event) {
-		GameUISceneChange.FORGET2.changeScene((Stage)next.getScene().getWindow());
+		GameUISceneChange.FORGET2.changeScene((Stage)next.getScene().getWindow(), "");
 	}
 	
 	public void OnCancelAction(ActionEvent event) {
-		GameUISceneChange.LOGIN.changeScene((Stage)cancel.getScene().getWindow());
+		GameUISceneChange.LOGIN.changeScene((Stage)cancel.getScene().getWindow(), "");
 	}
 }

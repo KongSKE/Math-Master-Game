@@ -83,6 +83,6 @@ public class LoginController extends Contoller{
 	}
 	
 	public void onForgetClicked(ActionEvent evnet) {
-		GameUISceneChange.FORGET1.changeScene((Stage)forget.getScene().getWindow());
+		GameUISceneChange.FORGET1.changeScene((Stage)forget.getScene().getWindow(), "");
 	}
 }
