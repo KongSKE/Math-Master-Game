@@ -3,58 +3,60 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ProgressBar?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gameUI.CalculadolaGameController">
+<BorderPane style="-fx-background-image: url(&quot;res/Background.gif&quot;); -fx-background-size: 900 700;" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gameUI.CalculadolaGameController">
    <center>
-      <VBox prefHeight="400.0" prefWidth="700.0" BorderPane.alignment="CENTER">
+      <VBox prefHeight="700.0" prefWidth="900.0" BorderPane.alignment="CENTER">
          <children>
-            <AnchorPane prefHeight="400.0" prefWidth="700.0">
+            <AnchorPane prefHeight="700.0" prefWidth="900.0">
                <children>
-                  <Label layoutX="208.0" layoutY="27.0" text="Calculadola">
+                  <Label fx:id="questionLabel" alignment="CENTER" layoutX="156.0" layoutY="330.0" prefHeight="69.0" prefWidth="591.0" text="Question Here!!">
                      <font>
-                        <Font name="3270-Medium" size="48.0" />
+                        <Font name="3270 Narrow" size="64.0" />
                      </font>
                   </Label>
-                  <Label fx:id="questionLabel" alignment="CENTER" layoutX="131.0" layoutY="140.0" prefHeight="42.0" prefWidth="439.0" text="Question Here!!">
-                     <font>
-                        <Font name="3270 Narrow" size="39.0" />
-                     </font>
-                  </Label>
-                  <TextField fx:id="answerText" alignment="CENTER" layoutX="247.0" layoutY="214.0" prefHeight="26.0" prefWidth="207.0">
+                  <TextField fx:id="answerText" alignment="CENTER" layoutX="315.0" layoutY="447.0" prefHeight="52.0" prefWidth="272.0">
                      <font>
                         <Font size="27.0" />
                      </font>
                   </TextField>
-                  <Label fx:id="resultLabel" alignment="CENTER" layoutX="131.0" layoutY="320.0" prefHeight="27.0" prefWidth="439.0" text="Result!">
+                  <Label fx:id="resultLabel" alignment="CENTER" layoutX="232.0" layoutY="554.0" prefHeight="27.0" prefWidth="439.0" text="Result!">
                      <font>
-                        <Font name="3270 Narrow" size="26.0" />
+                        <Font name="3270 Narrow" size="36.0" />
                      </font>
                   </Label>
-                  <Label fx:id="player1NameLabel" layoutX="8.0" layoutY="19.0" prefHeight="19.0" prefWidth="117.0" text="Player 1">
+                  <Label fx:id="player1NameLabel" layoutX="128.0" layoutY="30.0" prefHeight="19.0" prefWidth="117.0" text="Player 1">
                      <font>
-                        <Font size="15.0" />
+                        <Font name="Meslo LG S DZ Regular for Powerline" size="18.0" />
                      </font>
                   </Label>
-                  <Label fx:id="player1Scorelabel" layoutX="8.0" layoutY="45.0" prefHeight="19.0" prefWidth="146.0" text="Score: ">
+                  <Label fx:id="player1Scorelabel" layoutX="128.0" layoutY="63.0" prefHeight="19.0" prefWidth="146.0" text="Score: ">
                      <font>
-                        <Font size="15.0" />
+                        <Font name="Meslo LG S DZ Bold for Powerline" size="24.0" />
                      </font>
                   </Label>
-                  <Label fx:id="player2NameLabel" layoutX="574.0" layoutY="16.0" prefHeight="19.0" prefWidth="112.0" text="Player 2">
+                  <Label fx:id="player2NameLabel" alignment="CENTER_RIGHT" layoutX="588.0" layoutY="32.0" prefHeight="23.0" prefWidth="184.0" text="Player 2">
                      <font>
-                        <Font size="15.0" />
+                        <Font name="Meslo LG S DZ Regular for Powerline" size="18.0" />
                      </font>
                   </Label>
-                  <Label fx:id="player2ScoreLabel" layoutX="575.0" layoutY="42.0" prefHeight="19.0" prefWidth="128.0" text="Score: ">
+                  <Label fx:id="player2ScoreLabel" alignment="CENTER_RIGHT" layoutX="592.0" layoutY="63.0" prefHeight="32.0" prefWidth="180.0" text="Score: ">
                      <font>
-                        <Font size="15.0" />
+                        <Font name="Meslo LG S DZ Bold for Powerline" size="24.0" />
                      </font>
                   </Label>
-                  <ProgressBar fx:id="timeCountdownProgress" layoutX="167.0" layoutY="85.0" prefHeight="20.0" prefWidth="367.0" progress="0.0" />
+                  <ProgressBar fx:id="timeCountdownProgress" layoutX="128.0" layoutY="251.0" prefHeight="20.0" prefWidth="644.0" progress="0.0" />
+                  <ImageView fitHeight="77.0" fitWidth="592.0" layoutX="156.0" layoutY="120.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../res/calculadola.gif" />
+                     </image>
+                  </ImageView>
                </children>
             </AnchorPane>
          </children>

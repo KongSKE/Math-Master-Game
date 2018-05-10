@@ -85,7 +85,7 @@ public class GameClient {
 
 	public static void main(String[] args) {
 		try {
-			new GameClient("kong");
+			new GameClient("kong2");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
