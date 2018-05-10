@@ -3,73 +3,74 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ProgressBar?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gameUI.QuestionIsGameController">
+<BorderPane style="-fx-background-image: url(&quot;res/questionIsBackground.gif&quot;); -fx-background-size: 900 700;" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gameUI.QuestionIsGameController">
    <center>
       <VBox prefHeight="400.0" prefWidth="700.0" BorderPane.alignment="CENTER">
          <children>
             <AnchorPane prefHeight="426.0" prefWidth="700.0">
                <children>
-                  <AnchorPane prefHeight="400.0" prefWidth="700.0">
+                  <AnchorPane prefHeight="700.0" prefWidth="900.0">
                      <children>
-                        <ProgressBar fx:id="timeCountdownProgress" layoutX="198.0" layoutY="103.0" prefHeight="20.0" prefWidth="305.0" progress="0.0" />
-                        <Label layoutX="245.0" layoutY="34.0" text="QuestionIs">
+                        <ProgressBar fx:id="timeCountdownProgress" layoutX="128.0" layoutY="254.0" prefHeight="20.0" prefWidth="644.0" progress="0.0" style="-fx-accent: #11e011;" />
+                        <TextField fx:id="number3Text" layoutX="500.0" layoutY="327.0" prefHeight="80.0" prefWidth="80.0">
                            <font>
-                              <Font name="3270 Narrow" size="43.0" />
+                              <Font size="30.0" />
+                           </font></TextField>
+                        <TextField fx:id="number2Text" layoutX="363.0" layoutY="327.0" prefHeight="80.0" prefWidth="80.0">
+                           <font>
+                              <Font size="30.0" />
+                           </font></TextField>
+                        <TextField fx:id="number1Text" layoutX="216.0" layoutY="327.0" prefHeight="80.0" prefWidth="80.0">
+                           <font>
+                              <Font size="30.0" />
+                           </font></TextField>
+                        <Label fx:id="resultLabel" alignment="CENTER" layoutX="172.0" layoutY="529.0" prefHeight="48.0" prefWidth="593.0" text="Result">
+                           <font>
+                              <Font name="Noto Sans CJK KR Bold" size="30.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="number3Text" layoutX="371.0" layoutY="180.0" prefHeight="60.0" prefWidth="60.0" />
-                        <TextField fx:id="number2Text" layoutX="270.0" layoutY="180.0" prefHeight="60.0" prefWidth="60.0" />
-                        <TextField fx:id="number1Text" layoutX="164.0" layoutY="180.0" prefHeight="60.0" prefWidth="60.0" />
-                        <Label fx:id="resultLabel" alignment="CENTER" layoutX="194.0" layoutY="323.0" prefHeight="25.0" prefWidth="313.0" text="Result">
+                        <Label fx:id="player1ScoreLabel" layoutX="128.0" layoutY="30.0" prefHeight="38.0" prefWidth="239.0" text="Score: ">
                            <font>
-                              <Font name="3270 Narrow" size="24.0" />
+                              <Font name="Cousine Bold for Powerline" size="30.0" />
                            </font>
                         </Label>
-                        <Label fx:id="player2ScoreLabel" layoutX="580.0" layoutY="48.0" prefHeight="19.0" prefWidth="114.0" text="Score: ">
+                        <Label fx:id="player1NameLabel" alignment="CENTER_RIGHT" layoutX="556.0" layoutY="35.0" prefHeight="33.0" prefWidth="217.0" text="Player 1">
                            <font>
-                              <Font size="15.0" />
+                              <Font name="Cousine Bold for Powerline" size="25.0" />
                            </font>
                         </Label>
-                        <Label fx:id="player2NameLabel" layoutX="579.0" layoutY="25.0" prefHeight="19.0" prefWidth="110.0" text="Player 2">
+                        <Label fx:id="answerLabel" layoutX="645.0" layoutY="352.0" text="00">
                            <font>
-                              <Font size="15.0" />
+                              <Font name="Hack Bold" size="30.0" />
                            </font>
                         </Label>
-                        <Label fx:id="player1ScoreLabel" layoutX="-2.0" layoutY="48.0" prefHeight="19.0" prefWidth="114.0" text="Score: ">
+                        <Label layoutX="600.0" layoutY="349.0" text="=">
                            <font>
-                              <Font size="15.0" />
+                              <Font size="30.0" />
                            </font>
                         </Label>
-                        <Label fx:id="player1NameLabel" layoutY="25.0" prefHeight="19.0" prefWidth="110.0" text="Player 1">
+                        <Label fx:id="operation2Label" layoutX="456.0" layoutY="349.0" text="+">
                            <font>
-                              <Font size="15.0" />
+                              <Font size="30.0" />
                            </font>
                         </Label>
-                        <Label fx:id="answerLabel" layoutX="493.0" layoutY="195.0" text="00">
+                        <Label fx:id="operation1Label" layoutX="324.0" layoutY="349.0" text="+">
                            <font>
-                              <Font name="Hack Regular" size="24.0" />
+                              <Font size="30.0" />
                            </font>
                         </Label>
-                        <Label layoutX="445.0" layoutY="195.0" text="=">
-                           <font>
-                              <Font size="24.0" />
-                           </font>
-                        </Label>
-                        <Label fx:id="operation2Label" layoutX="340.0" layoutY="194.0" text="+">
-                           <font>
-                              <Font size="24.0" />
-                           </font>
-                        </Label>
-                        <Label fx:id="operation1Label" layoutX="235.0" layoutY="195.0" text="+">
-                           <font>
-                              <Font size="24.0" />
-                           </font>
-                        </Label>
+                        <ImageView fitHeight="86.0" fitWidth="387.0" layoutX="275.0" layoutY="97.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../res/questionIs.gif" />
+                           </image>
+                        </ImageView>
                      </children>
                   </AnchorPane>
                </children>

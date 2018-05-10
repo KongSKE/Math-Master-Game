@@ -1,12 +1,12 @@
 package player;
 
-public class PlayGame {
+public class GameRoom {
 
 	private Player p1;
 	private Player p2;
 	private Game game;
 
-	public PlayGame(Player p1, Player p2, Game game) {
+	public GameRoom(Player p1, Player p2, Game game) {
 		this.p1 = p1;
 		this.p2 = p2;
 		this.game = game;

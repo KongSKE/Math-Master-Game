@@ -7,12 +7,11 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import users.Login;
 
-public class LoginController {
+public class LoginController extends Contoller{
 	 
 	@FXML
 	Button login;
@@ -54,7 +53,7 @@ public class LoginController {
 	public void onLoginClicked(ActionEvent event) {
 		Login account = new Login(username.getText(),password.getText());
 		if(account.match()) {
-			GameUISceneChange.CHOOSEMINIGAME.changeScene((Stage)login.getScene().getWindow());
+			GameUISceneChange.CHOOSEMINIGAME.changeScene((Stage)login.getScene().getWindow(), username.getText());
 		}else {
 			status.setTextFill(red);
 			status.setText("Username or password is incorrect.");
@@ -76,7 +75,7 @@ public class LoginController {
 	}
 	
 	public void onRegisterClicked(ActionEvent event) {
-		GameUISceneChange.REGISTER.changeScene((Stage)register.getScene().getWindow());
+		GameUISceneChange.REGISTER.changeScene((Stage)register.getScene().getWindow(), "");
 	}
 	
 	public void setTextShowPassword(String pass) {

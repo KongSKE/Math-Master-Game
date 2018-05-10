@@ -42,19 +42,19 @@ public class RegisterController2 {
 		Account account = Account.getInstance();
 		String q = question.getText().trim();
 		String ans = answer.getText().trim();
-		
-		if(!q.isEmpty() && !ans.isEmpty()) {
+
+		if (!q.isEmpty() && !ans.isEmpty()) {
 			account.setQuestion(q);
 			account.setAnswer(ans);
 			account.createID();
-			GameUISceneChange.LOGIN.changeScene((Stage) finish.getScene().getWindow());
-		}else {
-			if(q.isEmpty()) {
+			GameUISceneChange.LOGIN.changeScene((Stage) finish.getScene().getWindow(), "");
+		} else {
+			if (q.isEmpty()) {
 				checkQuestion.setText("Please insert your question");
 			} else {
 				checkQuestion.setText("");
 			}
-			if(ans.isEmpty()) {
+			if (ans.isEmpty()) {
 				checkAns.setText("Please insert your answer");
 			} else {
 				checkAns.setText("");
@@ -63,14 +63,14 @@ public class RegisterController2 {
 	}
 
 	public void onCancelButton(ActionEvent event) {
-		GameUISceneChange.LOGIN.changeScene((Stage) cancel.getScene().getWindow());
+		GameUISceneChange.LOGIN.changeScene((Stage) cancel.getScene().getWindow(), "");
 	}
 
-//	public String getQuestion(String question) {
-//		return question;
-//	}
-//
-//	public String getAnswer(String answer) {
-//		return answer;
-//	}
+	// public String getQuestion(String question) {
+	// return question;
+	// }
+	//
+	// public String getAnswer(String answer) {
+	// return answer;
+	// }
 }

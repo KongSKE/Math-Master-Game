@@ -1,8 +1,6 @@
 package onlineMode;
 
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
 
 import com.esotericsoftware.kryonet.Client;
 import com.esotericsoftware.kryonet.Connection;
@@ -10,107 +8,86 @@ import com.esotericsoftware.kryonet.Listener;
 
 import calculadolaGame.Calculadola;
 import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.stage.Stage;
-import makeIt24Game.MakeIt24;
-import questionIsGame.QuestionIs;
+import player.Player;
 
-public class GameClient extends Application{
+public class GameClient {
 
 	private static Client client;
-	private static Map<String, Integer> player;
-
-	public GameClient() throws IOException {
-
+	private CalculadolaOnlineGameUI gameUI;
+	private Player player;
+	
+	private String name;
+	private int score;
+	private String question;
+	private double answer;
+	
+	public GameClient(String name) throws IOException {
 		client = new Client();
-		player = new HashMap<String, Integer>();
+		player = new Player(name);
+		
+		this.name = name;
 
 		client.getKryo().register(Calculadola.class);
-		client.getKryo().register(QuestionIs.class);
-		client.getKryo().register(MakeIt24.class);
 
+		client.getKryo().register(Packet.QuestionData.class);
 		client.getKryo().register(Packet.ScoreData.class);
-		client.getKryo().register(Packet.Connect.class);
 
-		client.addListener(new Listener());
+		client.addListener(new GameClientListener());
+
+		new Thread() {
+			public void run() {
+				Application.launch(CalculadolaOnlineGameUI.class);
+			};
+		}.start();
+		gameUI = CalculadolaOnlineGameUI.waitForLunch();
+		gameUI.setClient(this);
+		gameUI.setPlayerName(name);
+
 		client.start();
 		client.connect(5000, "127.0.0.1", 54333);
 	}
+	
+	public Player getPlayer() {
+		return player;
+	}
 
-	public static void connect(String name, String ipAddress) throws IOException {
-//		client.getKryo().register(Calculadola.class);
-//		client.getKryo().register(QuestionIs.class);
-//		client.getKryo().register(MakeIt24.class);
-//
-//		client.getKryo().register(Packet.ScoreData.class);
-//		client.getKryo().register(Packet.Connect.class);
-//
-//		client.addListener(new Listener());
-//		client.start();
-//		client.connect(5000, " 1270.0.0.1", 54333);
-
+	public void sendScore(int score) {
+		client.sendTCP(score);
 	}
 
 	class GameClientListener extends Listener {
-		
+
 		@Override
 		public void connected(Connection connection) {
 			super.connected(connection);
-			if(connection.getID()==0) {
-				player.put("Player1", 0);
-				System.out.println("Player 1 ");
-			}else {
-				player.put("Player2", 0);
-				System.out.println("Player 2 ");
-			}
+			client.sendTCP(name);
+			System.out.println("Connect!!");
 		}
 
 		@Override
 		public void received(Connection connection, Object o) {
 			super.received(connection, o);
+			System.out.println("Recieve");
 			if (o instanceof Packet.ScoreData) {
-				System.out.println(o);
-				player.put(((Packet.ScoreData) o).name, ((Packet.ScoreData) o).score);
-				System.out.println("send data");
+				Packet.ScoreData scoreData = (Packet.ScoreData) o;
+				score = scoreData.score;
+				name = scoreData.name;
+				gameUI.setPlayerScore(name, score);
+			} else if (o instanceof Packet.QuestionData) {
+				Packet.QuestionData questionData = (Packet.QuestionData) o;
+				question = questionData.queston;
+				answer = questionData.answer;
+				System.out.println(question);
+				gameUI.setQuestion(question, answer);
 			}
 		}
 	}
 
-	public static void sendScore(String name, int score) {
-		Packet.ScoreData data = new Packet.ScoreData();
-		data.name = name;
-		data.score = score;
-		client.sendTCP(data);
-	}
-	
-	public static Map<String, Integer> getPlayer() {
-		return player;
-	}
-
-
-	@Override
-	public void start(Stage stage) throws Exception {
-		try {
-			FXMLLoader calculadolaGameLoader = new FXMLLoader(getClass().getResource("/gameUI/CalculadolaGameUI.fxml"));
-			Parent root = calculadolaGameLoader.load();
-			Scene scene = new Scene(root);
-//			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
-
-			stage.setScene(scene);
-			stage.show();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}		
-	}
-
 	public static void main(String[] args) {
 		try {
-			new GameClient();
+			new GameClient("kong2");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		launch(args);
 	}
 }

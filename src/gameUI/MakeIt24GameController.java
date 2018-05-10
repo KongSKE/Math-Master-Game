@@ -4,6 +4,7 @@ import java.util.Optional;
 
 import org.matheclipse.core.eval.ExprEvaluator;
 
+import javafx.application.Platform;
 import javafx.concurrent.WorkerStateEvent;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -13,10 +14,12 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import makeIt24Game.MakeIt24;
 
-public class MakeIt24GameController {
+public class MakeIt24GameController extends Contoller {
 
 	@FXML
 	Label resultLabel;
@@ -86,6 +89,14 @@ public class MakeIt24GameController {
 		deleteButton.setOnAction(this::onDeleteButtonClicked);
 		clearButton.setOnAction(this::onClearButtonClicked);
 
+		Platform.runLater(new Runnable() {
+
+			@Override
+			public void run() {
+				player1NameLabel.setText(getName());
+			}
+		});
+
 		make24 = new MakeIt24();
 		e = new ExprEvaluator();
 		question = 0;
@@ -105,7 +116,7 @@ public class MakeIt24GameController {
 	public void setAllNumber(WorkerStateEvent event) {
 		bracket = 1;
 		if (question < 2) {
-			timeCounter = new TimeCounter(20);
+			timeCounter = new TimeCounter(20, timeCountdownProgress);
 			timeCounter.setOnSucceeded(this::timeUpDisplay);
 			resultLabel.setText("(");
 			make24.getQuestion();
@@ -113,6 +124,11 @@ public class MakeIt24GameController {
 			number2Button.setText(make24.getNumber2() + "");
 			number3Button.setText(make24.getNumber3() + "");
 			number4Button.setText(make24.getNumber4() + "");
+
+//			ImageView img4 = new ImageView(new Image("res/" + make24.getNumber4() + ".png"));
+//			img4.setFitHeight(70);
+//			img4.setFitWidth(70);
+//			number4Button.setGraphic(img4);
 
 			number1Button.setVisible(true);
 			number2Button.setVisible(true);
@@ -144,7 +160,8 @@ public class MakeIt24GameController {
 		else if (newInput.equals(")")) {
 			if (bracket > 0) {
 				// String calculate = oldInput.substring(oldInput.lastIndexOf("(") + 1);
-				// output = oldInput.substring(0, oldInput.lastIndexOf("(")) + e.evaluate(calculate);
+				// output = oldInput.substring(0, oldInput.lastIndexOf("(")) +
+				// e.evaluate(calculate);
 				bracket--;
 			} else
 				newInput = "";
@@ -210,7 +227,8 @@ public class MakeIt24GameController {
 	}
 
 	public void backToHome() {
-		GameUISceneChange.CHOOSEMINIGAME.changeScene((Stage) number1Button.getScene().getWindow());
+		GameUISceneChange.CHOOSEMINIGAME.changeScene((Stage) number1Button.getScene().getWindow(),
+				player1NameLabel.getText());
 	}
 
 	public void gameEnd() {

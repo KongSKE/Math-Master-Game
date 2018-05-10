@@ -80,12 +80,6 @@ public class QuestionIs implements Game {
 		}
 		return operation;
 	}
-//
-//	public boolean checkAnswer(int first, int second, int third) {
-//		if (secondOperation.equals("*") || secondOperation.equalsIgnoreCase("/"))
-//			return answer == findAnswer(first, findAnswer(second, third, secondOperation), firstOperation);
-//		return answer == findAnswer(findAnswer(first, second, firstOperation), third, secondOperation);
-//	}
 
 	public String getQuestionIsSolution() {
 		return String.format("%d %s %d %s %d = %d", firstNumber, firstOperation, secondNumber, secondOperation,

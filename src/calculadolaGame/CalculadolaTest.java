@@ -2,6 +2,8 @@ package calculadolaGame;
 
 import java.util.Scanner;
 
+import player.Player;
+
 public class CalculadolaTest {
 	
 	private static Scanner sc = new Scanner(System.in);
@@ -29,7 +31,7 @@ public class CalculadolaTest {
 	}
 	
 	public static void main(String[] args) {
-		start(new Calculadola());
+		start(new Calculadola(new Player("Player1")));
 	}
 
 }

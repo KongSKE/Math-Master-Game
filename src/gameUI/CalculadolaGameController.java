@@ -1,9 +1,8 @@
 package gameUI;
 
-import java.util.Map;
 import java.util.Optional;
 
-import calculadolaGame.Calculadola;
+import javafx.application.Platform;
 import javafx.concurrent.Task;
 import javafx.concurrent.WorkerStateEvent;
 import javafx.event.ActionEvent;
@@ -16,6 +15,7 @@ import javafx.scene.control.ProgressBar;
 import javafx.scene.control.TextField;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import onlineMode.GameClient;
 
 public class CalculadolaGameController {
 
@@ -36,45 +36,58 @@ public class CalculadolaGameController {
 	@FXML
 	ProgressBar timeCountdownProgress;
 
-	private Calculadola calculadora;
-	private int questionNumber;
 	private TimeCounter timeCount;
 	private int playerScore;
 	private Task<Void> sleeper;
 
-	// Task<Void> task = new Task<Void>() {
-	//
-	// @Override
-	// protected Void call() throws Exception {
-	// while (true) {
-	// Platform.runLater(new Runnable() {
-	//
-	// @Override
-	// public void run() {
-	// setScore(GameClient.getPlayer());
-	// }
-	// });
-	// }
-	// }
-	// };
-	// Thread thread = new Thread(task);
-	//
+	private GameClient client;
+	private String question;
+	private double answer;
+
 	public void initialize() {
 		answerText.setOnAction(this::onAnswerEnter);
 		answerText.setEditable(false);
 
-		calculadora = new Calculadola();
-		changeQuestion();
 		playerScore = 0;
-		questionNumber = 0;
 		player1Scorelabel.setText("Score: " + playerScore);
-
-		// thread.setDaemon(true);
-		// thread.start();
+		
 	}
 
-	public void connectServer() {
+	public void setPlayerName(String name) {
+		player1NameLabel.setText(name);
+	}
 
+	public void receiveQuestion(String question, double answer) {
+
+		this.question = question;
+		this.answer = answer;
+
+		Platform.runLater(new Runnable() {
+			@Override
+			public void run() {
+				System.out.println("Controller get Question " + question);
+				if (question.equals("End") && answer == 0) {
+					gameEnd();
+				} else {
+					changeQuestion();
+				}
+			}
+		});
+	}
+
+	public void sentPlayerScore(String name, int score) {
+
+		Platform.runLater(new Runnable() {
+			@Override
+			public void run() {
+				player2NameLabel.setText(name);
+				player2ScoreLabel.setText("Score: " + score);
+			}
+		});
+	}
+
+	public void setGameClient(GameClient client) {
+		this.client = client;
 	}
 
 	public void changeQuestion() {
@@ -84,25 +97,21 @@ public class CalculadolaGameController {
 	}
 
 	public void changeAllOutput(WorkerStateEvent event) {
-		if (questionNumber < 2) {
-			resultLabel.setText("");
-			timeCount = new TimeCounter(10);
-			timeCount.setOnSucceeded(this::timeUpDisplay);
-			answerText.setEditable(true);
-			questionLabel.setText(calculadora.getGameQuestion());
-			questionNumber++;
+		resultLabel.setText("");
+		timeCount = new TimeCounter(10, timeCountdownProgress);
+		timeCount.setOnSucceeded(this::timeUpDisplay);
+		answerText.setEditable(true);
+		questionLabel.setText(question);
 
-			timeCountdownProgress.progressProperty().bind(timeCount.progressProperty());
-			new Thread(timeCount).start();
-		} else
-			gameEnd();
+		timeCountdownProgress.progressProperty().bind(timeCount.progressProperty());
+		new Thread(timeCount).start();
 	}
 
 	public void timeUpDisplay(WorkerStateEvent event) {
 		if (timeCount.getTime() == 0) {
 			resultLabel.setText("Time Up!!");
 			resultLabel.setTextFill(Color.RED);
-			changeQuestion();
+			client.sendScore(playerScore);
 		}
 
 	}
@@ -114,40 +123,30 @@ public class CalculadolaGameController {
 		}
 		timeCount.cancel();
 		try {
-			Double answer = Double.parseDouble(answerFromText);
-			if (calculadora.checkAnswer(answer + "")) {
+			Double playerAnswer = Double.parseDouble(answerFromText);
+			if (checkAnswer(answer, playerAnswer)) {
 				resultLabel.setText("Correct!!");
 				resultLabel.setTextFill(Color.GREEN);
 				playerScore += timeCount.getTime();
-				player1Scorelabel.setText("Score: " + playerScore);
-				// setScore(GameClient.getPlayer());
 			} else {
-				resultLabel.setText(String.format("Wrong!! Answer: %.2f", calculadora.getAnswer()));
+				resultLabel.setText(String.format("Wrong!! Answer: %.2f", answer));
 				resultLabel.setTextFill(Color.RED);
 			}
-			// sendScore();
+			player1Scorelabel.setText(playerScore + "");
+			client.sendScore(playerScore);
 			answerText.setEditable(false);
 			answerText.clear();
-			changeQuestion();
 		} catch (NumberFormatException e) {
 
 		}
 	}
 
-	public void setScore(Map<String, Integer> player) {
-		if (player.keySet().toString().equals("Player1")) {
-			player1Scorelabel.setText(player.get("Player1") + "");
-		} else if (player.keySet().toString().equals("Player2")) {
-			player2ScoreLabel.setText(player.get("Player2") + "");
-		}
+	public boolean checkAnswer(double gameAnswer, double playerAnswer) {
+		return Math.abs(playerAnswer - gameAnswer) < 1e-2;
 	}
 
-	// private void sendScore() {
-	// GameClient.sendScore("Player1", playerScore);
-	// }
-
 	public void backToHome() {
-		GameUISceneChange.CHOOSEMINIGAME.changeScene((Stage) questionLabel.getScene().getWindow());
+		GameUISceneChange.CHOOSEMINIGAME.changeScene((Stage) questionLabel.getScene().getWindow(), player1NameLabel.getText());
 	}
 
 	public void gameEnd() {

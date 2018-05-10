@@ -79,7 +79,7 @@ public class RegisterController {
 				if (!register.checkID()) {
 					account.setUsername(name);
 					account.setpassword(pass);
-					GameUISceneChange.REGISTER2.changeScene((Stage) next.getScene().getWindow());
+					GameUISceneChange.REGISTER2.changeScene((Stage) next.getScene().getWindow(), "");
 				} else {
 					checkusername.setText("Your user already exist");
 				}
@@ -136,6 +136,6 @@ public class RegisterController {
 	}
 
 	public void onCancelButton(ActionEvent event) {
-		GameUISceneChange.LOGIN.changeScene((Stage) cancel.getScene().getWindow());
+		GameUISceneChange.LOGIN.changeScene((Stage) cancel.getScene().getWindow(), "");
 	}
 }
