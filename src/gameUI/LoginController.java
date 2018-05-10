@@ -84,6 +84,6 @@ public class LoginController {
 	}
 	
 	public void onForgetClicked(ActionEvent evnet) {
-		
+		GameUISceneChange.FORGET1.changeScene((Stage)forget.getScene().getWindow());
 	}
 }
