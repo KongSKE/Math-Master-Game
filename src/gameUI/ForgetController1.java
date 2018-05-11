@@ -50,6 +50,7 @@ public class ForgetController1 extends Contoller{
 	public void initialize() {
 		cancel.setOnAction(this::OnCancelAction);
 		enter.setOnAction(this::OnEnterAction);
+		next.setOnAction(this::OnNextAction);
 		answer.setVisible(false);
 		answerTag.setVisible(false);
 		questionTag.setVisible(false);
