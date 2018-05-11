@@ -40,7 +40,23 @@ public class ForgetPassword {
 		return false;
 	}
 	
-	public String getQuestion() {
+	public String getQuestion(String username) {
+		try {
+			prepare = con.prepareStatement(
+					"SELECT `question` from `users` WHERE `username` = ? ");
+			prepare.setString(1, username);
+			System.out.println(12345);
+			result = prepare.executeQuery();
+			System.out.println("check answer");
+			if (result.next()) {
+				String question = result.getString("question");
+				System.out.println("it true");
+				return question;
+			}
+			System.out.println(1231);
+		} catch (Exception e) {
+			// do nothing
+		}
 		return "";
 	}
 	
@@ -82,5 +98,6 @@ public class ForgetPassword {
 //		forget.rePassword("oker5555", "kong123");
 		forget.checkAnswer("jackrevive", "non");
 //		System.out.println(forget.checkAnswer("jackrevive", "non"));
+		System.out.println(forget.getQuestion("kongSKE14"));
 	}
 }

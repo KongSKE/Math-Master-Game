@@ -66,7 +66,7 @@ public class ForgetController1 extends Contoller{
 			answer.setVisible(true);
 			answerTag.setVisible(true);
 			questionTag.setVisible(true);
-			question.setText(forget.getQuestion());
+			question.setText(forget.getQuestion(user));
 		}else {
 			checkUsername.setText("This username does not exist");
 		}
