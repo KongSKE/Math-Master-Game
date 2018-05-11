@@ -22,7 +22,7 @@
       <Button fx:id="next" alignment="CENTER" layoutX="282.0" layoutY="355.0" mnemonicParsing="false" text="Next" />
       <Button fx:id="cancel" layoutX="362.0" layoutY="355.0" mnemonicParsing="false" text="Cancel" />
       <Label fx:id="answerTag" alignment="CENTER" layoutX="40.0" layoutY="236.0" prefHeight="31.0" prefWidth="65.0" text="Answer" />
-      <Label fx:id="question" layoutX="111.0" layoutY="185.0" prefHeight="31.0" prefWidth="463.0" text="Label" />
+      <Label fx:id="question" layoutX="111.0" layoutY="185.0" prefHeight="31.0" prefWidth="463.0" />
       <Button fx:id="enter" layoutX="588.0" layoutY="103.0" mnemonicParsing="false" text="Enter" />
    </children>
 </AnchorPane>
