@@ -1,11 +1,14 @@
 package gameUI;
 
+import java.io.IOException;
+
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
+import onlineMode.GameClient;
 
 public class ChooseMiniGameController extends Contoller {
 
@@ -42,7 +45,12 @@ public class ChooseMiniGameController extends Contoller {
 
 	public void onCalculadolaGameButtonClicked(ActionEvent event) {
 
-		GameUISceneChange.CALCULADOLA.changeScene((Stage) calculadolaGameButton.getScene().getWindow(), name);
+//		GameUISceneChange.CALCULADOLA.changeScene((Stage) calculadolaGameButton.getScene().getWindow(), name);
+		try {
+			new GameClient(name);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 	public void onQuestionIsGameButtonClicked(ActionEvent event) {
