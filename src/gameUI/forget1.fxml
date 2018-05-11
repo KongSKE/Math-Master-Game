@@ -15,10 +15,10 @@
       </Label>
       <Label alignment="CENTER" contentDisplay="CENTER" layoutX="40.0" layoutY="100.0" prefHeight="31.0" prefWidth="65.0" text="Username" textAlignment="CENTER" />
       <TextField fx:id="username" layoutX="111.0" layoutY="100.0" prefHeight="31.0" prefWidth="463.0" />
-      <Label fx:id="checkUsername" layoutX="111.0" layoutY="131.0" prefHeight="24.0" prefWidth="463.0" text="Label" />
+      <Label fx:id="checkUsername" layoutX="111.0" layoutY="131.0" prefHeight="24.0" prefWidth="463.0" />
       <Label fx:id="questionTag" alignment="CENTER" layoutX="40.0" layoutY="185.0" prefHeight="31.0" prefWidth="65.0" text="Question" />
       <TextField fx:id="answer" layoutX="112.0" layoutY="236.0" prefHeight="31.0" prefWidth="463.0" />
-      <Label fx:id="checkAns" layoutX="112.0" layoutY="267.0" prefHeight="24.0" prefWidth="463.0" text="Label" />
+      <Label fx:id="checkAns" layoutX="112.0" layoutY="267.0" prefHeight="24.0" prefWidth="463.0" />
       <Button fx:id="next" alignment="CENTER" layoutX="282.0" layoutY="355.0" mnemonicParsing="false" text="Next" />
       <Button fx:id="cancel" layoutX="362.0" layoutY="355.0" mnemonicParsing="false" text="Cancel" />
       <Label fx:id="answerTag" alignment="CENTER" layoutX="40.0" layoutY="236.0" prefHeight="31.0" prefWidth="65.0" text="Answer" />

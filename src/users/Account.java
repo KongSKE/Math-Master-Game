@@ -36,4 +36,9 @@ public class Account {
 		Register id = new Register(username,password);
 		id.createID(question, answer);
 	}
+	
+	public void rePassword() {
+		ForgetPassword forget = new ForgetPassword();
+		forget.rePassword(username,password);
+	}
 }

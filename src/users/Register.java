@@ -36,7 +36,7 @@ public class Register {
 
 	public boolean checkID() {
 		try {
-			prepare = con.prepareStatement("SELECT `username`, `password` from `passes` WHERE `username` = ?");
+			prepare = con.prepareStatement("SELECT `username`, `password` from `users` WHERE `username` = ?");
 			prepare.setString(1, username);
 			System.out.println(12345);
 			result = prepare.executeQuery();
