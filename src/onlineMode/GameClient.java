@@ -12,22 +12,32 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import player.Player;
 
+/**
+ * Calculadola game client.
+ * 
+ * @author Dacharat Pankong
+ *
+ */
 public class GameClient {
 
 	private static Client client;
 	CalculadolaGameController controller;
-	private Player player;
 
 	private String name;
 	private int score;
 	private String question;
 	private double answer;
 
+	/**
+	 * Initialize client game .
+	 * 
+	 * @param name
+	 * @param stage
+	 * @throws IOException when connot connect to server.
+	 */
 	public GameClient(String name, Stage stage) throws IOException {
 		client = new Client();
-		player = new Player(name);
 
 		this.name = name;
 
@@ -57,14 +67,21 @@ public class GameClient {
 		client.connect(5000, "127.0.0.1", 54333);
 	}
 
-	public Player getPlayer() {
-		return player;
-	}
-
+	/**
+	 * Send score to server.
+	 * 
+	 * @param score
+	 */
 	public void sendScore(int score) {
 		client.sendTCP(score);
 	}
 
+	/**
+	 * Kryonet listener for client action.
+	 * 
+	 * @author Dacharat Pankong
+	 *
+	 */
 	class GameClientListener extends Listener {
 
 		@Override

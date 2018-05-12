@@ -102,6 +102,12 @@ public class GameServer {
 		}
 	}
 
+	/**
+	 * Kryonet listener for server action.
+	 * 
+	 * @author Dacharat Pankong
+	 *
+	 */
 	class GameServerListener extends Listener {
 
 		@Override
@@ -154,6 +160,11 @@ public class GameServer {
 		}
 	}
 
+	/**
+	 * Start server.
+	 * 
+	 * @param args
+	 */
 	public static void main(String[] args) {
 		try {
 			new GameServer();
