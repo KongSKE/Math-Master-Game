@@ -34,6 +34,11 @@
                         <Font name="Ubuntu Mono Bold" size="30.0" />
                      </font>
                   </Button>
+                  <Button fx:id="scoreboardButton" layoutX="209.0" layoutY="609.0" mnemonicParsing="false" text="Scoreboard">
+                     <font>
+                        <Font name="DejaVu Sans Condensed Bold" size="17.0" />
+                     </font>
+                  </Button>
                </children>
             </AnchorPane>
          </children>
