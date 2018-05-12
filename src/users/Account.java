@@ -1,5 +1,9 @@
 package users;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+
 public class Account {
 	
 	static Account account = new Account();
@@ -7,6 +11,7 @@ public class Account {
 	private String password;
 	private String question;
 	private String answer;
+	private HashMap userscore = new HashMap();
 	
 	public Account(){
 		
@@ -40,5 +45,17 @@ public class Account {
 	public void rePassword() {
 		ForgetPassword forget = new ForgetPassword();
 		forget.rePassword(username,password);
+	}
+	
+	public void setTopplayer(HashMap player) {
+		this.userscore = player;
+	}
+	
+	public HashMap getTopplayer() {
+		return userscore;
+	}
+	
+	public void clearTopPlayer() {
+		this.userscore.clear();
 	}
 }
