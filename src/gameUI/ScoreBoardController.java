@@ -87,18 +87,14 @@ public class ScoreBoardController extends Contoller {
 	}
 	
 	public void setHighScoreOutput() {
-		int box = 0;
 		HashMap<String, Integer> top5 = account.getTopplayer();
 		System.out.println("size " + top5.size());
 		
-		for (String s : top5.keySet()) {
-			name[box] = s;
-			score[box] = top5.get(s);
-//			player.add(s);
-//			highscore.add(top5.get(s));
-			box++;
+		for(int i = 0; i < 5; i ++) {
+			name[i] = (String) top5.keySet().toArray()[i];
+			score[i] = top5.get((String) top5.keySet().toArray()[i]);
 		}
-		
+				
 		for (int i = 0 ; i < 5; i++) {
 			temp[i].setText(name[i]);
 			temp2[i].setText(score[i]+"");

@@ -25,6 +25,8 @@ public class Scoreboard {
 	private Statement statement;
 	private static HashMap<String, Integer> topplayer = new HashMap();
 	private Account account = Account.getInstance();
+	
+	private boolean isHighScore = false;
 
 	public Scoreboard() {
 		try {
@@ -150,7 +152,7 @@ public class Scoreboard {
 		return sortedMap;
 	}
 
-	public void NewHighScore(String username, String game, int score) {
+	public void newHighScore(String username, String game, int score) {
 		int userscore;
 		try {
 			prepare = con.prepareStatement(
@@ -174,12 +176,16 @@ public class Scoreboard {
 		}
 		account.setTopplayer(topplayer);
 	}
+	
+	public boolean isHighScore() {
+		return isHighScore;
+	}
 
 	public static void main(String[] args) {
 		Scoreboard board = new Scoreboard();
 		// board.addScore("kongSKE14", "scoreCal");
 		board.calculadolaBoard();
 		// System.out.println(topplayer);
-		board.NewHighScore("Kanchanok", "scoreQuestion", 99999);
+		board.newHighScore("Kanchanok", "scoreQuestion", 99999);
 	}
 }

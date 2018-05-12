@@ -15,6 +15,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import player.Scoreboard;
 import questionIsGame.QuestionIs;
 
 /**
@@ -55,6 +56,8 @@ public class QuestionIsGameController extends Contoller{
 	private int playerScore;
 	private TimeCounter timeCounter;
 	private TimeDelay delay;
+	private Scoreboard score;
+	private String status;
 
 	/**
 	 * Initialize UI.
@@ -74,6 +77,7 @@ public class QuestionIsGameController extends Contoller{
 		});
 		
 		question = new QuestionIs();
+		score = new Scoreboard();
 		questionNumber = 0;
 		playerScore = 0;
 		player1ScoreLabel.setText("Score: " + playerScore);
@@ -108,8 +112,10 @@ public class QuestionIsGameController extends Contoller{
 
 			timeCountdownProgress.progressProperty().bind(timeCounter.progressProperty());
 			new Thread(timeCounter).start();
-		} else
+		} else {
+			sendScoreToDatabase();
 			gameEnd();
+		}
 	}
 
 	/**
@@ -211,6 +217,10 @@ public class QuestionIsGameController extends Contoller{
 
 			}
 		}
+	}
+	
+	public void sendScoreToDatabase() {
+		score.newHighScore(getName(), "scoreQuestion", playerScore);
 	}
 
 	/**
