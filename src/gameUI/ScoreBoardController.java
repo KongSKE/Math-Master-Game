@@ -90,7 +90,6 @@ public class ScoreBoardController extends Contoller {
 		int box = 0;
 		HashMap<String, Integer> top5 = account.getTopplayer();
 		System.out.println("size " + top5.size());
-		
 		for (String s : top5.keySet()) {
 			name[box] = s;
 			score[box] = top5.get(s);
@@ -99,7 +98,7 @@ public class ScoreBoardController extends Contoller {
 			box++;
 		}
 		
-		for (int i = 0 ; i < 5; i++) {
+		for (int i = 0 ; i < 4; i++) {
 			temp[i].setText(name[i]);
 			temp2[i].setText(score[i]+"");
 		}

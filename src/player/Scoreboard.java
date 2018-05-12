@@ -103,7 +103,6 @@ public class Scoreboard {
 	}
 
 	public void calculadolaBoard() {
-		HashMap<String, Integer> score;
 		account.clearTopPlayer();
 		String username;
 		int userscore;
@@ -113,18 +112,15 @@ public class Scoreboard {
 			while (result.next()) {
 				username = result.getString("username");
 				userscore = result.getInt("scoreCal");
-				System.out.println("score Calculadola");
+				System.out.println("score Calculadora");
 				topplayer.put(username, userscore);
 				System.out.println("Update Top5 score success");
 			}
-
 		} catch (SQLException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-		score = (HashMap<String, Integer>) sortByValue(topplayer);
-		System.out.println(score);
-		account.setTopplayer(score);
+		account.setTopplayer((HashMap) sortByValue(topplayer));
 	}
 
 	public Map<String, Integer> sortByValue(Map<String, Integer> unsortMap) {
