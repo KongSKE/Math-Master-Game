@@ -75,7 +75,7 @@ public class RegisterController extends Contoller {
 		}
 
 		if (!name.isEmpty() && !pass.isEmpty() && !repass.isEmpty()) {
-			if (pass.equals(repass) && pass.length() >= 8) {
+			if (pass.equals(repass) && pass.length() >= 8 && name.length() >= 8) {
 				if (!register.checkID()) {
 					account.setUsername(name);
 					account.setpassword(pass);
