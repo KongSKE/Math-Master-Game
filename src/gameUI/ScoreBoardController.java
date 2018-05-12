@@ -91,6 +91,7 @@ public class ScoreBoardController extends Contoller {
                 return (o1.getValue()).compareTo(o2.getValue());
             }
         });
+        Collections.reverse(list);
 
         // 3. Loop the sorted list and put it into a new insertion order Map LinkedHashMap
         Map<String, Integer> sortedMap = new LinkedHashMap<String, Integer>();
