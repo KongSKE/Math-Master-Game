@@ -24,7 +24,7 @@ import questionIsGame.QuestionIs;
  * @author Dacharat Pankong
  *
  */
-public class QuestionIsGameController extends Contoller{
+public class QuestionIsGameController extends Contoller {
 
 	@FXML
 	TextField number1Text;
@@ -69,13 +69,13 @@ public class QuestionIsGameController extends Contoller{
 		resultLabel.setText("");
 
 		Platform.runLater(new Runnable() {
-			
+
 			@Override
 			public void run() {
 				player1NameLabel.setText(getName());
 			}
 		});
-		
+
 		question = new QuestionIs();
 		score = new Scoreboard();
 		questionNumber = 0;
@@ -218,16 +218,22 @@ public class QuestionIsGameController extends Contoller{
 			}
 		}
 	}
-	
+
 	public void sendScoreToDatabase() {
-		score.newHighScore(getName(), "scoreQuestion", playerScore);
+		score.newHighScore(getName(), Scoreboard.QUESTION_SCORE, playerScore);
+		if (score.isHighScore()) {
+			status = " => High Score!!";
+		} else {
+			status = "";
+		}
 	}
 
 	/**
 	 * Go to choose mini game page.
 	 */
 	public void backToHome() {
-		GameUISceneChange.CHOOSEMINIGAME.changeScene((Stage) answerLabel.getScene().getWindow(), player1NameLabel.getText());
+		GameUISceneChange.CHOOSEMINIGAME.changeScene((Stage) answerLabel.getScene().getWindow(),
+				player1NameLabel.getText());
 	}
 
 	/**
@@ -236,7 +242,7 @@ public class QuestionIsGameController extends Contoller{
 	public void gameEnd() {
 		Alert alert = new Alert(AlertType.CONFIRMATION);
 		alert.setTitle("Game End!!");
-		alert.setHeaderText("Your score: " + playerScore);
+		alert.setHeaderText("Your score: " + playerScore + status);
 		alert.setContentText("Choose your option.");
 
 		ButtonType buttonTypeOne = new ButtonType("Play this again");

@@ -16,14 +16,15 @@ import javafx.scene.control.TextField;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import onlineMode.GameClient;
+import player.Scoreboard;
 
 /**
  * Calculadola controller that have action of calculadola UI.
  * 
- * @author Dacharat Pankong 
+ * @author Dacharat Pankong
  *
  */
-public class CalculadolaGameController extends Contoller{
+public class CalculadolaGameController extends Contoller {
 
 	@FXML
 	Label questionLabel;
@@ -49,6 +50,8 @@ public class CalculadolaGameController extends Contoller{
 	private GameClient client;
 	private String question;
 	private double answer;
+	private Scoreboard score;
+	private String winner;
 
 	/**
 	 * Initialize UI.
@@ -57,22 +60,25 @@ public class CalculadolaGameController extends Contoller{
 		answerText.setOnAction(this::onAnswerEnter);
 		answerText.setEditable(false);
 
+		score = new Scoreboard();
+
 		playerScore = 0;
 		player1Scorelabel.setText("Score: " + playerScore);
-		
+
 	}
 
 	/**
 	 * Set player name on label.
+	 * 
 	 * @param name
 	 */
 	public void setPlayerName(String name) {
 		Platform.runLater(new Runnable() {
-			
+
 			@Override
 			public void run() {
 				player1NameLabel.setText(name);
-				
+
 			}
 		});
 	}
@@ -101,7 +107,7 @@ public class CalculadolaGameController extends Contoller{
 	}
 
 	/**
-	 * Receive player score from server. 
+	 * Receive player score from server.
 	 * 
 	 * @param name
 	 * @param score
@@ -137,6 +143,7 @@ public class CalculadolaGameController extends Contoller{
 
 	/**
 	 * Change game question label.
+	 * 
 	 * @param event
 	 */
 	public void changeAllOutput(WorkerStateEvent event) {
@@ -205,11 +212,23 @@ public class CalculadolaGameController extends Contoller{
 		return Math.abs(playerAnswer - gameAnswer) < 1e-2;
 	}
 
+	public void sendResultToDatabase() {
+		int p1Score = Integer.parseInt(player1Scorelabel.getText());
+		int p2Score = Integer.parseInt(player2ScoreLabel.getText());
+		if (p1Score > p2Score) {
+			winner = player1NameLabel.getText();
+			score.addScore(winner, Scoreboard.CALCULADOLA_SCORE);
+		} else {
+			winner = player2NameLabel.getText();
+		}
+	}
+
 	/**
 	 * Change scene to chooseMiniGame scene.
 	 */
 	public void backToHome() {
-		GameUISceneChange.CHOOSEMINIGAME.changeScene((Stage) questionLabel.getScene().getWindow(), player1NameLabel.getText());
+		GameUISceneChange.CHOOSEMINIGAME.changeScene((Stage) questionLabel.getScene().getWindow(),
+				player1NameLabel.getText());
 	}
 
 	/**
@@ -217,8 +236,8 @@ public class CalculadolaGameController extends Contoller{
 	 */
 	public void gameEnd() {
 		Alert alert = new Alert(AlertType.CONFIRMATION);
-		alert.setTitle("Confirmation Dialog with Custom Actions");
-		alert.setHeaderText("Look, a Confirmation Dialog with Custom Actions");
+		alert.setTitle("Game End!!");
+		alert.setHeaderText(winner + " Win >.< ");
 		alert.setContentText("Choose your option.");
 
 		ButtonType buttonTypeOne = new ButtonType("Play this again");

@@ -16,6 +16,7 @@ import javafx.scene.control.ProgressBar;
 import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Stage;
 import makeIt24Game.MakeIt24;
+import player.Scoreboard;
 
 /**
  * MakeIt24 controller that have action of MakeIt24 UI.
@@ -70,6 +71,8 @@ public class MakeIt24GameController extends Contoller {
 	private int playerScore;
 	private TimeCounter timeCounter;
 	private TimeDelay delay;
+	private Scoreboard score;
+	private String status;
 
 	/**
 	 * Initialize UI.
@@ -101,6 +104,7 @@ public class MakeIt24GameController extends Contoller {
 
 		make24 = new MakeIt24();
 		e = new ExprEvaluator();
+		score = new Scoreboard();
 		question = 0;
 		playerScore = 0;
 		player1ScoreLabel.setText("Score: " + playerScore);
@@ -150,8 +154,10 @@ public class MakeIt24GameController extends Contoller {
 
 			timeCountdownProgress.progressProperty().bind(timeCounter.progressProperty());
 			new Thread(timeCounter).start();
-		} else
+		} else {
+			sendScoreToDatabase();
 			gameEnd();
+		}
 	}
 
 	/**
@@ -263,6 +269,18 @@ public class MakeIt24GameController extends Contoller {
 	}
 
 	/**
+	 * Send game score to database.
+	 */
+	public void sendScoreToDatabase() {
+		score.newHighScore(getName(), Scoreboard.MAKEIT24_SCORE, playerScore);
+		if (score.isHighScore()) {
+			status = " => High Score!!";
+		} else {
+			status = "";
+		}
+	}
+
+	/**
 	 * Go to choose mini game page.
 	 */
 	public void backToHome() {
@@ -276,7 +294,7 @@ public class MakeIt24GameController extends Contoller {
 	public void gameEnd() {
 		Alert alert = new Alert(AlertType.CONFIRMATION);
 		alert.setTitle("Game End!!");
-		alert.setHeaderText("Your score: " + playerScore);
+		alert.setHeaderText("Your score: " + playerScore + status);
 		alert.setContentText("Choose your option.");
 
 		ButtonType buttonTypeOne = new ButtonType("Play this again");

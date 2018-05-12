@@ -6,7 +6,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
@@ -22,18 +21,20 @@ public class Scoreboard {
 	private static Connection con;
 	private ResultSet result;
 	private PreparedStatement prepare;
-	private Statement statement;
-	private static HashMap<String, Integer> topplayer = new HashMap();
+	// private Statement statement;
+	private static HashMap<String, Integer> topplayer = new HashMap<String, Integer>();
 	private Account account = Account.getInstance();
-	
+
 	private boolean isHighScore = false;
+	public static final String CALCULADOLA_SCORE = "scoreCal";
+	public static final String QUESTION_SCORE = "scoreQuestion";
+	public static final String MAKEIT24_SCORE = "score24";
 
 	public Scoreboard() {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
 			con = DriverManager.getConnection("jdbc:mysql://35.194.158.90:3306/login?useSSL=false", "varit", "varit");
 		} catch (Exception e) {
-			// TODO: handle exception
 		}
 	}
 
@@ -56,7 +57,6 @@ public class Scoreboard {
 				System.out.println("Update Score success");
 			}
 		} catch (SQLException e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
 	}
@@ -77,10 +77,9 @@ public class Scoreboard {
 				System.out.println("Update Top5 score success");
 			}
 		} catch (SQLException e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-		account.setTopplayer((HashMap) sortByValue(topplayer));
+		account.setTopplayer((HashMap<String, Integer>) sortByValue(topplayer));
 	}
 
 	public void makeit24Board() {
@@ -98,10 +97,9 @@ public class Scoreboard {
 				System.out.println("Update Top5 score success");
 			}
 		} catch (SQLException e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-		account.setTopplayer((HashMap) sortByValue(topplayer));
+		account.setTopplayer((HashMap<String, Integer>) sortByValue(topplayer));
 	}
 
 	public void calculadolaBoard() {
@@ -119,10 +117,9 @@ public class Scoreboard {
 				System.out.println("Update Top5 score success");
 			}
 		} catch (SQLException e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-		account.setTopplayer((HashMap) sortByValue(topplayer));
+		account.setTopplayer((HashMap<String, Integer>) sortByValue(topplayer));
 	}
 
 	public Map<String, Integer> sortByValue(Map<String, Integer> unsortMap) {
@@ -150,6 +147,7 @@ public class Scoreboard {
 
 	public void newHighScore(String username, String game, int score) {
 		int userscore;
+		isHighScore = false;
 		try {
 			prepare = con.prepareStatement(
 					"SELECT username, " + game + " FROM users" + " WHERE `username` = '" + username + "'");
@@ -162,17 +160,18 @@ public class Scoreboard {
 							+ "'";
 					Statement statement1 = con.createStatement();
 					statement1.executeUpdate(sql1);
+
+					isHighScore = true;
 					System.out.println("Update new HighScore success");
 				}
 				System.out.println("finish");
 			}
 		} catch (SQLException e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
 		account.setTopplayer(topplayer);
 	}
-	
+
 	public boolean isHighScore() {
 		return isHighScore;
 	}
