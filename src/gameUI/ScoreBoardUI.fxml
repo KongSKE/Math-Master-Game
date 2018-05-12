@@ -1,26 +1,86 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Rectangle?>
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gameUI.ScoreBoardController">
    <center>
       <AnchorPane prefHeight="700.0" prefWidth="900.0" BorderPane.alignment="CENTER">
          <children>
-            <TabPane layoutY="100.0" prefHeight="600.0" prefWidth="900.0" tabClosingPolicy="UNAVAILABLE">
+            <TabPane layoutX="128.0" layoutY="100.0" prefHeight="600.0" prefWidth="644.0" tabClosingPolicy="UNAVAILABLE">
               <tabs>
                 <Tab text="Calculadola Rank">
                   <content>
                     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="467.0" prefWidth="900.0">
                            <children>
-                              <ScrollPane layoutX="50.0" layoutY="20.0" prefHeight="400.0" prefWidth="800.0">
-                                 <content>
-                                    <Label text="Calculadola" />
-                                 </content></ScrollPane>
+                              <VBox layoutX="50.0" layoutY="20.0" prefHeight="400.0" prefWidth="544.0">
+                                 <children>
+                                    <HBox prefHeight="52.0" prefWidth="544.0">
+                                       <children>
+                                          <StackPane prefHeight="52.0" prefWidth="119.0">
+                                             <children>
+                                                <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="51.0" stroke="BLACK" strokeType="INSIDE" width="120.0" />
+                                                <Label text="No" />
+                                             </children>
+                                          </StackPane>
+                                          <StackPane prefHeight="52.0" prefWidth="208.0">
+                                             <children>
+                                                <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="51.0" stroke="BLACK" strokeType="INSIDE" width="208.0" />
+                                                <Label text="Name" />
+                                             </children>
+                                          </StackPane>
+                                          <StackPane prefHeight="52.0" prefWidth="119.0">
+                                             <children>
+                                                <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="51.0" stroke="BLACK" strokeType="INSIDE" width="212.0" />
+                                                <Label text="Score" />
+                                             </children>
+                                          </StackPane>
+                                       </children>
+                                    </HBox>
+                                    <HBox prefHeight="47.0" prefWidth="544.0">
+                                       <children>
+                                          <Label alignment="CENTER" prefHeight="47.0" prefWidth="119.0" text="1" />
+                                          <Label fx:id="player1NameLabel" alignment="CENTER" prefHeight="47.0" prefWidth="210.0" text="Label" />
+                                          <Label fx:id="player1ScoreLabel" alignment="CENTER" prefHeight="47.0" prefWidth="211.0" text="Label" />
+                                       </children>
+                                    </HBox>
+                                    <HBox prefHeight="47.0" prefWidth="544.0">
+                                       <children>
+                                          <Label alignment="CENTER" prefHeight="47.0" prefWidth="119.0" text="2" />
+                                          <Label fx:id="player2NameLabel" alignment="CENTER" prefHeight="47.0" prefWidth="210.0" text="Label" />
+                                          <Label fx:id="player2ScoreLabel" alignment="CENTER" prefHeight="47.0" prefWidth="211.0" text="Label" />
+                                       </children>
+                                    </HBox>
+                                    <HBox prefHeight="47.0" prefWidth="544.0">
+                                       <children>
+                                          <Label alignment="CENTER" prefHeight="47.0" prefWidth="119.0" text="3" />
+                                          <Label fx:id="player3NameLabel" alignment="CENTER" prefHeight="47.0" prefWidth="210.0" text="Label" />
+                                          <Label fx:id="player3ScoreLabel" alignment="CENTER" prefHeight="47.0" prefWidth="211.0" text="Label" />
+                                       </children>
+                                    </HBox>
+                                    <HBox prefHeight="47.0" prefWidth="544.0">
+                                       <children>
+                                          <Label alignment="CENTER" prefHeight="47.0" prefWidth="119.0" text="4" />
+                                          <Label fx:id="player4NameLabel" alignment="CENTER" prefHeight="47.0" prefWidth="210.0" text="Label" />
+                                          <Label fx:id="player4ScoreLabel" alignment="CENTER" prefHeight="47.0" prefWidth="211.0" text="Label" />
+                                       </children>
+                                    </HBox>
+                                    <HBox prefHeight="47.0" prefWidth="544.0">
+                                       <children>
+                                          <Label alignment="CENTER" prefHeight="47.0" prefWidth="119.0" text="5" />
+                                          <Label fx:id="player5NameLabel" alignment="CENTER" prefHeight="47.0" prefWidth="210.0" text="Label" />
+                                          <Label fx:id="player5ScoreLabel" alignment="CENTER" prefHeight="47.0" prefWidth="211.0" text="Label" />
+                                       </children>
+                                    </HBox>
+                                 </children>
+                              </VBox>
                            </children>
                         </AnchorPane>
                   </content>
@@ -29,10 +89,67 @@
                   <content>
                     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                            <children>
-                              <ScrollPane fx:id="questionIsPane" layoutX="50.0" layoutY="20.0" prefHeight="400.0" prefWidth="800.0">
-                                 <content>
-                                    <Label text="QuestionIs" />
-                                 </content></ScrollPane>
+                              <VBox layoutX="50.0" layoutY="20.0" prefHeight="400.0" prefWidth="544.0">
+                                 <children>
+                                    <HBox prefHeight="52.0" prefWidth="544.0">
+                                       <children>
+                                          <StackPane prefHeight="52.0" prefWidth="119.0">
+                                             <children>
+                                                <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="51.0" stroke="BLACK" strokeType="INSIDE" width="120.0" />
+                                                <Label text="No" />
+                                             </children>
+                                          </StackPane>
+                                          <StackPane prefHeight="52.0" prefWidth="208.0">
+                                             <children>
+                                                <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="51.0" stroke="BLACK" strokeType="INSIDE" width="208.0" />
+                                                <Label text="Name" />
+                                             </children>
+                                          </StackPane>
+                                          <StackPane prefHeight="52.0" prefWidth="119.0">
+                                             <children>
+                                                <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="51.0" stroke="BLACK" strokeType="INSIDE" width="212.0" />
+                                                <Label text="Score" />
+                                             </children>
+                                          </StackPane>
+                                       </children>
+                                    </HBox>
+                                    <HBox prefHeight="47.0" prefWidth="544.0">
+                                       <children>
+                                          <Label alignment="CENTER" prefHeight="47.0" prefWidth="119.0" text="Label" />
+                                          <Label alignment="CENTER" prefHeight="47.0" prefWidth="210.0" text="Label" />
+                                          <Label alignment="CENTER" prefHeight="47.0" prefWidth="211.0" text="Label" />
+                                       </children>
+                                    </HBox>
+                                    <HBox prefHeight="47.0" prefWidth="544.0">
+                                       <children>
+                                          <Label alignment="CENTER" prefHeight="47.0" prefWidth="119.0" text="Label" />
+                                          <Label alignment="CENTER" prefHeight="47.0" prefWidth="210.0" text="Label" />
+                                          <Label alignment="CENTER" prefHeight="47.0" prefWidth="211.0" text="Label" />
+                                       </children>
+                                    </HBox>
+                                    <HBox prefHeight="47.0" prefWidth="544.0">
+                                       <children>
+                                          <Label alignment="CENTER" prefHeight="47.0" prefWidth="119.0" text="Label" />
+                                          <Label alignment="CENTER" prefHeight="47.0" prefWidth="210.0" text="Label" />
+                                          <Label alignment="CENTER" prefHeight="47.0" prefWidth="211.0" text="Label" />
+                                       </children>
+                                    </HBox>
+                                    <HBox prefHeight="47.0" prefWidth="544.0">
+                                       <children>
+                                          <Label alignment="CENTER" prefHeight="47.0" prefWidth="119.0" text="Label" />
+                                          <Label alignment="CENTER" prefHeight="47.0" prefWidth="210.0" text="Label" />
+                                          <Label alignment="CENTER" prefHeight="47.0" prefWidth="211.0" text="Label" />
+                                       </children>
+                                    </HBox>
+                                    <HBox prefHeight="47.0" prefWidth="544.0">
+                                       <children>
+                                          <Label alignment="CENTER" prefHeight="47.0" prefWidth="119.0" text="Label" />
+                                          <Label alignment="CENTER" prefHeight="47.0" prefWidth="210.0" text="Label" />
+                                          <Label alignment="CENTER" prefHeight="47.0" prefWidth="211.0" text="Label" />
+                                       </children>
+                                    </HBox>
+                                 </children>
+                              </VBox>
                            </children>
                         </AnchorPane>
                   </content>
@@ -41,10 +158,67 @@
                     <content>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                            <children>
-                              <ScrollPane fx:id="MakeIt24Pane" layoutX="50.0" layoutY="20.0" prefHeight="400.0" prefWidth="800.0">
-                                 <content>
-                                    <Label text="MakeIt24" />
-                                 </content></ScrollPane>
+                              <VBox layoutX="50.0" layoutY="20.0" prefHeight="400.0" prefWidth="544.0">
+                                 <children>
+                                    <HBox prefHeight="52.0" prefWidth="544.0">
+                                       <children>
+                                          <StackPane prefHeight="52.0" prefWidth="119.0">
+                                             <children>
+                                                <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="51.0" stroke="BLACK" strokeType="INSIDE" width="120.0" />
+                                                <Label text="No" />
+                                             </children>
+                                          </StackPane>
+                                          <StackPane prefHeight="52.0" prefWidth="208.0">
+                                             <children>
+                                                <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="51.0" stroke="BLACK" strokeType="INSIDE" width="208.0" />
+                                                <Label text="Name" />
+                                             </children>
+                                          </StackPane>
+                                          <StackPane prefHeight="52.0" prefWidth="119.0">
+                                             <children>
+                                                <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="51.0" stroke="BLACK" strokeType="INSIDE" width="212.0" />
+                                                <Label text="Score" />
+                                             </children>
+                                          </StackPane>
+                                       </children>
+                                    </HBox>
+                                    <HBox prefHeight="47.0" prefWidth="544.0">
+                                       <children>
+                                          <Label alignment="CENTER" prefHeight="47.0" prefWidth="119.0" text="Label" />
+                                          <Label alignment="CENTER" prefHeight="47.0" prefWidth="210.0" text="Label" />
+                                          <Label alignment="CENTER" prefHeight="47.0" prefWidth="211.0" text="Label" />
+                                       </children>
+                                    </HBox>
+                                    <HBox prefHeight="47.0" prefWidth="544.0">
+                                       <children>
+                                          <Label alignment="CENTER" prefHeight="47.0" prefWidth="119.0" text="Label" />
+                                          <Label alignment="CENTER" prefHeight="47.0" prefWidth="210.0" text="Label" />
+                                          <Label alignment="CENTER" prefHeight="47.0" prefWidth="211.0" text="Label" />
+                                       </children>
+                                    </HBox>
+                                    <HBox prefHeight="47.0" prefWidth="544.0">
+                                       <children>
+                                          <Label alignment="CENTER" prefHeight="47.0" prefWidth="119.0" text="Label" />
+                                          <Label alignment="CENTER" prefHeight="47.0" prefWidth="210.0" text="Label" />
+                                          <Label alignment="CENTER" prefHeight="47.0" prefWidth="211.0" text="Label" />
+                                       </children>
+                                    </HBox>
+                                    <HBox prefHeight="47.0" prefWidth="544.0">
+                                       <children>
+                                          <Label alignment="CENTER" prefHeight="47.0" prefWidth="119.0" text="Label" />
+                                          <Label alignment="CENTER" prefHeight="47.0" prefWidth="210.0" text="Label" />
+                                          <Label alignment="CENTER" prefHeight="47.0" prefWidth="211.0" text="Label" />
+                                       </children>
+                                    </HBox>
+                                    <HBox prefHeight="47.0" prefWidth="544.0">
+                                       <children>
+                                          <Label alignment="CENTER" prefHeight="47.0" prefWidth="119.0" text="Label" />
+                                          <Label alignment="CENTER" prefHeight="47.0" prefWidth="210.0" text="Label" />
+                                          <Label alignment="CENTER" prefHeight="47.0" prefWidth="211.0" text="Label" />
+                                       </children>
+                                    </HBox>
+                                 </children>
+                              </VBox>
                            </children>
                         </AnchorPane>
                     </content>
