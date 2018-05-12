@@ -26,20 +26,20 @@ public class Scoreboard {
 	public void addScore(String username, String game) {
 		int userscore;
 		try {
-			prepare = con.prepareStatement("SELECT `"+game+"` from `users` WHERE `username` = ? ");
+			prepare = con.prepareStatement("SELECT `" + game + "` from `users` WHERE `username` = ? ");
 			prepare.setString(1, username);
 			System.out.println(12345);
 			result = prepare.executeQuery();
 			if (result.next()) {
 				userscore = result.getInt(game);
 				System.out.println("score");
-					String sql = "UPDATE `users` SET `" + game + "` = '" + (userscore+10) + "' WHERE `username` = '"
-							+ username + "'";
-					System.out.println(sql);
-					Statement statement = con.createStatement();
-					// System.out.println("wrong");
-					statement.executeUpdate(sql);
-					System.out.println("Update Score success");
+				String sql = "UPDATE `users` SET `" + game + "` = '" + (userscore + 10) + "' WHERE `username` = '"
+						+ username + "'";
+				System.out.println(sql);
+				Statement statement = con.createStatement();
+				// System.out.println("wrong");
+				statement.executeUpdate(sql);
+				System.out.println("Update Score success");
 			}
 		} catch (SQLException e1) {
 			// TODO Auto-generated catch block
