@@ -14,11 +14,15 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.control.Alert.AlertType;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import makeIt24Game.MakeIt24;
 
+/**
+ * MakeIt24 controller that have action of MakeIt24 UI.
+ * 
+ * @author Dacharat Pankong
+ *
+ */
 public class MakeIt24GameController extends Contoller {
 
 	@FXML
@@ -49,15 +53,10 @@ public class MakeIt24GameController extends Contoller {
 	Button deleteButton;
 	@FXML
 	Button clearButton;
-
 	@FXML
 	Label player1NameLabel;
 	@FXML
 	Label player1ScoreLabel;
-	@FXML
-	Label player2NameLabel;
-	@FXML
-	Label player2ScoreLabel;
 	@FXML
 	ProgressBar timeCountdownProgress;
 
@@ -72,6 +71,9 @@ public class MakeIt24GameController extends Contoller {
 	private TimeCounter timeCounter;
 	private TimeDelay delay;
 
+	/**
+	 * Initialize UI.
+	 */
 	public void initialize() {
 		number1Button.setOnAction(this::onNumberButtonClicked);
 		number2Button.setOnAction(this::onNumberButtonClicked);
@@ -105,6 +107,9 @@ public class MakeIt24GameController extends Contoller {
 		getAllNumber();
 	}
 
+	/**
+	 * Make delay for next question.
+	 */
 	public void getAllNumber() {
 
 		delay = new TimeDelay();
@@ -113,6 +118,11 @@ public class MakeIt24GameController extends Contoller {
 
 	}
 
+	/**
+	 * Get and set question to game.
+	 * 
+	 * @param event
+	 */
 	public void setAllNumber(WorkerStateEvent event) {
 		bracket = 1;
 		if (question < 2) {
@@ -125,10 +135,11 @@ public class MakeIt24GameController extends Contoller {
 			number3Button.setText(make24.getNumber3() + "");
 			number4Button.setText(make24.getNumber4() + "");
 
-//			ImageView img4 = new ImageView(new Image("res/" + make24.getNumber4() + ".png"));
-//			img4.setFitHeight(70);
-//			img4.setFitWidth(70);
-//			number4Button.setGraphic(img4);
+			// ImageView img4 = new ImageView(new Image("res/" + make24.getNumber4() +
+			// ".png"));
+			// img4.setFitHeight(70);
+			// img4.setFitWidth(70);
+			// number4Button.setGraphic(img4);
 
 			number1Button.setVisible(true);
 			number2Button.setVisible(true);
@@ -143,6 +154,11 @@ public class MakeIt24GameController extends Contoller {
 			gameEnd();
 	}
 
+	/**
+	 * Make question stop when time up.
+	 * 
+	 * @param event
+	 */
 	public void timeUpDisplay(WorkerStateEvent event) {
 		if (timeCounter.getTime() == 0) {
 			resultLabel.setText("Time Up!!");
@@ -150,6 +166,11 @@ public class MakeIt24GameController extends Contoller {
 		}
 	}
 
+	/**
+	 * Operation and bracket button action.
+	 * 
+	 * @param event
+	 */
 	public void onOperationButtonClick(ActionEvent event) {
 		Button b = (Button) event.getSource();
 		oldInput = resultLabel.getText();
@@ -169,6 +190,11 @@ public class MakeIt24GameController extends Contoller {
 		resultLabel.setText(output);
 	}
 
+	/**
+	 * Number button action when player click it number will disappear.
+	 * 
+	 * @param event
+	 */
 	public void onNumberButtonClicked(ActionEvent event) {
 		Button b = (Button) event.getSource();
 		b.setVisible(false);
@@ -196,6 +222,11 @@ public class MakeIt24GameController extends Contoller {
 		}
 	}
 
+	/**
+	 * Clear result text.
+	 *
+	 * @param event
+	 */
 	public void onClearButtonClicked(ActionEvent event) {
 		correctLabel.setText(make24.getSolution());
 		resultLabel.setText("");
@@ -207,6 +238,11 @@ public class MakeIt24GameController extends Contoller {
 
 	}
 
+	/**
+	 * Delete last index in result text.
+	 * 
+	 * @param event
+	 */
 	public void onDeleteButtonClicked(ActionEvent event) {
 		output = resultLabel.getText();
 		char lastIndex = output.charAt(output.length() - 1);
@@ -226,15 +262,21 @@ public class MakeIt24GameController extends Contoller {
 		resultLabel.setText(output);
 	}
 
+	/**
+	 * Go to choose mini game page.
+	 */
 	public void backToHome() {
 		GameUISceneChange.CHOOSEMINIGAME.changeScene((Stage) number1Button.getScene().getWindow(),
 				player1NameLabel.getText());
 	}
 
+	/**
+	 * When player answer all question.
+	 */
 	public void gameEnd() {
 		Alert alert = new Alert(AlertType.CONFIRMATION);
-		alert.setTitle("Confirmation Dialog with Custom Actions");
-		alert.setHeaderText("Look, a Confirmation Dialog with Custom Actions");
+		alert.setTitle("Game End!!");
+		alert.setHeaderText("Your score: " + playerScore);
 		alert.setContentText("Choose your option.");
 
 		ButtonType buttonTypeOne = new ButtonType("Play this again");

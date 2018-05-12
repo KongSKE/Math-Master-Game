@@ -17,6 +17,12 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import questionIsGame.QuestionIs;
 
+/**
+ * QuestionIs controller that have action of QuestionIs UI.
+ * 
+ * @author Dacharat Pankong
+ *
+ */
 public class QuestionIsGameController extends Contoller{
 
 	@FXML
@@ -38,10 +44,6 @@ public class QuestionIsGameController extends Contoller{
 	@FXML
 	Label player1ScoreLabel;
 	@FXML
-	Label player2NameLabel;
-	@FXML
-	Label player2ScoreLabel;
-	@FXML
 	ProgressBar timeCountdownProgress;
 
 	private QuestionIs question;
@@ -54,6 +56,9 @@ public class QuestionIsGameController extends Contoller{
 	private TimeCounter timeCounter;
 	private TimeDelay delay;
 
+	/**
+	 * Initialize UI.
+	 */
 	public void initialize() {
 		number1Text.setOnAction(this::onAnyTextFieldPressEnter);
 		number2Text.setOnAction(this::onAnyTextFieldPressEnter);
@@ -75,12 +80,20 @@ public class QuestionIsGameController extends Contoller{
 		getNewQuestion();
 	}
 
+	/**
+	 * Make delay for get next question.
+	 */
 	public void getNewQuestion() {
 		delay = new TimeDelay();
 		delay.setOnSucceeded(this::setNewQuestion);
 		new Thread(delay).start();
 	}
 
+	/**
+	 * Set game question.
+	 * 
+	 * @param event
+	 */
 	public void setNewQuestion(WorkerStateEvent event) {
 		if (questionNumber < 2) {
 			timeCounter = new TimeCounter(10, timeCountdownProgress);
@@ -99,6 +112,11 @@ public class QuestionIsGameController extends Contoller{
 			gameEnd();
 	}
 
+	/**
+	 * Make question end when time up.
+	 * 
+	 * @param event
+	 */
 	public void timeUpDisPlay(WorkerStateEvent event) {
 		if (timeCounter.getTime() == 0) {
 			resultLabel.setText("Time Up!!");
@@ -106,6 +124,9 @@ public class QuestionIsGameController extends Contoller{
 		}
 	}
 
+	/**
+	 * Show number.
+	 */
 	public void randomShowNumber() {
 		int num = random.nextInt(3) + 1;
 		if (num == 1) {
@@ -120,6 +141,11 @@ public class QuestionIsGameController extends Contoller{
 		}
 	}
 
+	/**
+	 * Check for empty textField.
+	 * 
+	 * @return
+	 */
 	public boolean checkEmptyTextField() {
 		if (number1Text.getText().trim().isEmpty()) {
 			number1Text.requestFocus();
@@ -137,6 +163,9 @@ public class QuestionIsGameController extends Contoller{
 		return true;
 	}
 
+	/**
+	 * Reset all textField.
+	 */
 	public void resetTextField() {
 
 		number1Text.clear();
@@ -147,6 +176,11 @@ public class QuestionIsGameController extends Contoller{
 		number3Text.setEditable(true);
 	}
 
+	/**
+	 * Check input number if equal the question or not.
+	 * 
+	 * @param event
+	 */
 	public void onAnyTextFieldPressEnter(ActionEvent event) {
 		if (checkEmptyTextField()) {
 			num1Text = number1Text.getText().trim();
@@ -179,14 +213,20 @@ public class QuestionIsGameController extends Contoller{
 		}
 	}
 
+	/**
+	 * Go to choose mini game page.
+	 */
 	public void backToHome() {
 		GameUISceneChange.CHOOSEMINIGAME.changeScene((Stage) answerLabel.getScene().getWindow(), player1NameLabel.getText());
 	}
 
+	/**
+	 * Alert box when game is end.
+	 */
 	public void gameEnd() {
 		Alert alert = new Alert(AlertType.CONFIRMATION);
-		alert.setTitle("Confirmation Dialog with Custom Actions");
-		alert.setHeaderText("Look, a Confirmation Dialog with Custom Actions");
+		alert.setTitle("Game End!!");
+		alert.setHeaderText("Your score: " + playerScore);
 		alert.setContentText("Choose your option.");
 
 		ButtonType buttonTypeOne = new ButtonType("Play this again");
