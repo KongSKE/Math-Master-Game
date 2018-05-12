@@ -4,6 +4,12 @@ import java.util.Scanner;
 
 import player.Player;
 
+/**
+ * Test Calculadola game on console.
+ * 
+ * @author Dacharat Pankong
+ *
+ */
 public class CalculadolaTest {
 	
 	private static Scanner sc = new Scanner(System.in);

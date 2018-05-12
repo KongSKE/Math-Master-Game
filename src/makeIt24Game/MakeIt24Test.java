@@ -2,6 +2,12 @@ package makeIt24Game;
 
 import java.util.Scanner;
 
+/**
+ * Test MakeIt24 on console.
+ * 
+ * @author Dacharat Pankong
+ *
+ */
 public class MakeIt24Test {
 
 	private static Scanner sc;
@@ -9,20 +15,15 @@ public class MakeIt24Test {
 	public static void start(MakeIt24 makeIt24) {
 
 		sc = new Scanner(System.in);
-//		String ans;
-		
+
 		while (true) {
-			System.out.println("Hello");
-			System.out
-					.println(makeIt24.getNumber1() + "__" + makeIt24.getNumber2() + " " + makeIt24.getSecondOperation()
-							+ " " + makeIt24.getNumber3() + "__" + makeIt24.getNumber4() + " = 24");
 			System.out.println("Operation[+ + +]: ");
-//			ans = sc.nextLine();
-			
-//			if (makeIt24.is24(first, second, third))
-//				System.out.println("Correct!! " + makeIt24.getSolution());
-//			else
-//				System.out.println("Wrong!! " + makeIt24.getSolution());
+			// ans = sc.nextLine();
+
+			// if (makeIt24.is24(first, second, third))
+			// System.out.println("Correct!! " + makeIt24.getSolution());
+			// else
+			// System.out.println("Wrong!! " + makeIt24.getSolution());
 			System.out.println(makeIt24.getSolution());
 			System.out.println("Play again ? (y/n): ");
 			String again = sc.nextLine();

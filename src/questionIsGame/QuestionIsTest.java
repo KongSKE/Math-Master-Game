@@ -2,6 +2,12 @@ package questionIsGame;
 
 import java.util.Scanner;
 
+/**
+ * Test QuestionIs game on console.
+ * 
+ * @author Dacharat Pankong
+ *
+ */
 public class QuestionIsTest {
 
 	private static Scanner sc = new Scanner(System.in);

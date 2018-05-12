@@ -6,6 +6,13 @@ import org.matheclipse.core.eval.ExprEvaluator;
 
 import player.Game;
 
+/**
+ * QuestionIs game is the game that will give player an answer and player will
+ * find the question that make answer equal game answer.
+ * 
+ * @author Dacharat Pankong
+ *
+ */
 public class QuestionIs implements Game {
 
 	private Random random = new Random();
@@ -19,11 +26,17 @@ public class QuestionIs implements Game {
 
 	private ExprEvaluator e;
 
+	/**
+	 * Initialize game.
+	 */
 	public QuestionIs() {
 		getQuestion();
 		e = new ExprEvaluator();
 	}
 
+	/**
+	 * Set game question.
+	 */
 	@Override
 	public void getQuestion() {
 		firstOperation = setOperation(random.nextInt(3));
@@ -33,11 +46,19 @@ public class QuestionIs implements Game {
 		thirdNumber = random.nextInt(9);
 	}
 
+	/**
+	 * Check answer.
+	 */
 	@Override
 	public boolean checkAnswer(String ans) {
 		return e.evaluate(ans).toString().equals(answer + "");
 	}
-	
+
+	/**
+	 * Return answer of this game.
+	 * 
+	 * @return answer of this game.
+	 */
 	public int getAnswer() {
 		if (secondOperation.equals("*") || secondOperation.equalsIgnoreCase("/"))
 			return answer = findAnswer(firstNumber, findAnswer(secondNumber, thirdNumber, secondOperation),
@@ -45,6 +66,14 @@ public class QuestionIs implements Game {
 		return answer = findAnswer(findAnswer(firstNumber, secondNumber, firstOperation), thirdNumber, secondOperation);
 	}
 
+	/**
+	 * Find answer from 2 number.
+	 * 
+	 * @param first
+	 * @param second
+	 * @param operation
+	 * @return answer
+	 */
 	public int findAnswer(int first, int second, String operation) {
 		int ans = 0;
 
@@ -60,6 +89,12 @@ public class QuestionIs implements Game {
 		return ans;
 	}
 
+	/**
+	 * Set operation from number.
+	 * 
+	 * @param number
+	 * @return operation
+	 */
 	public String setOperation(int number) {
 		String operation = "";
 		switch (number) {
@@ -81,27 +116,57 @@ public class QuestionIs implements Game {
 		return operation;
 	}
 
+	/**
+	 * Return solution of this game.
+	 * 
+	 * @return solution of this game.
+	 */
 	public String getQuestionIsSolution() {
 		return String.format("%d %s %d %s %d = %d", firstNumber, firstOperation, secondNumber, secondOperation,
 				thirdNumber, answer);
 	}
 
+	/**
+	 * Return first operation.
+	 * 
+	 * @return first operation.
+	 */
 	public String getFirstOperation() {
 		return firstOperation;
 	}
 
+	/**
+	 * Return second operation.
+	 * 
+	 * @return second operation.
+	 */
 	public String getSecondOperation() {
 		return secondOperation;
 	}
 
+	/**
+	 * Return first number. 
+	 * 
+	 * @return first number.
+	 */
 	public int getFirstNumber() {
 		return firstNumber;
 	}
 
+	/**
+	 * Return second number. 
+	 * 
+	 * @return second number.
+	 */
 	public int getSecondNumber() {
 		return secondNumber;
 	}
 
+	/**
+	 * Return third number. 
+	 * 
+	 * @return third number.
+	 */
 	public int getThirdNumber() {
 		return thirdNumber;
 	}

@@ -7,7 +7,14 @@ import org.matheclipse.core.interfaces.IExpr;
 
 import player.Game;
 
-public class MakeIt24 implements Game{
+/**
+ * MakeIt24 is game that will give 4 numbers and player will use +,-,*,/ with
+ * these numbers to make it result equal 24.
+ * 
+ * @author Dacharat Pankong
+ *
+ */
+public class MakeIt24 implements Game {
 
 	private Random random = new Random();
 	private ExprEvaluator e;
@@ -16,18 +23,22 @@ public class MakeIt24 implements Game{
 	private int number2;
 	private int number3;
 	private int number4;
-
-	private String firstOperation;
-	private String secondOperation;
-	private String thirdOperation;
+	
 	private String solution;
 
+	/**
+	 * Initialize this game.
+	 */
 	public MakeIt24() {
 
 		e = new ExprEvaluator();
 		getQuestion();
 	}
 
+	/**
+	 * Set question for this game it will check it these 4 numbers can make to 24 or
+	 * not. If not, it will find new number.
+	 */
 	@Override
 	public void getQuestion() {
 
@@ -42,15 +53,26 @@ public class MakeIt24 implements Game{
 				break;
 		}
 	}
-	
+
+	/**
+	 * Check player answer if it equal 24 or not.
+	 */
 	@Override
 	public boolean checkAnswer(String ans) {
 		return e.evaluate(ans).toString().equals("24");
 	}
 
-	public void do24(int number12, int number22, int number32, int number42) {
+	/**
+	 * Generate solution from 4 numbers.
+	 * 
+	 * @param number1
+	 * @param number2
+	 * @param number3
+	 * @param number4
+	 */
+	public void do24(int number1, int number2, int number3, int number4) {
 
-		int[] num = { number12, number22, number32, number42 };
+		int[] num = { number1, number2, number3, number4 };
 		String[] ops = { "+", "-", "*", "/" };
 
 		for (int i = 0; i < num.length; i++) {
@@ -103,36 +125,41 @@ public class MakeIt24 implements Game{
 		}
 	}
 
+	/**
+	 * Return solution of this game.
+	 * 
+	 * @return solution of this game. 
+	 */
 	public String getSolution() {
 		return solution;
 	}
 
+	/**
+	 * @return number1
+	 */
 	public int getNumber1() {
 		return number1;
 	}
 
+	/**
+	 * @return number2
+	 */
 	public int getNumber2() {
 		return number2;
 	}
 
+	/**
+	 * @return number3
+	 */
 	public int getNumber3() {
 		return number3;
 	}
 
+	/**
+	 * @return number4
+	 */
 	public int getNumber4() {
 		return number4;
-	}
-
-	public String getFirstOperation() {
-		return firstOperation;
-	}
-
-	public String getSecondOperation() {
-		return secondOperation;
-	}
-
-	public String getThirdOperation() {
-		return thirdOperation;
 	}
 
 }

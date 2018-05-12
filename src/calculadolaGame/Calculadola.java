@@ -5,6 +5,12 @@ import java.util.Random;
 import player.Game;
 import player.Player;
 
+/**
+ * Calculadola game is fast calculate game.
+ * 
+ * @author Dacharat Pankong
+ *
+ */
 public class Calculadola implements Game {
 
 	private Player player;
@@ -15,10 +21,18 @@ public class Calculadola implements Game {
 	private int second;
 	private String question;
 
+	/**
+	 * Initialize Calculadola game with player name.
+	 * 
+	 * @param player
+	 */
 	public Calculadola(Player player) {
 		this.player = player;
 	}
 
+	/**
+	 * Set game question.
+	 */
 	@Override
 	public void getQuestion() {
 		this.first = random.nextInt(100) + 1;
@@ -42,6 +56,9 @@ public class Calculadola implements Game {
 		question = math.toString();
 	}
 
+	/**
+	 * Check player answer is equal this game answer or not.
+	 */
 	@Override
 	public boolean checkAnswer(String answer) {
 		if (Double.parseDouble(answer) == math.getAnswer())
@@ -51,15 +68,30 @@ public class Calculadola implements Game {
 		}
 	}
 
+	/**
+	 * Return question of this game.
+	 *  
+	 * @return  Return question of this game.
+	 */
 	public String getGameQuestion() {
 		getQuestion();
 		return question;
 	}
 
+	/**
+	 * Return answer of this game.
+	 * 
+	 * @return answer of this game.
+	 */
 	public double getAnswer() {
 		return math.getAnswer();
 	}
 	
+	/**
+	 * Return player name.
+	 * 
+	 * @return player name.
+	 */
 	public String getPlayerName() {
 		return player.getName();
 	}
