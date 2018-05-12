@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import player.Scoreboard;
+
 public class Account {
 
 	static Account account = new Account();
@@ -11,6 +13,7 @@ public class Account {
 	private String password;
 	private String question;
 	private String answer;
+	private Scoreboard score;
 	private HashMap<String, Integer> userscore = new HashMap();
 
 	public Account() {

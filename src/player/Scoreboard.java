@@ -7,8 +7,13 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
 import users.Account;
 
@@ -73,7 +78,7 @@ public class Scoreboard {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-		account.setTopplayer(topplayer);
+		account.setTopplayer((HashMap) sortByValue(topplayer));
 	}
 	
 	public void makeit24Board() {
@@ -95,10 +100,11 @@ public class Scoreboard {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-		account.setTopplayer(topplayer);
+		account.setTopplayer((HashMap) sortByValue(topplayer));
 	}
 	
 	public void calculadolaBoard() {
+		HashMap<String, Integer> score;
 		account.clearTopPlayer();
 		String username;
 		int userscore;
@@ -113,35 +119,70 @@ public class Scoreboard {
 				topplayer.put(username, userscore);
 				System.out.println("Update Top5 score success");
 			}
+			
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		score = (HashMap<String, Integer>) sortByValue(topplayer);
+		System.out.println(score);
+		account.setTopplayer(score);
+	}
+	
+	public Map<String, Integer> sortByValue(Map<String, Integer> unsortMap) {
+
+        // 1. Convert Map to List of Map
+        List<Map.Entry<String, Integer>> list =
+                new LinkedList<Map.Entry<String, Integer>>(unsortMap.entrySet());
+
+        // 2. Sort list with Collections.sort(), provide a custom Comparator
+        //    Try switch the o1 o2 position for a different order
+        Collections.sort(list, new Comparator<Map.Entry<String, Integer>>() {
+            public int compare(Map.Entry<String, Integer> o1,
+                               Map.Entry<String, Integer> o2) {
+                return (o1.getValue()).compareTo(o2.getValue());
+            }
+        });
+        Collections.reverse(list);
+
+        // 3. Loop the sorted list and put it into a new insertion order Map LinkedHashMap
+        Map<String, Integer> sortedMap = new LinkedHashMap<String, Integer>();
+        for (Map.Entry<String, Integer> entry : list) {
+            sortedMap.put(entry.getKey(), entry.getValue());
+        }
+        return sortedMap;
+    }
+	
+	public void NewHighScore(String username, String game, int score) {
+		int userscore;
+		try {
+			prepare = con
+					.prepareStatement("SELECT username, "+game+" FROM users" +" WHERE `username` = '"+ username+"'");
+			result = prepare.executeQuery();
+			if (result.next()) {
+				userscore = result.getInt(game);
+				if (userscore < score) {
+					System.out.println("new score");
+					String sql1 = "UPDATE `users` SET `" + game + "` = '" + score + "' WHERE `username` = '"
+							+ username + "'";
+					Statement statement1 = con.createStatement();
+					statement1.executeUpdate(sql1);
+					System.out.println("Update new HighScore success");
+				}
+				System.out.println("finish");
+			}
 		} catch (SQLException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
 		account.setTopplayer(topplayer);
 	}
-	
-//	public String getPlayerScore(String username, String game) {
-//		try {
-//			prepare = con
-//					.prepareStatement("SELECT username, "+game+" FROM users" +" WHERE username = "+ username);
-//			result = prepare.executeQuery();
-//			if (result.next()) {
-//				userscore = result.getString("username");
-//				System.out.println("score MakeIt24");
-//				topplayer.add();
-//				System.out.println("get player score success");
-//			}
-//		} catch (SQLException e1) {
-//			// TODO Auto-generated catch block
-//			e1.printStackTrace();
-//		}
-//		account.setTopplayer(topplayer);
-//	}
 
 	public static void main(String[] args) {
 		Scoreboard board = new Scoreboard();
 //		board.addScore("kongSKE14", "scoreCal");
 		board.calculadolaBoard();
-		System.out.println(topplayer);
+//		System.out.println(topplayer);
+		board.NewHighScore("Kanchanok", "scoreQuestion", 99999);
 	}
 }
