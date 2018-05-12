@@ -10,6 +10,12 @@ import javafx.scene.control.Label;
 import javafx.stage.Stage;
 import onlineMode.GameClient;
 
+/**
+ * UI for player choose game to player and go to score board.
+ * 
+ * @author Dacharat Pankong
+ *
+ */
 public class ChooseMiniGameController extends Contoller {
 
 	@FXML
@@ -27,6 +33,9 @@ public class ChooseMiniGameController extends Contoller {
 
 	private String name;
 
+	/**
+	 * Initialize UI.
+	 */
 	@FXML
 	public void initialize() {
 		calculadolaGameButton.setOnAction(this::onCalculadolaGameButtonClicked);
@@ -41,11 +50,15 @@ public class ChooseMiniGameController extends Contoller {
 			public void run() {
 				name = getName();
 				playerName.setText(name);
-				System.out.println("Namee: " + name);
 			}
 		});
 	}
 
+	/**
+	 * Go to calculadola game when player clicked on Calculadola.
+	 * 
+	 * @param event
+	 */
 	public void onCalculadolaGameButtonClicked(ActionEvent event) {
 
 		try {
@@ -57,20 +70,40 @@ public class ChooseMiniGameController extends Contoller {
 		}
 	}
 
+	/**
+	 * Go to QuestionIs game when player clicked on QuestionIs.
+	 * 
+	 * @param event
+	 */
 	public void onQuestionIsGameButtonClicked(ActionEvent event) {
 
 		GameUISceneChange.QUESTIONIS.changeScene((Stage) questionIsGameButton.getScene().getWindow(), name);
 	}
 
+	/**
+	 * Go to MakeIt24 game when player clicked on MakeIt24.
+	 * 
+	 * @param event
+	 */
 	public void onmakeIt24GameButtonClicked(ActionEvent event) {
 
 		GameUISceneChange.MAKEIT24.changeScene((Stage) makeIt24GameButton.getScene().getWindow(), name);
 	}
 	
+	/**
+	 * Go to Login page when player clicked on Log out.
+	 * 
+	 * @param event
+	 */
 	public void onLogoutButtonClicked(ActionEvent event) {
 		GameUISceneChange.LOGIN.changeScene((Stage) logoutButton.getScene().getWindow(), "");
 	}
 	
+	/**
+	 * Go to Score board when player clicked on Scoreboard.
+	 * 
+	 * @param event
+	 */
 	public void onScoreboardButtonClicked(ActionEvent event) {
 		GameUISceneChange.SCOREBOARD.changeScene((Stage) scoreboardButton.getScene().getWindow(), name);
 	}

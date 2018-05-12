@@ -17,6 +17,12 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import onlineMode.GameClient;
 
+/**
+ * Calculadola controller that have action of calculadola UI.
+ * 
+ * @author Dacharat Pankong 
+ *
+ */
 public class CalculadolaGameController extends Contoller{
 
 	@FXML
@@ -44,6 +50,9 @@ public class CalculadolaGameController extends Contoller{
 	private String question;
 	private double answer;
 
+	/**
+	 * Initialize UI.
+	 */
 	public void initialize() {
 		answerText.setOnAction(this::onAnswerEnter);
 		answerText.setEditable(false);
@@ -53,18 +62,27 @@ public class CalculadolaGameController extends Contoller{
 		
 	}
 
+	/**
+	 * Set player name on label.
+	 * @param name
+	 */
 	public void setPlayerName(String name) {
 		Platform.runLater(new Runnable() {
 			
 			@Override
 			public void run() {
-				// TODO Auto-generated method stub
 				player1NameLabel.setText(name);
 				
 			}
 		});
 	}
 
+	/**
+	 * Set question from server.
+	 * 
+	 * @param question
+	 * @param answer
+	 */
 	public void receiveQuestion(String question, double answer) {
 
 		this.question = question;
@@ -73,7 +91,6 @@ public class CalculadolaGameController extends Contoller{
 		Platform.runLater(new Runnable() {
 			@Override
 			public void run() {
-				System.out.println("Controller get Question " + question);
 				if (question.equals("End") && answer == 0) {
 					gameEnd();
 				} else {
@@ -83,6 +100,12 @@ public class CalculadolaGameController extends Contoller{
 		});
 	}
 
+	/**
+	 * Receive player score from server. 
+	 * 
+	 * @param name
+	 * @param score
+	 */
 	public void sentPlayerScore(String name, int score) {
 
 		Platform.runLater(new Runnable() {
@@ -94,16 +117,28 @@ public class CalculadolaGameController extends Contoller{
 		});
 	}
 
+	/**
+	 * Set this controller to client.
+	 * 
+	 * @param client
+	 */
 	public void setGameClient(GameClient client) {
 		this.client = client;
 	}
 
+	/**
+	 * Change game question.
+	 */
 	public void changeQuestion() {
 		sleeper = new TimeDelay();
 		sleeper.setOnSucceeded(this::changeAllOutput);
 		new Thread(sleeper).start();
 	}
 
+	/**
+	 * Change game question label.
+	 * @param event
+	 */
 	public void changeAllOutput(WorkerStateEvent event) {
 		resultLabel.setText("");
 		timeCount = new TimeCounter(10, timeCountdownProgress);
@@ -115,6 +150,11 @@ public class CalculadolaGameController extends Contoller{
 		new Thread(timeCount).start();
 	}
 
+	/**
+	 * Make game cannot play when time up.
+	 * 
+	 * @param event
+	 */
 	public void timeUpDisplay(WorkerStateEvent event) {
 		if (timeCount.getTime() == 0) {
 			resultLabel.setText("Time Up!!");
@@ -124,6 +164,11 @@ public class CalculadolaGameController extends Contoller{
 
 	}
 
+	/**
+	 * When player answer the question it will check the answer.
+	 * 
+	 * @param event
+	 */
 	public void onAnswerEnter(ActionEvent event) {
 		String answerFromText = answerText.getText().trim();
 		if (answerFromText.isEmpty()) {
@@ -149,14 +194,27 @@ public class CalculadolaGameController extends Contoller{
 		}
 	}
 
+	/**
+	 * Compare player answer and server answer.
+	 * 
+	 * @param gameAnswer
+	 * @param playerAnswer
+	 * @return
+	 */
 	public boolean checkAnswer(double gameAnswer, double playerAnswer) {
 		return Math.abs(playerAnswer - gameAnswer) < 1e-2;
 	}
 
+	/**
+	 * Change scene to chooseMiniGame scene.
+	 */
 	public void backToHome() {
 		GameUISceneChange.CHOOSEMINIGAME.changeScene((Stage) questionLabel.getScene().getWindow(), player1NameLabel.getText());
 	}
 
+	/**
+	 * Alert box will show when game end.
+	 */
 	public void gameEnd() {
 		Alert alert = new Alert(AlertType.CONFIRMATION);
 		alert.setTitle("Confirmation Dialog with Custom Actions");
