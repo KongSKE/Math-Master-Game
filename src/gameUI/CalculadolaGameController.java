@@ -54,7 +54,15 @@ public class CalculadolaGameController extends Contoller{
 	}
 
 	public void setPlayerName(String name) {
-		player1NameLabel.setText(name);
+		Platform.runLater(new Runnable() {
+			
+			@Override
+			public void run() {
+				// TODO Auto-generated method stub
+				player1NameLabel.setText(name);
+				
+			}
+		});
 	}
 
 	public void receiveQuestion(String question, double answer) {

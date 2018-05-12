@@ -48,9 +48,10 @@ public class ChooseMiniGameController extends Contoller {
 
 	public void onCalculadolaGameButtonClicked(ActionEvent event) {
 
-//		GameUISceneChange.CALCULADOLA.changeScene((Stage) calculadolaGameButton.getScene().getWindow(), name);
 		try {
-			new GameClient(name);
+			System.out.println(name);
+			System.out.println((Stage) calculadolaGameButton.getScene().getWindow());
+			new GameClient(name, (Stage) calculadolaGameButton.getScene().getWindow());
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

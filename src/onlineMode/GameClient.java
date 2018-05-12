@@ -7,24 +7,28 @@ import com.esotericsoftware.kryonet.Connection;
 import com.esotericsoftware.kryonet.Listener;
 
 import calculadolaGame.Calculadola;
-import javafx.application.Application;
+import gameUI.CalculadolaGameController;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
 import player.Player;
 
 public class GameClient {
 
 	private static Client client;
-	private CalculadolaOnlineGameUI gameUI;
+	CalculadolaGameController controller;
 	private Player player;
-	
+
 	private String name;
 	private int score;
 	private String question;
 	private double answer;
-	
-	public GameClient(String name) throws IOException {
+
+	public GameClient(String name, Stage stage) throws IOException {
 		client = new Client();
 		player = new Player(name);
-		
+
 		this.name = name;
 
 		client.getKryo().register(Calculadola.class);
@@ -34,19 +38,25 @@ public class GameClient {
 
 		client.addListener(new GameClientListener());
 
-		new Thread() {
-			public void run() {
-				Application.launch(CalculadolaOnlineGameUI.class);
-			};
-		}.start();
-		gameUI = CalculadolaOnlineGameUI.waitForLunch();
-		gameUI.setClient(this);
-		gameUI.setPlayerName(name);
+		try {
+			FXMLLoader chooseGameLoader = new FXMLLoader(getClass().getResource("../gameUI/CalculadolaGameUI.fxml"));
+			Parent chooseGameRoot = chooseGameLoader.load();
+			Scene chooseGameScene = new Scene(chooseGameRoot);
+
+			controller = chooseGameLoader.getController();
+			System.out.println("controller "+controller);
+			controller.setPlayerName(name);
+			controller.setGameClient(this);
+
+			stage.setScene(chooseGameScene);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 
 		client.start();
 		client.connect(5000, "127.0.0.1", 54333);
 	}
-	
+
 	public Player getPlayer() {
 		return player;
 	}
@@ -72,22 +82,16 @@ public class GameClient {
 				Packet.ScoreData scoreData = (Packet.ScoreData) o;
 				score = scoreData.score;
 				name = scoreData.name;
-				gameUI.setPlayerScore(name, score);
+				System.out.println(name + "__" + score);
+				controller.sentPlayerScore(name, score);
 			} else if (o instanceof Packet.QuestionData) {
 				Packet.QuestionData questionData = (Packet.QuestionData) o;
 				question = questionData.queston;
 				answer = questionData.answer;
 				System.out.println(question);
-				gameUI.setQuestion(question, answer);
+				controller.receiveQuestion(question, answer);
 			}
 		}
 	}
 
-	public static void main(String[] args) {
-		try {
-			new GameClient("kong2");
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
 }
