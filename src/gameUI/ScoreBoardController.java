@@ -1,18 +1,12 @@
 package gameUI;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.HashMap;
-import java.util.LinkedHashMap;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
 
-import com.mysql.cj.xdevapi.Collection;
-
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.stage.Stage;
 import player.Scoreboard;
 import users.Account;
 
@@ -38,6 +32,16 @@ public class ScoreBoardController extends Contoller {
 	Label player4ScoreLabel;
 	@FXML
 	Label player5ScoreLabel;
+	
+	@FXML
+	Button backButton;
+	@FXML
+	Button calculadolaScoreButton;
+	@FXML
+	Button questionIsScoreButton;
+	@FXML
+	Button makeIt24ScoreButton;
+	
 
 	Scoreboard board = new Scoreboard();
 	Account account = Account.getInstance();
@@ -47,7 +51,12 @@ public class ScoreBoardController extends Contoller {
 	Integer[] score = new Integer[5];
 	
 	public void initialize() {
-		board.calculadolaBoard();
+		
+		calculadolaScoreButton.setOnAction(this::onCalculadolaButtonClicked);
+		questionIsScoreButton.setOnAction(this::onQuestionIsButtonClicked);
+		makeIt24ScoreButton.setOnAction(this::onMakeIt24ButtonClicked);
+		backButton.setOnAction(this::onBackButtonClicked);
+		
 		temp[0] = player1NameLabel;
 		temp[1] = player2NameLabel;
 		temp[2] = player3NameLabel;
@@ -58,9 +67,29 @@ public class ScoreBoardController extends Contoller {
 		temp2[2] = player3ScoreLabel;	
 		temp2[3] = player4ScoreLabel;	
 		temp2[4] = player5ScoreLabel;
+	}
+	
+	public void onCalculadolaButtonClicked(ActionEvent event) {
 		
+		board.calculadolaBoard();
+		setHighScoreOutput();
+		
+	}
+	
+	public void onQuestionIsButtonClicked(ActionEvent event) {
+		board.questionIsBoard();
+		setHighScoreOutput();
+	}
+	
+	public void onMakeIt24ButtonClicked(ActionEvent event) {
+		board.makeit24Board();
+		setHighScoreOutput();
+	}
+	
+	public void setHighScoreOutput() {
 		int box = 0;
 		HashMap<String, Integer> top5 = account.getTopplayer();
+		System.out.println("size " + top5.size());
 		
 		for (String s : top5.keySet()) {
 			name[box] = s;
@@ -75,8 +104,8 @@ public class ScoreBoardController extends Contoller {
 			temp2[i].setText(score[i]+"");
 		}
 	}
-	
-	public static void main(String[] args) {
-		
+
+	public void onBackButtonClicked(ActionEvent event) {
+		GameUISceneChange.CHOOSEMINIGAME.changeScene((Stage) backButton.getScene().getWindow(), getName());
 	}
 }
