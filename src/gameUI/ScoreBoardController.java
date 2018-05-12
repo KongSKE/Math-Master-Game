@@ -1,15 +1,7 @@
 package gameUI;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.ScrollPane;
 
-public class ScoreBoardController {
+public class ScoreBoardController extends Contoller {
 	
-	@FXML
-	ScrollPane calculadolaPane;
-	@FXML
-	ScrollPane questionIsPane;
-	@FXML
-	ScrollPane MakeIt24Pane;
-
 }

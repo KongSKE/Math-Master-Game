@@ -22,6 +22,8 @@ public class ChooseMiniGameController extends Contoller {
 	Label playerName;
 	@FXML
 	Button logoutButton;
+	@FXML
+	Button scoreboardButton;
 
 	private String name;
 
@@ -31,6 +33,7 @@ public class ChooseMiniGameController extends Contoller {
 		questionIsGameButton.setOnAction(this::onQuestionIsGameButtonClicked);
 		makeIt24GameButton.setOnAction(this::onmakeIt24GameButtonClicked);
 		logoutButton.setOnAction(this::onLogoutButtonClicked);
+		scoreboardButton.setOnAction(this::onScoreboardButtonClicked);
 
 		Platform.runLater(new Runnable() {
 			
@@ -65,6 +68,10 @@ public class ChooseMiniGameController extends Contoller {
 	
 	public void onLogoutButtonClicked(ActionEvent event) {
 		GameUISceneChange.LOGIN.changeScene((Stage) logoutButton.getScene().getWindow(), "");
+	}
+	
+	public void onScoreboardButtonClicked(ActionEvent event) {
+		GameUISceneChange.SCOREBOARD.changeScene((Stage) scoreboardButton.getScene().getWindow(), name);
 	}
 
 }

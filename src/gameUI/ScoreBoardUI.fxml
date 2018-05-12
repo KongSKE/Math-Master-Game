@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
@@ -10,13 +11,16 @@
    <center>
       <AnchorPane prefHeight="700.0" prefWidth="900.0" BorderPane.alignment="CENTER">
          <children>
-            <TabPane layoutY="100.0" prefHeight="500.0" prefWidth="900.0" tabClosingPolicy="UNAVAILABLE">
+            <TabPane layoutY="100.0" prefHeight="600.0" prefWidth="900.0" tabClosingPolicy="UNAVAILABLE">
               <tabs>
                 <Tab text="Calculadola Rank">
                   <content>
-                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="467.0" prefWidth="900.0">
                            <children>
-                              <ScrollPane fx:id="calculadolaPane" layoutX="50.0" layoutY="20.0" prefHeight="350.0" prefWidth="800.0" />
+                              <ScrollPane layoutX="50.0" layoutY="20.0" prefHeight="400.0" prefWidth="800.0">
+                                 <content>
+                                    <Label text="Calculadola" />
+                                 </content></ScrollPane>
                            </children>
                         </AnchorPane>
                   </content>
@@ -25,7 +29,10 @@
                   <content>
                     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                            <children>
-                              <ScrollPane fx:id="questionIsPane" layoutX="50.0" layoutY="20.0" prefHeight="350.0" prefWidth="800.0" />
+                              <ScrollPane fx:id="questionIsPane" layoutX="50.0" layoutY="20.0" prefHeight="400.0" prefWidth="800.0">
+                                 <content>
+                                    <Label text="QuestionIs" />
+                                 </content></ScrollPane>
                            </children>
                         </AnchorPane>
                   </content>
@@ -34,7 +41,10 @@
                     <content>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                            <children>
-                              <ScrollPane fx:id="MakeIt24Pane" layoutX="50.0" layoutY="20.0" prefHeight="350.0" prefWidth="800.0" />
+                              <ScrollPane fx:id="MakeIt24Pane" layoutX="50.0" layoutY="20.0" prefHeight="400.0" prefWidth="800.0">
+                                 <content>
+                                    <Label text="MakeIt24" />
+                                 </content></ScrollPane>
                            </children>
                         </AnchorPane>
                     </content>
