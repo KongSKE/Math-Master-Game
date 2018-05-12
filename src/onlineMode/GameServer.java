@@ -11,6 +11,12 @@ import com.esotericsoftware.kryonet.Server;
 import calculadolaGame.Calculadola;
 import player.Player;
 
+/**
+ * Calculadola game server.
+ * 
+ * @author Dacharat Pankong
+ *
+ */
 public class GameServer {
 
 	private Server server;
@@ -20,6 +26,12 @@ public class GameServer {
 	private int questionNumber = 0;
 	private int numberOfPlayerAnswer = 0;
 
+	/**
+	 * Initialize game server.
+	 * 
+	 * @throws IOException
+	 *             when port cannot bind
+	 */
 	public GameServer() throws IOException {
 
 		server = new Server();
@@ -37,6 +49,9 @@ public class GameServer {
 		System.out.println("Server Start");
 	}
 
+	/**
+	 * Change game question and sent to client.
+	 */
 	public void changeGameQuestion() {
 		String question = calculadola.getGameQuestion();
 		Packet.QuestionData questionData = new Packet.QuestionData();
@@ -47,6 +62,12 @@ public class GameServer {
 		}
 	}
 
+	/**
+	 * Send player score to client.
+	 * 
+	 * @param connection
+	 * @param score
+	 */
 	public void sendPlayerScore(Connection connection, int score) {
 		Packet.ScoreData scoreData = new Packet.ScoreData();
 		String playerName = user.get(user.keySet().toArray()[user.size() - 2]);
@@ -59,6 +80,11 @@ public class GameServer {
 		}
 	}
 
+	/**
+	 * Send player name to other client.
+	 * 
+	 * @param connection
+	 */
 	public void sendPlayerName(Connection connection) {
 		Packet.ScoreData scoreData1 = new Packet.ScoreData();
 		scoreData1.name = user.get(connection);
@@ -104,7 +130,7 @@ public class GameServer {
 					numberOfPlayerAnswer = 0;
 					changeGameQuestion();
 					questionNumber++;
-				}else if(questionNumber == 3 && numberOfPlayerAnswer == 2) {
+				} else if (questionNumber == 3 && numberOfPlayerAnswer == 2) {
 					questionNumber = 0;
 					Packet.QuestionData questionData = new Packet.QuestionData();
 					questionData.queston = "End";
