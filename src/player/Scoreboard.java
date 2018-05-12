@@ -60,7 +60,7 @@ public class Scoreboard {
 		int userscore;
 		try {
 			prepare = con
-					.prepareStatement("SELECT username, scoreQuestion FROM users" +" ORDER BY scoreQuestion DESC");
+					.prepareStatement("SELECT username, scoreQuestion FROM users LIMIT 5" +" ORDER BY scoreQuestion DESC");
 			result = prepare.executeQuery();
 			while (result.next()) {
 				username = result.getString("username");
@@ -82,7 +82,7 @@ public class Scoreboard {
 		int userscore;
 		try {
 			prepare = con
-					.prepareStatement("SELECT username, score24 FROM users" +" ORDER BY score24 DESC");
+					.prepareStatement("SELECT username, score24 FROM users LIMIT 5" +" ORDER BY score24 DESC");
 			result = prepare.executeQuery();
 			while (result.next()) {
 				username = result.getString("username");
@@ -104,7 +104,7 @@ public class Scoreboard {
 		int userscore;
 		try {
 			prepare = con
-					.prepareStatement("SELECT username, scoreCal FROM users" +" ORDER BY scoreCal DESC");
+					.prepareStatement("SELECT username, scoreCal FROM users " +" ORDER BY scoreCal DESC LIMIT 5");
 			result = prepare.executeQuery();
 			while (result.next()) {
 				username = result.getString("username");
@@ -140,7 +140,7 @@ public class Scoreboard {
 
 	public static void main(String[] args) {
 		Scoreboard board = new Scoreboard();
-		board.addScore("kongSKE14", "scoreCal");
+//		board.addScore("kongSKE14", "scoreCal");
 		board.calculadolaBoard();
 		System.out.println(topplayer);
 	}
