@@ -6,7 +6,7 @@
 
 See github page: https://dacharat.github.io/Math-Master-Game/
 
-Download game here: [a link](https://github.com/dacharat/Math-Master-Game/blob/master/MathMaster.jar)
+Download game [here](https://github.com/dacharat/Math-Master-Game/blob/master/MathMaster.jar)!!
 
 Math Master Game is a game that find the master mathematics. There are 3 mini games,
 Calculadola, QuestionIs, and MakeIt24. Player can choose game  to play and each mini game will collect a player’s score to show who is the master of each game.
