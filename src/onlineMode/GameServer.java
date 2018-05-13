@@ -26,13 +26,15 @@ public class GameServer {
 	private int questionNumber = 0;
 	private int numberOfPlayerAnswer = 0;
 
+	private static GameServer gameServer = null;
+
 	/**
 	 * Initialize game server.
 	 * 
 	 * @throws IOException
 	 *             when port cannot bind
 	 */
-	public GameServer() throws IOException {
+	private GameServer() throws IOException {
 
 		server = new Server();
 		calculadola = new Calculadola(new Player("Player 1"));
@@ -47,6 +49,16 @@ public class GameServer {
 		server.start();
 		server.bind(54333);
 		System.out.println("Server Start");
+	}
+
+	public static GameServer getInstance() {
+		if (gameServer == null)
+			try {
+				gameServer = new GameServer();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		return gameServer;
 	}
 
 	/**
@@ -155,7 +167,7 @@ public class GameServer {
 					sendPlayerName(connection);
 					changeGameQuestion();
 				}
-			} else if (o instanceof Boolean){
+			} else if (o instanceof Boolean) {
 				disconnected(connection);
 			}
 		}

@@ -9,6 +9,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
 import onlineMode.GameClient;
+import onlineMode.GameServer;
 
 /**
  * UI for player choose game to player and go to score board.
@@ -61,6 +62,7 @@ public class ChooseMiniGameController extends Contoller {
 	 */
 	public void onCalculadolaGameButtonClicked(ActionEvent event) {
 		try {
+			GameServer.getInstance();
 			new GameClient(name, (Stage) calculadolaGameButton.getScene().getWindow());
 		} catch (IOException e) {
 			e.printStackTrace();

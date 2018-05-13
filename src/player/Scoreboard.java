@@ -59,6 +59,7 @@ public class Scoreboard {
 
 	public void questionIsBoard() {
 		account.clearTopPlayer();
+		topplayer.clear();
 		String username;
 		int userscore;
 		try {
@@ -78,6 +79,7 @@ public class Scoreboard {
 
 	public void makeit24Board() {
 		account.clearTopPlayer();
+		topplayer.clear();
 		String username;
 		int userscore;
 		try {
@@ -96,6 +98,7 @@ public class Scoreboard {
 
 	public void calculadolaBoard() {
 		account.clearTopPlayer();
+		topplayer.clear();
 		String username;
 		int userscore;
 		try {
