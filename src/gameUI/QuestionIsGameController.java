@@ -99,7 +99,7 @@ public class QuestionIsGameController extends Contoller {
 	 * @param event
 	 */
 	public void setNewQuestion(WorkerStateEvent event) {
-		if (questionNumber < 2) {
+		if (questionNumber < 10) {
 			timeCounter = new TimeCounter(10, timeCountdownProgress);
 			timeCounter.setOnSucceeded(this::timeUpDisPlay);
 			question.getQuestion();
@@ -155,15 +155,15 @@ public class QuestionIsGameController extends Contoller {
 	public boolean checkEmptyTextField() {
 		if (number1Text.getText().trim().isEmpty()) {
 			number1Text.requestFocus();
-			number1Text.setStyle("-fx-focus-color: red");
+			number1Text.setStyle("-fx-background-radius: 25; -fx-focus-color: red");
 			return false;
 		} else if (number2Text.getText().trim().isEmpty()) {
 			number2Text.requestFocus();
-			number2Text.setStyle("-fx-focus-color: red");
+			number2Text.setStyle("-fx-background-radius: 25; -fx-focus-color: red");
 			return false;
 		} else if (number3Text.getText().trim().isEmpty()) {
 			number3Text.requestFocus();
-			number3Text.setStyle("-fx-focus-color: red");
+			number3Text.setStyle("-fx-background-radius: 25;-fx-focus-color: red");
 			return false;
 		}
 		return true;
@@ -180,6 +180,12 @@ public class QuestionIsGameController extends Contoller {
 		number1Text.setEditable(true);
 		number2Text.setEditable(true);
 		number3Text.setEditable(true);
+		number1Text.setStyle(
+				"-fx-background-radius: 25;-fx-background-insets:  0 -1 -1 -1, 0 0 0 0, 0 -1 3 -1; -fx-focus-color: transparent");
+		number2Text.setStyle(
+				"-fx-background-radius: 25;-fx-background-insets:  0 -1 -1 -1, 0 0 0 0, 0 -1 3 -1; -fx-focus-color: transparent");
+		number3Text.setStyle(
+				"-fx-background-radius: 25;-fx-background-insets:  0 -1 -1 -1, 0 0 0 0, 0 -1 3 -1; -fx-focus-color: transparent");
 	}
 
 	/**

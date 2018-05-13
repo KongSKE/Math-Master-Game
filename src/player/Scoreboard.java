@@ -43,18 +43,14 @@ public class Scoreboard {
 		try {
 			prepare = con.prepareStatement("SELECT `" + game + "` from `users` WHERE `username` = ? ");
 			prepare.setString(1, username);
-			System.out.println(12345);
 			result = prepare.executeQuery();
 			if (result.next()) {
 				userscore = result.getInt(game);
-				System.out.println("score");
 				String sql = "UPDATE `users` SET `" + game + "` = '" + (userscore + 10) + "' WHERE `username` = '"
 						+ username + "'";
-				System.out.println(sql);
 				Statement statement = con.createStatement();
 				// System.out.println("wrong");
 				statement.executeUpdate(sql);
-				System.out.println("Update Score success");
 			}
 		} catch (SQLException e1) {
 			e1.printStackTrace();
@@ -72,9 +68,7 @@ public class Scoreboard {
 			while (result.next()) {
 				username = result.getString("username");
 				userscore = result.getInt("scoreQuestion");
-				System.out.println("score QuestionIs");
 				topplayer.put(username, userscore);
-				System.out.println("Update Top5 score success");
 			}
 		} catch (SQLException e1) {
 			e1.printStackTrace();
@@ -92,9 +86,7 @@ public class Scoreboard {
 			while (result.next()) {
 				username = result.getString("username");
 				userscore = result.getInt("score24");
-				System.out.println("score MakeIt24");
 				topplayer.put(username, userscore);
-				System.out.println("Update Top5 score success");
 			}
 		} catch (SQLException e1) {
 			e1.printStackTrace();
@@ -112,9 +104,7 @@ public class Scoreboard {
 			while (result.next()) {
 				username = result.getString("username");
 				userscore = result.getInt("scoreCal");
-				System.out.println("score Calculadora");
 				topplayer.put(username, userscore);
-				System.out.println("Update Top5 score success");
 			}
 		} catch (SQLException e1) {
 			e1.printStackTrace();
@@ -155,16 +145,13 @@ public class Scoreboard {
 			if (result.next()) {
 				userscore = result.getInt(game);
 				if (userscore < score) {
-					System.out.println("new score");
 					String sql1 = "UPDATE `users` SET `" + game + "` = '" + score + "' WHERE `username` = '" + username
 							+ "'";
 					Statement statement1 = con.createStatement();
 					statement1.executeUpdate(sql1);
 
 					isHighScore = true;
-					System.out.println("Update new HighScore success");
 				}
-				System.out.println("finish");
 			}
 		} catch (SQLException e1) {
 			e1.printStackTrace();

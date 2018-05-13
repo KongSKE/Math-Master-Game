@@ -43,7 +43,6 @@ public enum GameUISceneChange {
 			chooseGameScene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 
 			Contoller controller = chooseGameLoader.getController();
-			System.out.println("Name: " + name);
 			controller.setName(name);
 
 			stage.setScene(chooseGameScene);

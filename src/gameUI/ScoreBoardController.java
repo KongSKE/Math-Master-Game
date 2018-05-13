@@ -161,7 +161,6 @@ public class ScoreBoardController extends Contoller {
 			temp[i].setText(name[i]);
 			temp2[i].setText(score[i] + "");
 			if (temp[i].getText().equalsIgnoreCase(getName())) {
-				System.out.println("Why");
 				boxes[i].setStyle("-fx-border-color: red; -fx-border-width: 5; -fx-border-radius: 20");
 			}
 		}

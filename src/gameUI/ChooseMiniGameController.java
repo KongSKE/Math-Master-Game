@@ -60,10 +60,7 @@ public class ChooseMiniGameController extends Contoller {
 	 * @param event
 	 */
 	public void onCalculadolaGameButtonClicked(ActionEvent event) {
-
 		try {
-			System.out.println(name);
-			System.out.println((Stage) calculadolaGameButton.getScene().getWindow());
 			new GameClient(name, (Stage) calculadolaGameButton.getScene().getWindow());
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -76,7 +73,6 @@ public class ChooseMiniGameController extends Contoller {
 	 * @param event
 	 */
 	public void onQuestionIsGameButtonClicked(ActionEvent event) {
-
 		GameUISceneChange.QUESTIONIS.changeScene((Stage) questionIsGameButton.getScene().getWindow(), name);
 	}
 
@@ -86,7 +82,6 @@ public class ChooseMiniGameController extends Contoller {
 	 * @param event
 	 */
 	public void onmakeIt24GameButtonClicked(ActionEvent event) {
-
 		GameUISceneChange.MAKEIT24.changeScene((Stage) makeIt24GameButton.getScene().getWindow(), name);
 	}
 
@@ -105,7 +100,6 @@ public class ChooseMiniGameController extends Contoller {
 	 * @param event
 	 */
 	public void onScoreboardButtonClicked(ActionEvent event) {
-		System.out.println(name + " Arrrrrrggggg");
 		GameUISceneChange.SCOREBOARD.changeScene((Stage) scoreboardButton.getScene().getWindow(), name);
 	}
 
