@@ -6,20 +6,39 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="900.0" style="-fx-background-image: url(&quot;res/Background.gif&quot;); -fx-background-size: 900 700;" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gameUI.ForgetController1">
    <children>
-      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="136.0" layoutY="202.0" prefHeight="31.0" prefWidth="130.0" text="Username" textAlignment="CENTER" />
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="125.0" layoutY="192.0" prefHeight="31.0" prefWidth="130.0" text="Username" textAlignment="CENTER">
+         <font>
+            <Font name="Ani" size="30.0" />
+         </font></Label>
       <TextField fx:id="username" layoutX="254.0" layoutY="201.0" prefHeight="31.0" prefWidth="437.0" />
       <Label fx:id="checkUsername" layoutX="251.0" layoutY="232.0" prefHeight="24.0" prefWidth="463.0" />
-      <Label fx:id="questionTag" alignment="CENTER" layoutX="151.0" layoutY="272.0" prefHeight="31.0" prefWidth="100.0" text="Question" />
+      <Label fx:id="questionTag" alignment="CENTER" layoutX="151.0" layoutY="272.0" prefHeight="31.0" prefWidth="100.0" text="Question">
+         <font>
+            <Font name="Ani" size="26.0" />
+         </font></Label>
       <TextField fx:id="answer" layoutX="259.0" layoutY="335.0" prefHeight="31.0" prefWidth="463.0" />
       <Label fx:id="checkAns" layoutX="259.0" layoutY="366.0" prefHeight="24.0" prefWidth="463.0" />
-      <Button fx:id="next" alignment="CENTER" layoutX="370.0" layoutY="415.0" mnemonicParsing="false" text="Next" />
-      <Button fx:id="cancel" layoutX="512.0" layoutY="415.0" mnemonicParsing="false" text="Cancel" />
-      <Label fx:id="answerTag" alignment="CENTER" layoutX="169.0" layoutY="335.0" prefHeight="31.0" prefWidth="65.0" text="Answer" />
+      <Button fx:id="next" alignment="CENTER" layoutX="351.0" layoutY="416.0" mnemonicParsing="false" text="Next">
+         <font>
+            <Font name="Apple Garamond" size="27.0" />
+         </font></Button>
+      <Button fx:id="cancel" layoutX="491.0" layoutY="416.0" mnemonicParsing="false" text="Cancel">
+         <font>
+            <Font name="Apple Garamond" size="27.0" />
+         </font></Button>
+      <Label fx:id="answerTag" alignment="CENTER" layoutX="153.0" layoutY="335.0" prefHeight="45.0" prefWidth="81.0" text="Answer">
+         <font>
+            <Font name="Ani" size="26.0" />
+         </font></Label>
       <Label fx:id="question" layoutX="259.0" layoutY="272.0" prefHeight="31.0" prefWidth="463.0" />
-      <Button fx:id="enter" layoutX="714.0" layoutY="204.0" mnemonicParsing="false" text="Enter" />
+      <Button fx:id="enter" layoutX="699.0" layoutY="198.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="81.0" text="Enter">
+         <font>
+            <Font name="Abyssinica SIL" size="19.0" />
+         </font></Button>
       <ImageView fitHeight="53.0" fitWidth="669.0" layoutX="125.0" layoutY="63.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../res/forgetpassword.gif" />

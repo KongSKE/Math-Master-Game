@@ -9,6 +9,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
@@ -42,6 +43,8 @@ public class CalculadolaGameController extends Contoller {
 	Label player2ScoreLabel;
 	@FXML
 	ProgressBar timeCountdownProgress;
+	@FXML
+	Button homeButton;
 
 	private TimeCounter timeCount;
 	private int playerScore;
@@ -58,6 +61,7 @@ public class CalculadolaGameController extends Contoller {
 	 */
 	public void initialize() {
 		answerText.setOnAction(this::onAnswerEnter);
+		homeButton.setOnAction(this::goToHome);
 		answerText.setEditable(false);
 
 		score = new Scoreboard();
@@ -98,6 +102,7 @@ public class CalculadolaGameController extends Contoller {
 			@Override
 			public void run() {
 				if (question.equals("End") && answer == 0) {
+					sendResultToDatabase();
 					gameEnd();
 				} else {
 					changeQuestion();
@@ -192,7 +197,7 @@ public class CalculadolaGameController extends Contoller {
 				resultLabel.setText(String.format("Wrong!! Answer: %.2f", answer));
 				resultLabel.setTextFill(Color.RED);
 			}
-			player1Scorelabel.setText(playerScore + "");
+			player1Scorelabel.setText("Score: " + playerScore);
 			client.sendScore(playerScore);
 			answerText.setEditable(false);
 			answerText.clear();
@@ -213,8 +218,10 @@ public class CalculadolaGameController extends Contoller {
 	}
 
 	public void sendResultToDatabase() {
-		int p1Score = Integer.parseInt(player1Scorelabel.getText());
-		int p2Score = Integer.parseInt(player2ScoreLabel.getText());
+		String p1[] = player1Scorelabel.getText().split(" ");
+		String p2[] = player2ScoreLabel.getText().split(" ");
+		int p1Score = Integer.parseInt(p1[1]);
+		int p2Score = Integer.parseInt(p2[1]);
 		if (p1Score > p2Score) {
 			winner = player1NameLabel.getText();
 			score.addScore(winner, Scoreboard.CALCULADOLA_SCORE);
@@ -223,6 +230,16 @@ public class CalculadolaGameController extends Contoller {
 		}
 	}
 
+	/**
+	 * Change scene to chooseMiniGame scene.
+	 * 
+	 * @param event
+	 */
+	public void goToHome(ActionEvent event) {
+		client.disconnected();
+		backToHome();
+	}
+	
 	/**
 	 * Change scene to chooseMiniGame scene.
 	 */

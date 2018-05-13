@@ -38,7 +38,7 @@
                         </ImageView>
                      </children>
                   </AnchorPane>
-                  <Label fx:id="resultLabel" alignment="CENTER" layoutX="172.0" layoutY="217.0" prefHeight="54.0" prefWidth="556.0" text="24" textAlignment="CENTER">
+                  <Label fx:id="resultLabel" alignment="CENTER" layoutX="199.0" layoutY="218.0" prefHeight="68.0" prefWidth="468.0" style="-fx-border-color: blue; -fx-border-width: 7;" text="24" textAlignment="CENTER">
                      <font>
                         <Font name="3270 Narrow" size="51.0" />
                      </font>
@@ -92,7 +92,7 @@
                         </Button>
                      </children>
                   </HBox>
-                  <HBox alignment="CENTER" layoutX="191.0" layoutY="451.0" prefHeight="100.0" prefWidth="518.0">
+                  <HBox alignment="CENTER" layoutX="173.0" layoutY="456.0" prefHeight="100.0" prefWidth="444.0">
                      <children>
                         <Button fx:id="addOperationButton" mnemonicParsing="false" prefHeight="70.0" prefWidth="70.0" style="-fx-background-color: transparent;" text="+">
                            <HBox.margin>
@@ -133,8 +133,14 @@
                         <Font name="padmaa-Bold.1.1" size="28.0" />
                      </font>
                   </Label>
-                  <Button fx:id="clearButton" layoutX="702.0" layoutY="488.0" mnemonicParsing="false" text="Clear" />
-                  <Button fx:id="deleteButton" layoutX="710.0" layoutY="356.0" mnemonicParsing="false" text="Delete" />
+                  <Button fx:id="clearButton" layoutX="643.0" layoutY="489.0" mnemonicParsing="false" style="-fx-background-color: linear-gradient(#ff5400, #be1d00); -fx-background-radius: 30;" text="Clear" textFill="WHITE">
+                     <font>
+                        <Font name="Anonymice Powerline" size="20.0" />
+                     </font></Button>
+                  <Button fx:id="deleteButton" layoutX="679.0" layoutY="234.0" mnemonicParsing="false" style="-fx-background-color: linear-gradient(#ffde3a, #f7cd00); -fx-background-radius: 20;" text="Delete" textFill="#0d0000">
+                     <font>
+                        <Font name="Anonymice Powerline" size="20.0" />
+                     </font></Button>
                </children>
             </AnchorPane>
          </children>

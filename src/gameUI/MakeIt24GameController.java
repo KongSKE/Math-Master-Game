@@ -14,6 +14,7 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import makeIt24Game.MakeIt24;
 import player.Scoreboard;
@@ -73,6 +74,7 @@ public class MakeIt24GameController extends Contoller {
 	private TimeDelay delay;
 	private Scoreboard score;
 	private String status;
+	private boolean isLastInputisNumber = false;
 
 	/**
 	 * Initialize UI.
@@ -138,12 +140,7 @@ public class MakeIt24GameController extends Contoller {
 			number2Button.setText(make24.getNumber2() + "");
 			number3Button.setText(make24.getNumber3() + "");
 			number4Button.setText(make24.getNumber4() + "");
-
-			// ImageView img4 = new ImageView(new Image("res/" + make24.getNumber4() +
-			// ".png"));
-			// img4.setFitHeight(70);
-			// img4.setFitWidth(70);
-			// number4Button.setGraphic(img4);
+			correctLabel.setTextFill(Color.BLACK);
 
 			number1Button.setVisible(true);
 			number2Button.setVisible(true);
@@ -151,6 +148,7 @@ public class MakeIt24GameController extends Contoller {
 			number4Button.setVisible(true);
 
 			question++;
+			isLastInputisNumber = false;
 
 			timeCountdownProgress.progressProperty().bind(timeCounter.progressProperty());
 			new Thread(timeCounter).start();
@@ -194,6 +192,7 @@ public class MakeIt24GameController extends Contoller {
 				newInput = "";
 		}
 		resultLabel.setText(output);
+		isLastInputisNumber = false;
 	}
 
 	/**
@@ -202,6 +201,10 @@ public class MakeIt24GameController extends Contoller {
 	 * @param event
 	 */
 	public void onNumberButtonClicked(ActionEvent event) {
+
+		if (isLastInputisNumber)
+			return;
+
 		Button b = (Button) event.getSource();
 		b.setVisible(false);
 		oldInput = resultLabel.getText();
@@ -218,14 +221,18 @@ public class MakeIt24GameController extends Contoller {
 			timeCounter.cancel();
 			if (make24.checkAnswer(output)) {
 				correctLabel.setText("Corect!!");
+				correctLabel.setTextFill(Color.GREEN);
 				playerScore += timeCounter.getTime();
 				player1ScoreLabel.setText("Score: " + playerScore);
-			} else
-				correctLabel.setText("Wrong!!");
+			} else {
+				correctLabel.setText("Wrong!! => " + make24.getSolution());
+				correctLabel.setTextFill(Color.RED);
+			}
 			getAllNumber();
 		} else {
 			resultLabel.setText(output);
 		}
+		isLastInputisNumber = true;
 	}
 
 	/**
@@ -237,6 +244,7 @@ public class MakeIt24GameController extends Contoller {
 		correctLabel.setText(make24.getSolution());
 		resultLabel.setText("");
 		bracket = 0;
+		isLastInputisNumber = false;
 		number1Button.setVisible(true);
 		number2Button.setVisible(true);
 		number3Button.setVisible(true);
@@ -253,18 +261,25 @@ public class MakeIt24GameController extends Contoller {
 		output = resultLabel.getText();
 		char lastIndex = output.charAt(output.length() - 1);
 		output = output.substring(0, output.length() - 1);
-		if (lastIndex == '(')
+		if (lastIndex == '(') {
 			bracket--;
-		else if (lastIndex == ')')
+			isLastInputisNumber = true;
+		} else if (lastIndex == ')') {
 			bracket++;
-		else if (lastIndex == number1Button.getText().charAt(0))
+			isLastInputisNumber = true;
+		} else if (lastIndex == number1Button.getText().charAt(0)) {
 			number1Button.setVisible(true);
-		else if (lastIndex == number2Button.getText().charAt(0))
+			isLastInputisNumber = false;
+		} else if (lastIndex == number2Button.getText().charAt(0)) {
 			number2Button.setVisible(true);
-		else if (lastIndex == number3Button.getText().charAt(0))
+			isLastInputisNumber = false;
+		} else if (lastIndex == number3Button.getText().charAt(0)) {
 			number3Button.setVisible(true);
-		else if (lastIndex == number4Button.getText().charAt(0))
+			isLastInputisNumber = false;
+		} else if (lastIndex == number4Button.getText().charAt(0)) {
 			number4Button.setVisible(true);
+			isLastInputisNumber = false;
+		}
 		resultLabel.setText(output);
 	}
 

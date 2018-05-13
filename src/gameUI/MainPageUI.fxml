@@ -17,13 +17,22 @@
          <font>
             <Font size="18.0" />
          </font></TextField>
-      <Button fx:id="register" layoutX="252.0" layoutY="541.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="170.0" text="Register" />
-      <Button fx:id="forget" layoutX="482.0" layoutY="541.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="170.0" text="Forget Password?" />
+      <Button fx:id="register" layoutX="252.0" layoutY="541.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="170.0" style="-fx-background-radius: 30; -fx-background-insets: 0,1,2,3,0; -fx-background-color: linear-gradient(#f0ff35, #a9ff00),        radial-gradient(center 50% -40%, radius 200%, #b8ee36 45%, #80c800 50%); -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.4) , 5, 0.0 , 0 , 1 );" text="Register">
+         <font>
+            <Font name="DejaVu Sans Mono Bold" size="19.0" />
+         </font></Button>
+      <Button fx:id="forget" layoutX="482.0" layoutY="541.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="170.0" style="-fx-background-radius: 30; -fx-background-insets: 0,1,2,3,0; -fx-background-color: linear-gradient(#f0ff35, #a9ff00),        radial-gradient(center 50% -40%, radius 200%, #b8ee36 45%, #80c800 50%); -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.4) , 5, 0.0 , 0 , 1 );" text="Forget Password?">
+         <font>
+            <Font name="DejaVu Sans Mono Bold" size="15.0" />
+         </font></Button>
       <PasswordField fx:id="password" layoutX="337.0" layoutY="327.0" prefHeight="25.0" prefWidth="411.0">
          <font>
             <Font size="18.0" />
          </font></PasswordField>
-      <Button fx:id="login" layoutX="350.0" layoutY="440.0" mnemonicParsing="false" prefHeight="70.0" prefWidth="200.0" text="Login" />
+      <Button fx:id="login" layoutX="350.0" layoutY="440.0" mnemonicParsing="false" prefHeight="70.0" prefWidth="200.0" style="-fx-background-radius: 30; -fx-background-insets: 0,1,2,3,0; -fx-background-color: #000000,        linear-gradient(#7ebcea, #2f4b8f),        linear-gradient(#426ab7, #263e75),        linear-gradient(#395cab, #223768);" text="Login" textFill="#e7f824">
+         <font>
+            <Font name="DejaVu Sans Bold" size="25.0" />
+         </font></Button>
       <TextField fx:id="passtext" layoutX="337.0" layoutY="327.0" prefHeight="25.0" prefWidth="411.0">
          <font>
             <Font size="18.0" />

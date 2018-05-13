@@ -54,7 +54,6 @@ public class GameClient {
 			Scene chooseGameScene = new Scene(chooseGameRoot);
 
 			controller = chooseGameLoader.getController();
-			System.out.println("controller "+controller);
 			controller.setPlayerName(name);
 			controller.setGameClient(this);
 
@@ -76,6 +75,10 @@ public class GameClient {
 		client.sendTCP(score);
 	}
 
+	public void disconnected() {
+		client.sendTCP(true);
+	}
+	
 	/**
 	 * Kryonet listener for client action.
 	 * 
@@ -88,24 +91,20 @@ public class GameClient {
 		public void connected(Connection connection) {
 			super.connected(connection);
 			client.sendTCP(name);
-			System.out.println("Connect!!");
 		}
 
 		@Override
 		public void received(Connection connection, Object o) {
 			super.received(connection, o);
-			System.out.println("Recieve");
 			if (o instanceof Packet.ScoreData) {
 				Packet.ScoreData scoreData = (Packet.ScoreData) o;
 				score = scoreData.score;
 				name = scoreData.name;
-				System.out.println(name + "__" + score);
 				controller.sentPlayerScore(name, score);
 			} else if (o instanceof Packet.QuestionData) {
 				Packet.QuestionData questionData = (Packet.QuestionData) o;
 				question = questionData.queston;
 				answer = questionData.answer;
-				System.out.println(question);
 				controller.receiveQuestion(question, answer);
 			}
 		}

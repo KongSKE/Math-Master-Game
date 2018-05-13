@@ -86,18 +86,23 @@ public class GameServer {
 	 * @param connection
 	 */
 	public void sendPlayerName(Connection connection) {
+
+		System.out.println(user);
+
 		Packet.ScoreData scoreData1 = new Packet.ScoreData();
 		scoreData1.name = user.get(connection);
+		System.out.println(scoreData1.name + "----------------------");
 		scoreData1.score = 0;
 		Packet.ScoreData scoreData2 = new Packet.ScoreData();
 		scoreData2.name = user.get(user.keySet().toArray()[user.size() - 2]);
-		System.out.println(scoreData2.name);
+		System.out.println(scoreData2.name + "----------------------");
 		scoreData2.score = 0;
+
 		for (Connection c : user.keySet()) {
-			if (c.equals(connection)) {
-				c.sendTCP(scoreData2);
-			} else {
+			if (!c.equals(connection)) {
 				c.sendTCP(scoreData1);
+			} else {
+				c.sendTCP(scoreData2);
 			}
 		}
 	}
@@ -113,7 +118,6 @@ public class GameServer {
 		@Override
 		public void connected(Connection connection) {
 			super.connected(connection);
-			System.out.println("New Client connect");
 
 		}
 
@@ -121,14 +125,12 @@ public class GameServer {
 		public void disconnected(Connection connection) {
 			super.disconnected(connection);
 			user.remove(connection);
-			System.out.println("Player disconnect");
 		}
 
 		@Override
 		public void received(Connection connection, Object o) {
 			super.received(connection, o);
 			if (o instanceof Integer) {
-				System.out.println("Receive data");
 				Integer score = (Integer) o;
 				sendPlayerScore(connection, score);
 				numberOfPlayerAnswer++;
@@ -145,17 +147,16 @@ public class GameServer {
 						c.sendTCP(questionData);
 					}
 				}
-				System.out.println("====> " + questionNumber);
 			} else if (o instanceof String) {
 				String name = (String) o;
 				user.put(connection, name);
 
-				System.out.println(user.size());
 				if (user.size() == numberPlayer) {
-					System.out.println("Game start");
 					sendPlayerName(connection);
 					changeGameQuestion();
 				}
+			} else if (o instanceof Boolean){
+				disconnected(connection);
 			}
 		}
 	}

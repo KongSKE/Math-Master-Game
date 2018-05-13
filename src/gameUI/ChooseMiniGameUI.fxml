@@ -2,6 +2,8 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
@@ -13,12 +15,19 @@
          <children>
             <AnchorPane prefHeight="700.0" prefWidth="900.0">
                <children>
-                  <Label fx:id="playerName" alignment="CENTER_RIGHT" layoutX="444.0" layoutY="28.0" prefHeight="26.0" prefWidth="251.0" text="Player Name" wrapText="true">
+                  <Label fx:id="playerName" alignment="CENTER_RIGHT" layoutX="419.0" layoutY="31.0" prefHeight="26.0" prefWidth="251.0" text="Player Name" wrapText="true">
                      <font>
-                        <Font size="22.0" />
+                        <Font name="3270 Semi-Narrow" size="27.0" />
                      </font>
                   </Label>
-                  <Button fx:id="logoutButton" layoutX="703.0" layoutY="28.0" mnemonicParsing="false" text="Log Out" />
+                  <Button fx:id="logoutButton" layoutX="670.0" layoutY="24.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="104.0" style="-fx-background-color: transparent;">
+                     <graphic>
+                        <ImageView fitHeight="31.0" fitWidth="94.0" pickOnBounds="true">
+                           <image>
+                              <Image url="@../res/logoututton.png" />
+                           </image>
+                        </ImageView>
+                     </graphic></Button>
                   <Button fx:id="calculadolaGameButton" layoutX="200.0" layoutY="172.0" mnemonicParsing="false" prefHeight="75.0" prefWidth="250.0" style="-fx-background-insets: 0,0 0 5 0, 0 0 6 0, 0 0 7 0; -fx-background-radius: 8; -fx-background-color: linear-gradient(from 0% 93% to 0% 100%, #a34313 0%, #903b12 100%),        #9d4024,        #d86e3a,        radial-gradient(center 50% 50%, radius 100%, #d86e3a, #c54e2c); -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.75) , 4,0,0,1 ); -fx-padding: 8 15 15 15;" text="Calculadola" textFill="WHITE">
                      <font>
                         <Font name="Ubuntu Mono Bold" size="30.0" />
@@ -34,10 +43,17 @@
                         <Font name="Ubuntu Mono Bold" size="30.0" />
                      </font>
                   </Button>
-                  <Button fx:id="scoreboardButton" layoutX="209.0" layoutY="609.0" mnemonicParsing="false" text="Scoreboard">
+                  <Button fx:id="scoreboardButton" layoutX="166.0" layoutY="586.0" mnemonicParsing="false" prefHeight="71.0" prefWidth="209.0" style="-fx-background-color: transparent;">
                      <font>
                         <Font name="DejaVu Sans Condensed Bold" size="17.0" />
                      </font>
+                     <graphic>
+                        <ImageView fitHeight="59.0" fitWidth="189.0" pickOnBounds="true">
+                           <image>
+                              <Image url="@../res/highscoresButton.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
                   </Button>
                </children>
             </AnchorPane>
