@@ -66,7 +66,7 @@ public class QuestionIsGameController extends Contoller {
 		number1Text.setOnAction(this::onAnyTextFieldPressEnter);
 		number2Text.setOnAction(this::onAnyTextFieldPressEnter);
 		number3Text.setOnAction(this::onAnyTextFieldPressEnter);
-		resultLabel.setText("");
+		resultLabel.setText("Result!!");
 
 		Platform.runLater(new Runnable() {
 

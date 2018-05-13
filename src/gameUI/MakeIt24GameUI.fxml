@@ -38,7 +38,7 @@
                         </ImageView>
                      </children>
                   </AnchorPane>
-                  <Label fx:id="resultLabel" alignment="CENTER" layoutX="199.0" layoutY="218.0" prefHeight="68.0" prefWidth="468.0" style="-fx-border-color: blue; -fx-border-width: 7;" text="24" textAlignment="CENTER">
+                  <Label fx:id="resultLabel" alignment="CENTER" layoutX="199.0" layoutY="218.0" prefHeight="68.0" prefWidth="468.0" style="-fx-border-color: blue; -fx-border-width: 7; -fx-border-radius: 15;" text="24" textAlignment="CENTER">
                      <font>
                         <Font name="3270 Narrow" size="51.0" />
                      </font>
@@ -128,7 +128,7 @@
                         </Button>
                      </children>
                   </HBox>
-                  <Label fx:id="correctLabel" alignment="CENTER" layoutX="278.0" layoutY="589.0" prefHeight="41.0" prefWidth="344.0" text="result!!">
+                  <Label fx:id="correctLabel" alignment="CENTER" layoutX="233.0" layoutY="589.0" prefHeight="41.0" prefWidth="435.0" style="-fx-border-color: pink; -fx-border-radius: 20; -fx-border-width: 5;" text="result!!">
                      <font>
                         <Font name="padmaa-Bold.1.1" size="28.0" />
                      </font>

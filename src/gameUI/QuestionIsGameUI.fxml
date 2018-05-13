@@ -19,19 +19,19 @@
                   <AnchorPane prefHeight="700.0" prefWidth="900.0">
                      <children>
                         <ProgressBar fx:id="timeCountdownProgress" layoutX="128.0" layoutY="254.0" prefHeight="20.0" prefWidth="644.0" progress="0.0" style="-fx-accent: #11e011;" />
-                        <TextField fx:id="number3Text" layoutX="500.0" layoutY="327.0" prefHeight="80.0" prefWidth="80.0">
+                        <TextField fx:id="number3Text" alignment="CENTER" layoutX="500.0" layoutY="327.0" prefHeight="80.0" prefWidth="80.0" style="-fx-background-radius: 25; -fx-border-insets: 0 -1 -1 -1, 0 0 0 0, 0 -1 3 -1;">
                            <font>
                               <Font size="30.0" />
                            </font></TextField>
-                        <TextField fx:id="number2Text" layoutX="363.0" layoutY="327.0" prefHeight="80.0" prefWidth="80.0">
+                        <TextField fx:id="number2Text" alignment="CENTER" layoutX="363.0" layoutY="327.0" prefHeight="80.0" prefWidth="80.0" style="-fx-border-insets: 0 -1 -1 -1, 0 0 0 0, 0 -1 3 -1; -fx-background-radius: 25;">
                            <font>
                               <Font size="30.0" />
                            </font></TextField>
-                        <TextField fx:id="number1Text" layoutX="216.0" layoutY="327.0" prefHeight="80.0" prefWidth="80.0">
+                        <TextField fx:id="number1Text" alignment="CENTER" layoutX="216.0" layoutY="327.0" prefHeight="80.0" prefWidth="80.0" style="-fx-background-radius: 25; -fx-background-insets: 0 -1 -1 -1, 0 0 0 0, 0 -1 3 -1;">
                            <font>
                               <Font size="30.0" />
                            </font></TextField>
-                        <Label fx:id="resultLabel" alignment="CENTER" layoutX="172.0" layoutY="529.0" prefHeight="48.0" prefWidth="593.0" text="Result">
+                        <Label fx:id="resultLabel" alignment="CENTER" layoutX="154.0" layoutY="529.0" prefHeight="48.0" prefWidth="593.0" style="-fx-border-color: pink; -fx-border-radius: 30; -fx-border-width: 5;" text="Result">
                            <font>
                               <Font name="Noto Sans CJK KR Bold" size="30.0" />
                            </font>
@@ -56,7 +56,7 @@
                               <Font size="30.0" />
                            </font>
                         </Label>
-                        <Label fx:id="operation2Label" layoutX="456.0" layoutY="349.0" text="+">
+                        <Label fx:id="operation2Label" layoutX="459.0" layoutY="349.0" text="+">
                            <font>
                               <Font size="30.0" />
                            </font>

@@ -45,7 +45,7 @@ public class ChooseMiniGameController extends Contoller {
 		scoreboardButton.setOnAction(this::onScoreboardButtonClicked);
 
 		Platform.runLater(new Runnable() {
-			
+
 			@Override
 			public void run() {
 				name = getName();
@@ -89,7 +89,7 @@ public class ChooseMiniGameController extends Contoller {
 
 		GameUISceneChange.MAKEIT24.changeScene((Stage) makeIt24GameButton.getScene().getWindow(), name);
 	}
-	
+
 	/**
 	 * Go to Login page when player clicked on Log out.
 	 * 
@@ -98,13 +98,14 @@ public class ChooseMiniGameController extends Contoller {
 	public void onLogoutButtonClicked(ActionEvent event) {
 		GameUISceneChange.LOGIN.changeScene((Stage) logoutButton.getScene().getWindow(), "");
 	}
-	
+
 	/**
 	 * Go to Score board when player clicked on Scoreboard.
 	 * 
 	 * @param event
 	 */
 	public void onScoreboardButtonClicked(ActionEvent event) {
+		System.out.println(name + " Arrrrrrggggg");
 		GameUISceneChange.SCOREBOARD.changeScene((Stage) scoreboardButton.getScene().getWindow(), name);
 	}
 
