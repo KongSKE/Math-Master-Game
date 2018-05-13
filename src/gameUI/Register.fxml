@@ -4,6 +4,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -16,17 +17,17 @@
             <TextField fx:id="username" layoutX="337.0" layoutY="183.0" prefHeight="25.0" prefWidth="360.0" />
             <Label alignment="CENTER" layoutX="199.0" layoutY="181.0" prefHeight="31.0" prefWidth="121.0" text="Username">
                <font>
-                  <Font size="21.0" />
+                  <Font name="AquaBase" size="23.0" />
                </font>
             </Label>
             <Label alignment="CENTER" layoutX="199.0" layoutY="245.0" prefHeight="31.0" prefWidth="122.0" text="Password">
                <font>
-                  <Font size="21.0" />
+                  <Font name="AquaBase" size="23.0" />
                </font>
             </Label>
-            <Label alignment="CENTER" layoutX="173.0" layoutY="306.0" prefHeight="31.0" prefWidth="148.0" text="Re-Password">
+            <Label alignment="CENTER" layoutX="165.0" layoutY="306.0" prefHeight="31.0" prefWidth="156.0" text="Re-Password">
                <font>
-                  <Font size="21.0" />
+                  <Font name="AquaBase" size="23.0" />
                </font>
             </Label>
             <PasswordField fx:id="password" layoutX="337.0" layoutY="247.0" prefHeight="25.0" prefWidth="360.0" />
@@ -34,8 +35,17 @@
             <Label fx:id="checkusername" layoutX="337.0" layoutY="211.0" prefHeight="25.0" prefWidth="360.0" />
             <Label fx:id="checkpass" layoutX="337.0" layoutY="275.0" prefHeight="25.0" prefWidth="360.0" />
             <Label fx:id="checkrepass" layoutX="337.0" layoutY="337.0" prefHeight="25.0" prefWidth="360.0" />
-            <Button fx:id="next" layoutX="298.0" layoutY="404.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="69.0" text="Next" />
-            <Button fx:id="cancel" layoutX="472.0" layoutY="404.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="69.0" text="Cancel" />
+            <Button fx:id="next" alignment="CENTER" layoutX="298.0" layoutY="404.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="90.0" style="-fx-background-color: linear-gradient(#f0ff35, #a9ff00),        radial-gradient(center 50% -40%, radius 200%, #b8ee36 45%, #80c800 50%); -fx-background-radius: 16, 15; -fx-background-insets: 0, 1; -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.4) , 5, 0.0 , 0 , 1 );" text="Next">
+               <font>
+                  <Font name="Inconsolata Bold for Powerline" size="18.0" />
+               </font></Button>
+            <Button fx:id="cancel" layoutX="472.0" layoutY="404.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="90.0" style="-fx-background-radius: 16,15; -fx-background-insets: 0, 1; -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.4) , 5, 0.0 , 0 , 1 ); -fx-background-color: linear-gradient(#ff5400, #be1d00);" text="Cancel">
+               <effect>
+                  <DropShadow />
+               </effect>
+               <font>
+                  <Font name="Inconsolata Bold for Powerline" size="19.0" />
+               </font></Button>
             <ImageView fitHeight="85.0" fitWidth="483.0" layoutX="232.0" layoutY="26.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../res/register.gif" />

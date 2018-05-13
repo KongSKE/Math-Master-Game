@@ -6,15 +6,28 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="900.0" style="-fx-background-image: url(&quot;res/Background.gif&quot;); -fx-background-size: 900 700;" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gameUI.RegisterController2">
    <children>
-      <Label layoutX="154.0" layoutY="247.0" text="Question" />
-      <Label layoutX="159.0" layoutY="302.0" text="Answer" />
+      <Label layoutX="144.0" layoutY="246.0" text="Question">
+         <font>
+            <Font name="AquaBase" size="18.0" />
+         </font></Label>
+      <Label layoutX="151.0" layoutY="301.0" text="Answer">
+         <font>
+            <Font name="AquaBase" size="18.0" />
+         </font></Label>
       <TextField fx:id="answer" layoutX="226.0" layoutY="298.0" prefHeight="25.0" prefWidth="520.0" />
       <TextField fx:id="question" layoutX="226.0" layoutY="243.0" prefHeight="25.0" prefWidth="520.0" />
-      <Button fx:id="finish" layoutX="307.0" layoutY="462.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="69.0" text="Finish" />
-      <Button fx:id="cancel" layoutX="502.0" layoutY="462.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="69.0" text="Cancel" />
+      <Button fx:id="finish" layoutX="307.0" layoutY="453.0" mnemonicParsing="false" prefHeight="52.0" prefWidth="90.0" style="-fx-background-color: linear-gradient(#f0ff35, #a9ff00),        radial-gradient(center 50% -40%, radius 200%, #b8ee36 45%, #80c800 50%); -fx-background-radius: 16,15; -fx-background-insets: 0,1; -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.4) , 5, 0.0 , 0 , 1 );" text="Finish">
+         <font>
+            <Font name="Inconsolata Bold for Powerline" size="18.0" />
+         </font></Button>
+      <Button fx:id="cancel" layoutX="481.0" layoutY="453.0" mnemonicParsing="false" prefHeight="52.0" prefWidth="90.0" style="-fx-background-radius: 16,15; -fx-background-insets: 0,1; -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.4) , 5, 0.0 , 0 , 1 ); -fx-background-color: linear-gradient(#ff5400, #be1d00);" text="Cancel">
+         <font>
+            <Font name="Inconsolata Bold for Powerline" size="18.0" />
+         </font></Button>
       <Label fx:id="checkQuestion" layoutX="226.0" layoutY="268.0" prefHeight="17.0" prefWidth="520.0" />
       <Label fx:id="checkAns" layoutX="226.0" layoutY="323.0" prefHeight="17.0" prefWidth="520.0" />
       <ImageView fitHeight="83.0" fitWidth="471.0" layoutX="251.0" layoutY="46.0" pickOnBounds="true" preserveRatio="true">

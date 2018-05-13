@@ -55,7 +55,7 @@
                               </StackPane>
                            </children>
                         </HBox>
-                        <HBox fx:id="player1stBox" prefHeight="47.0" prefWidth="544.0">
+                        <HBox fx:id="player1stBox" prefHeight="47.0" prefWidth="544.0" style="-fx-border-width: 5;">
                            <children>
                               <Label alignment="CENTER" prefHeight="47.0" prefWidth="119.0">
                                  <graphic>
@@ -69,7 +69,7 @@
                               <Label fx:id="player1ScoreLabel" alignment="CENTER" prefHeight="47.0" prefWidth="211.0" text="Label" />
                            </children>
                         </HBox>
-                        <HBox fx:id="player2ndBox" prefHeight="47.0" prefWidth="544.0">
+                        <HBox fx:id="player2ndBox" prefHeight="47.0" prefWidth="544.0" style="-fx-border-width: 5;">
                            <children>
                               <Label alignment="CENTER" prefHeight="47.0" prefWidth="119.0">
                                  <graphic>
@@ -83,7 +83,7 @@
                               <Label fx:id="player2ScoreLabel" alignment="CENTER" prefHeight="47.0" prefWidth="211.0" text="Label" />
                            </children>
                         </HBox>
-                        <HBox fx:id="player3rdBox" prefHeight="47.0" prefWidth="544.0">
+                        <HBox fx:id="player3rdBox" prefHeight="47.0" prefWidth="544.0" style="-fx-border-width: 5;">
                            <children>
                               <Label alignment="CENTER" prefHeight="47.0" prefWidth="119.0">
                                  <graphic>
@@ -97,14 +97,14 @@
                               <Label fx:id="player3ScoreLabel" alignment="CENTER" prefHeight="47.0" prefWidth="211.0" text="Label" />
                            </children>
                         </HBox>
-                        <HBox fx:id="player4thBox" prefHeight="47.0" prefWidth="544.0">
+                        <HBox fx:id="player4thBox" prefHeight="47.0" prefWidth="544.0" style="-fx-border-width: 5;">
                            <children>
                               <Label alignment="CENTER" prefHeight="47.0" prefWidth="119.0" text="4" />
                               <Label fx:id="player4NameLabel" alignment="CENTER" prefHeight="47.0" prefWidth="210.0" text="Label" />
                               <Label fx:id="player4ScoreLabel" alignment="CENTER" prefHeight="47.0" prefWidth="211.0" text="Label" />
                            </children>
                         </HBox>
-                        <HBox fx:id="player5thBox" prefHeight="47.0" prefWidth="544.0">
+                        <HBox fx:id="player5thBox" prefHeight="47.0" prefWidth="544.0" style="-fx-border-width: 5;">
                            <children>
                               <Label alignment="CENTER" prefHeight="47.0" prefWidth="119.0" text="5" />
                               <Label fx:id="player5NameLabel" alignment="CENTER" prefHeight="47.0" prefWidth="210.0" text="Label" />

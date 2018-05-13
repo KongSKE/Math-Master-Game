@@ -116,7 +116,6 @@ public class ScoreBoardController extends Contoller {
 
 	public void setHighScoreOutput() {
 		HashMap<String, Integer> top5 = account.getTopplayer();
-		System.out.println("size " + top5.size());
 
 		for(int i = 0; i < 5; i++) {
 			boxes[i].setStyle("-fx-border-color: transparent");
@@ -130,11 +129,9 @@ public class ScoreBoardController extends Contoller {
 		for (int i = 0; i < 5; i++) {
 			temp[i].setText(name[i]);
 			temp2[i].setText(score[i] + "");
-			System.out.println(i + ": " + temp[i].getText());
-			System.out.println(i + ": " + getName());
 			if (temp[i].getText().equalsIgnoreCase(getName())) {
-				System.out.println("---------------------------");
-				boxes[i].setStyle("-fx-border-color: red");
+				System.out.println("Why");
+				boxes[i].setStyle("-fx-border-color: red; -fx-border-width: 5; -fx-border-radius: 20");
 			}
 		}
 	}
