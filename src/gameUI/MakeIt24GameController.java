@@ -241,7 +241,7 @@ public class MakeIt24GameController extends Contoller {
 	 * @param event
 	 */
 	public void onClearButtonClicked(ActionEvent event) {
-		correctLabel.setText(make24.getSolution());
+		// correctLabel.setText(make24.getSolution());
 		resultLabel.setText("");
 		bracket = 0;
 		isLastInputisNumber = false;
