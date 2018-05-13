@@ -11,34 +11,34 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import users.Login;
 
-public class LoginController extends Contoller{
-	 
+public class LoginController extends Contoller {
+
 	@FXML
 	Button login;
-	
+
 	@FXML
 	TextField username;
-	
+
 	@FXML
 	PasswordField password;
-	
+
 	@FXML
 	TextField passtext;
-	
+
 	@FXML
 	Button register;
-	
+
 	@FXML
 	Button forget;
-	
+
 	@FXML
 	CheckBox showpass;
-	
+
 	@FXML
 	Label status;
-	
+
 	private Color red = Color.RED;
-	
+
 	@FXML
 	public void initialize() {
 		login.setOnAction(this::onLoginClicked);
@@ -49,40 +49,48 @@ public class LoginController extends Contoller{
 		password.setPromptText("Your password");
 		passtext.setVisible(false);
 	}
-	
+
 	public void onLoginClicked(ActionEvent event) {
-		Login account = new Login(username.getText(),password.getText());
-		if(account.match()) {
-			GameUISceneChange.CHOOSEMINIGAME.changeScene((Stage)login.getScene().getWindow(), username.getText());
-		}else {
-			status.setTextFill(red);
-			status.setText("Username or password is incorrect.");
-			username.setText("");
-			password.setText("");
+		if (showpass.isSelected()) {
+			Login account = new Login(username.getText(), passtext.getText());
+			if (account.match()) {
+				GameUISceneChange.CHOOSEMINIGAME.changeScene((Stage) login.getScene().getWindow(), username.getText());
+			} else {
+				status.setTextFill(red);
+				status.setText("Username or password is incorrect.");
+				username.setText("");
+				password.setText("");
+			}
+		} else {
+			Login account = new Login(username.getText(), password.getText());
+			if (account.match()) {
+				GameUISceneChange.CHOOSEMINIGAME.changeScene((Stage) login.getScene().getWindow(), username.getText());
+			} else {
+				status.setTextFill(red);
+				status.setText("Username or password is incorrect.");
+				username.setText("");
+				password.setText("");
+			}
 		}
 	}
-	
+
 	public void onCheckBoxClicked(ActionEvent event) {
-		if(showpass.isSelected()) {
+		if (showpass.isSelected()) {
 			password.setVisible(false);
-			setTextShowPassword(password.getText().trim());
+			passtext.setText(password.getText().trim());
 			passtext.setVisible(true);
-		}else {
+		} else {
 			passtext.setVisible(false);
-			setTextShowPassword(password.getText().trim());
+			password.setText(password.getText().trim());
 			password.setVisible(true);
 		}
 	}
-	
+
 	public void onRegisterClicked(ActionEvent event) {
-		GameUISceneChange.REGISTER.changeScene((Stage)register.getScene().getWindow(), "");
+		GameUISceneChange.REGISTER.changeScene((Stage) register.getScene().getWindow(), "");
 	}
-	
-	public void setTextShowPassword(String pass) {
-		passtext.setText(pass);
-	}
-	
+
 	public void onForgetClicked(ActionEvent evnet) {
-		GameUISceneChange.FORGET1.changeScene((Stage)forget.getScene().getWindow(), "");
+		GameUISceneChange.FORGET1.changeScene((Stage) forget.getScene().getWindow(), "");
 	}
 }
