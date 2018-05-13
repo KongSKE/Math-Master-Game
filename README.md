@@ -44,6 +44,7 @@ Calculadola, QuestionIs, and MakeIt24. Player can choose game  to play and each 
 6. In Scoreboard.
 
 - Calculadola board.
+
 ![image](https://user-images.githubusercontent.com/25238368/39967121-550d0cfc-56e0-11e8-80c4-433d11b355ca.png)
 - QuestionIs board.
 ![image](https://user-images.githubusercontent.com/25238368/39967134-736489dc-56e0-11e8-8f03-b3e2692f6d62.png)
