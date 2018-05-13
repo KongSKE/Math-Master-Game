@@ -33,14 +33,20 @@ Calculadola, QuestionIs, and MakeIt24. Player can choose game  to play and each 
 - If other player choose to player this game, game will start.
 ![image](https://user-images.githubusercontent.com/25238368/39966945-fdae29d4-56dd-11e8-858d-6a2fead1f454.png)
 
+- Play by input the result on input box if it correct player score will increase. When game is end player who have more score will win the game.
+
 4. In QuestionIs game.
 
 - 10 questions for one game.
 ![image](https://user-images.githubusercontent.com/25238368/39967005-cd905db6-56de-11e8-898d-8a008e76c9e4.png)
 
+- Play by input number in empty box and press enter. Player will get score when it correct.
+
 5. In MakeIt24 game.
 - 5 questions for one game.
 ![image](https://user-images.githubusercontent.com/25238368/39967069-9dcabbb6-56df-11e8-9ff0-6523288eec60.png)
+
+- Play by press on number or operation until player use all number game will calculate player result if it correct player will get score.
 
 6. In Scoreboard.
 
@@ -68,8 +74,7 @@ Calculadola, QuestionIs, and MakeIt24. Player can choose game  to play and each 
 - Connect game to database.
 
 ## Design Pattern
-| Pattern | In class |
-| ------ | ------ |
-| Strategy | Calculadola in each calculate style |
-| Singleton | In Account class |
-| Oberserver | In all extends Task class |
+
+ Strategy => Calculadola in each calculate style
+ Singleton => In Account class
+ Oberserver => In all extends Task class 
