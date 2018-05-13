@@ -1,5 +1,11 @@
 package player;
 
+/**
+ * Game room for server in future.
+ * 
+ * @author Dacharat Pankong
+ *
+ */
 public class GameRoom {
 
 	private Player p1;

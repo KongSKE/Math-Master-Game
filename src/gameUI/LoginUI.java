@@ -6,6 +6,12 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+/**
+ * Run Math Master game.
+ * 
+ * @author Dacharat Pankong
+ *
+ */
 public class LoginUI extends Application {
 
 	@Override

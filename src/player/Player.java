@@ -1,5 +1,11 @@
 package player;
 
+/**
+ * Player to be add in game room.
+ * 
+ * @author Dacharat Pankong
+ *
+ */
 public class Player implements Comparable<Player> {
 
 	private String name;

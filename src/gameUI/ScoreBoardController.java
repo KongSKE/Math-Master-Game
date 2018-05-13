@@ -7,11 +7,19 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import player.Scoreboard;
 import users.Account;
 
+/**
+ * Scoreboard page show top 5 players for each games.
+ * 
+ * @author Dacharat Pankong
+ *
+ */
 public class ScoreBoardController extends Contoller {
 
 	@FXML
@@ -44,7 +52,6 @@ public class ScoreBoardController extends Contoller {
 	HBox player4thBox;
 	@FXML
 	HBox player5thBox;
-
 	@FXML
 	Button backButton;
 	@FXML
@@ -53,6 +60,8 @@ public class ScoreBoardController extends Contoller {
 	Button questionIsScoreButton;
 	@FXML
 	Button makeIt24ScoreButton;
+	@FXML
+	ImageView gameImage;
 
 	Scoreboard board = new Scoreboard();
 	Account account = Account.getInstance();
@@ -62,6 +71,9 @@ public class ScoreBoardController extends Contoller {
 	Integer[] score = new Integer[5];
 	HBox[] boxes = new HBox[5];
 
+	/**
+	 * Initialize UI.
+	 */
 	public void initialize() {
 
 		calculadolaScoreButton.setOnAction(this::onCalculadolaButtonClicked);
@@ -97,23 +109,42 @@ public class ScoreBoardController extends Contoller {
 		});
 	}
 
+	/**
+	 * Show scoreborad of calculadola game when clicked this button.
+	 * 
+	 * @param event
+	 */
 	public void onCalculadolaButtonClicked(ActionEvent event) {
-
+		gameImage.setImage(new Image("res/calculadola.gif"));
 		board.calculadolaBoard();
 		setHighScoreOutput();
-
 	}
 
+	/**
+	 * Show scoreborad of questionIs game when clicked this button.
+	 * 
+	 * @param event
+	 */
 	public void onQuestionIsButtonClicked(ActionEvent event) {
+		gameImage.setImage(new Image("res/questionIs.gif"));
 		board.questionIsBoard();
 		setHighScoreOutput();
 	}
 
+	/**
+	 * Show scoreborad of makeIt24 game when clicked this button.
+	 * 
+	 * @param event
+	 */
 	public void onMakeIt24ButtonClicked(ActionEvent event) {
+		gameImage.setImage(new Image("res/24Game.gif"));
 		board.makeit24Board();
 		setHighScoreOutput();
 	}
 
+	/**
+	 * Set scoreboard.
+	 */
 	public void setHighScoreOutput() {
 		HashMap<String, Integer> top5 = account.getTopplayer();
 
@@ -136,6 +167,11 @@ public class ScoreBoardController extends Contoller {
 		}
 	}
 
+	/**
+	 * Go to choose mini game page.
+	 * 
+	 * @param event
+	 */
 	public void onBackButtonClicked(ActionEvent event) {
 		GameUISceneChange.CHOOSEMINIGAME.changeScene((Stage) backButton.getScene().getWindow(), getName());
 	}

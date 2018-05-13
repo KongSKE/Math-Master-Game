@@ -1,10 +1,6 @@
 package users;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
-
-import player.Scoreboard;
 
 public class Account {
 
@@ -13,8 +9,7 @@ public class Account {
 	private String password;
 	private String question;
 	private String answer;
-	private Scoreboard score;
-	private HashMap<String, Integer> userscore = new HashMap();
+	private HashMap<String, Integer> userscore = new HashMap<String, Integer>();
 
 	public Account() {
 
@@ -50,7 +45,7 @@ public class Account {
 		forget.rePassword(username, password);
 	}
 
-	public void setTopplayer(HashMap player) {
+	public void setTopplayer(HashMap<String, Integer> player) {
 		this.userscore = player;
 	}
 
