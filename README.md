@@ -8,7 +8,8 @@ Math Master Game is a game that find the master mathematics. There are 3 mini ga
 Calculadola, QuestionIs, and MakeIt24. Player can choose game  to play and each mini game will collect a player’s score to show who is the master of each game.
 
 ## UML
-=> TBA
+
+![mathmastergame](https://user-images.githubusercontent.com/25238368/39967724-407e77d4-56eb-11e8-961d-f7627272408f.png)
 
 ## How to play
 
