@@ -6,6 +6,12 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
+/**
+ * ForgetPassword class can change password in database by answer the question.
+ * 
+ * @author Varit Assavavisidchai
+ *
+ */
 public class ForgetPassword {
 
 	private static Connection con;
@@ -22,6 +28,11 @@ public class ForgetPassword {
 		}
 	}
 
+	/**
+	 * 
+	 * @param username
+	 * @return true if has this user in database.
+	 */
 	public boolean checkUser(String username) {
 		try {
 			prepare = con.prepareStatement("SELECT `username` from `users` WHERE `username` = ?");
@@ -37,6 +48,12 @@ public class ForgetPassword {
 		return false;
 	}
 
+	/**
+	 * Get question
+	 * 
+	 * @param username
+	 * @return question of that user name.
+	 */
 	public String getQuestion(String username) {
 		try {
 			prepare = con.prepareStatement("SELECT `question` from `users` WHERE `username` = ? ");
@@ -54,6 +71,13 @@ public class ForgetPassword {
 		return "";
 	}
 
+	/**
+	 * Check answer
+	 * 
+	 * @param username
+	 * @param answer
+	 * @return true if answer is correct.
+	 */
 	public boolean checkAnswer(String username, String answer) {
 		try {
 			prepare = con
@@ -70,6 +94,12 @@ public class ForgetPassword {
 		return false;
 	}
 
+	/**
+	 * Change password
+	 * 
+	 * @param username
+	 * @param newpass
+	 */
 	public void rePassword(String username, String newpass) {
 		try {
 			String sql = "UPDATE `users` SET `password` = '" + newpass + "' WHERE `username` = '" + username + "'";

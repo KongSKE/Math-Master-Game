@@ -2,6 +2,12 @@ package users;
 
 import java.sql.*;
 
+/**
+ * Login
+ * 
+ * @author Varit Assavavisidchai
+ *
+ */
 public class Login {
 
 	private String username;
@@ -22,6 +28,11 @@ public class Login {
 		this.password = password;
 	}
 
+	/**
+	 * Check username and password
+	 * 
+	 * @return true if your user name and password are in database
+	 */
 	public boolean match() {
 		try {
 			prepare = con.prepareStatement(

@@ -10,6 +10,12 @@ import javafx.stage.Stage;
 import users.Account;
 import users.ForgetPassword;
 
+/**
+ * Forget Controller page 1
+ * 
+ * @author Varit Assavavisidchai
+ *
+ */
 public class ForgetController1 extends Contoller{
 
 	@FXML
@@ -46,6 +52,9 @@ public class ForgetController1 extends Contoller{
 	Account account = Account.getInstance();
 	ForgetPassword forget = new ForgetPassword();
 	
+	/**
+	 * Initialize
+	 */
 	@FXML
 	public void initialize() {
 		cancel.setOnAction(this::OnCancelAction);
@@ -58,6 +67,10 @@ public class ForgetController1 extends Contoller{
 		checkAns.setTextFill(red);
 	}
 	
+	/**
+	 * Action when clicked enter
+	 * @param event
+	 */
 	public void OnEnterAction(ActionEvent event) {
 		String user = username.getText().trim();
 		if(forget.checkUser(user)) {
@@ -73,6 +86,10 @@ public class ForgetController1 extends Contoller{
 		}
 	}
 	
+	/**
+	 * Action when clicked next button
+	 * @param event
+	 */
 	public void OnNextAction(ActionEvent event) {
 		String user = username.getText().trim();
 		String ans = answer.getText().trim(); 
@@ -83,6 +100,10 @@ public class ForgetController1 extends Contoller{
 		}
 	}
 	
+	/**
+	 * Action when clicked cancel button
+	 * @param event
+	 */
 	public void OnCancelAction(ActionEvent event) {
 		GameUISceneChange.LOGIN.changeScene((Stage)cancel.getScene().getWindow(), "");
 	}

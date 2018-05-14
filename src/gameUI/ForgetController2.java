@@ -9,6 +9,12 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import users.Account;
 
+/**
+ * Forget Controller page 2
+ * 
+ * @author Varit Assavavisidchai
+ *
+ */
 public class ForgetController2 extends Contoller{
 
 	@FXML
@@ -31,6 +37,9 @@ public class ForgetController2 extends Contoller{
 	
 	private Color red = Color.RED;
 	
+	/**
+	 * Initialize
+	 */
 	@FXML
 	public void initialize() {
 		confirm.setOnAction(this::OnConfirmAction);
@@ -40,6 +49,10 @@ public class ForgetController2 extends Contoller{
 		checkrepass.setTextFill(red);
 	}
 	
+	/**
+	 * Action when clicked confirm button
+	 * @param event
+	 */
 	public void OnConfirmAction(ActionEvent event) {
 		Account account = Account.getInstance();
 		String pass = password.getText().trim();
@@ -60,6 +73,10 @@ public class ForgetController2 extends Contoller{
 		
 	}
 	
+	/**
+	 * Action when clicked cancel button
+	 * @param event
+	 */
 	public void OnCancelAction(ActionEvent event) {
 		GameUISceneChange.LOGIN.changeScene((Stage)cancel.getScene().getWindow(), "");
 	}

@@ -11,6 +11,11 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import users.Login;
 
+/**
+ * Login Controller
+ * @author Varit Assavavisidchai
+ *
+ */
 public class LoginController extends Contoller {
 
 	@FXML
@@ -39,6 +44,9 @@ public class LoginController extends Contoller {
 
 	private Color red = Color.RED;
 
+	/**
+	 * Initialize
+	 */
 	@FXML
 	public void initialize() {
 		login.setOnAction(this::onLoginClicked);
@@ -50,6 +58,10 @@ public class LoginController extends Contoller {
 		passtext.setVisible(false);
 	}
 
+	/**
+	 * Action when clicked login button
+	 * @param event
+	 */
 	public void onLoginClicked(ActionEvent event) {
 		if (showpass.isSelected()) {
 			Login account = new Login(username.getText(), passtext.getText());
@@ -74,6 +86,10 @@ public class LoginController extends Contoller {
 		}
 	}
 
+	/**
+	 * Action when check on checkbox.
+	 * @param event
+	 */
 	public void onCheckBoxClicked(ActionEvent event) {
 		if (showpass.isSelected()) {
 			password.setVisible(false);
@@ -86,10 +102,18 @@ public class LoginController extends Contoller {
 		}
 	}
 
+	/**
+	 * Action when clicked register button
+	 * @param event
+	 */
 	public void onRegisterClicked(ActionEvent event) {
 		GameUISceneChange.REGISTER.changeScene((Stage) register.getScene().getWindow(), "");
 	}
 
+	/**
+	 * Action when clicked forget button
+	 * @param evnet
+	 */
 	public void onForgetClicked(ActionEvent evnet) {
 		GameUISceneChange.FORGET1.changeScene((Stage) forget.getScene().getWindow(), "");
 	}

@@ -6,6 +6,12 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
+/**
+ * Register
+ * 
+ * @author Varit Assavisidchai
+ *
+ */
 public class Register {
 
 	private String username;
@@ -32,6 +38,11 @@ public class Register {
 		this.password = password;
 	}
 
+	/**
+	 * check user name does not exist?
+	 * 
+	 * @return true if user name is not exist
+	 */
 	public boolean checkID() {
 		try {
 			prepare = con.prepareStatement("SELECT `username`, `password` from `users` WHERE `username` = ?");
@@ -47,6 +58,12 @@ public class Register {
 		return false;
 	}
 
+	/**
+	 * Create ID in database 
+	 * 
+	 * @param question
+	 * @param answer
+	 */
 	public void createID(String question, String answer) {
 		try {
 			String sql = "INSERT INTO `users` (`password`, `username`, `question`, `answer`) VALUES ('" + password

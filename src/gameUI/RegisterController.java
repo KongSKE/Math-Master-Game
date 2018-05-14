@@ -11,6 +11,12 @@ import javafx.stage.Stage;
 import users.Account;
 import users.Register;
 
+/**
+ * Register Controller
+ * 
+ * @author Varit Assavavisidchai
+ *
+ */
 public class RegisterController extends Contoller {
 
 	@FXML
@@ -39,6 +45,9 @@ public class RegisterController extends Contoller {
 
 	Color red = Color.RED;
 
+	/**
+	 * Initialize
+	 */
 	@FXML
 	public void initialize() {
 		next.setOnAction(this::onNextButton);
@@ -54,6 +63,10 @@ public class RegisterController extends Contoller {
 		checkrepass.setVisible(true);
 	}
 
+	/**
+	 * Action when clicked next button
+	 * @param event
+	 */
 	public void onNextButton(ActionEvent event) {
 		String name = username.getText().trim();
 		String pass = password.getText().trim();
@@ -135,6 +148,10 @@ public class RegisterController extends Contoller {
 
 	}
 
+	/**
+	 * Action when clicked cancel button
+	 * @param event
+	 */
 	public void onCancelButton(ActionEvent event) {
 		GameUISceneChange.LOGIN.changeScene((Stage) cancel.getScene().getWindow(), "");
 	}

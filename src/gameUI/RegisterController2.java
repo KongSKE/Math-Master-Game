@@ -9,6 +9,12 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import users.Account;
 
+/**
+ * Register Controller page 2
+ * 
+ * @author Varit Assavavisidchai
+ *
+ */
 public class RegisterController2 extends Contoller {
 
 	@FXML
@@ -31,6 +37,9 @@ public class RegisterController2 extends Contoller {
 
 	Color red = Color.RED;
 
+	/**
+	 * Initialize
+	 */
 	public void initialize() {
 		finish.setOnAction(this::onFinishButton);
 		cancel.setOnAction(this::onCancelButton);
@@ -38,6 +47,10 @@ public class RegisterController2 extends Contoller {
 		checkAns.setTextFill(red);
 	}
 
+	/**
+	 * Action when clicked finish button
+	 * @param event
+	 */
 	public void onFinishButton(ActionEvent event) {
 		Account account = Account.getInstance();
 		String q = question.getText().trim();
@@ -62,15 +75,11 @@ public class RegisterController2 extends Contoller {
 		}
 	}
 
+	/**
+	 * Action when clicked cancel button
+	 * @param event
+	 */
 	public void onCancelButton(ActionEvent event) {
 		GameUISceneChange.LOGIN.changeScene((Stage) cancel.getScene().getWindow(), "");
 	}
-
-	// public String getQuestion(String question) {
-	// return question;
-	// }
-	//
-	// public String getAnswer(String answer) {
-	// return answer;
-	// }
 }
